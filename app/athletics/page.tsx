@@ -5,6 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import Footer from '../../components/footer'
 import { getChampionships } from '../../lib/sanity'
 
+
+//TODO: update for athletics page
+
 type Championship = {
   sport: string
   year: number

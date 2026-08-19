@@ -28,18 +28,18 @@ export default function Header() {
 
   return (
     <header
-  className="
-    absolute top-0 left-0 w-full z-50
-    flex items-center justify-between
-    px-[clamp(12px,1.2vw,28px)]
-    h-[8vh] min-h-[72px] max-h-[140px]
-    pt-[clamp(6px,0.8vh,16px)]
-  "
->
+      className="
+        absolute top-0 left-0 w-full z-50
+        flex items-center justify-between
+        px-[clamp(12px,1.2vw,28px)]
+        h-[8vh] min-h-[72px] max-h-[140px]
+        pt-[clamp(6px,0.8vh,16px)]
+      "
+    >
       {/* Logo (clickable) */}
       <button
         onClick={() => router.push('/')}
-        className="relative h-full aspect-[1/1] flex items-center"
+        className="relative h-full aspect-square flex items-center"
         aria-label="Go to Home"
       >
         <Image

@@ -6,6 +6,13 @@ interface FooterProps {
   onHallOfFameClick?: () => void
 }
 
+const pages = [
+  { name: 'History', path: '/history' },
+  { name: 'Academics', path: '/academics' },
+  { name: 'Athletics', path: '/athletics' },
+  { name: 'Yearbooks', path: '/yearbooks' },
+]
+
 export default function Footer({ onHallOfFameClick }: FooterProps) {
   const router = useRouter()
   const pathname = usePathname()
@@ -20,7 +27,35 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
 
   return (
     <footer className="w-full h-full flex justify-around items-center px-6" style={{ backgroundColor: '#332057' }}>
-      <button
+      {
+        pages.map((page, key) => (
+          <button
+            className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)] transition whitespace-nowrap overflow-hidden truncate"
+            key={key}
+            style={{
+              backgroundColor: pathname === page.path ? '#b9a578' : '#4a2d81',
+              outline: pathname === page.path ? '3px solid white' : 'none',
+              outlineOffset: '-3px',
+              color: pathname === page.path ? '#4a2d81' : 'white',
+              fontFamily: 'OldSport, sans-serif',
+            }}
+            onMouseEnter={(e) => {
+              if (pathname !== page.path) {
+                e.currentTarget.style.backgroundColor = '#b9a578'
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (pathname !== page.path) {
+                e.currentTarget.style.backgroundColor = '#4a2d81'
+              }
+            }}
+            onClick={() => router.push(page.path)}
+          >
+            {page.name}
+          </button>
+        ))
+      }
+      {/* <button
         className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)] transition whitespace-nowrap overflow-hidden truncate"
         style={{
           backgroundColor: pathname === '/hall-of-fame' ? '#b9a578' : '#4a2d81',
@@ -90,7 +125,7 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
         onClick={() => router.push('/yearbooks')}
       >
         Yearbooks
-      </button>
+      </button> */}
     </footer>
   )
 }

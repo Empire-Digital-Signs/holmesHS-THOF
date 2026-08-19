@@ -5,6 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import Footer from '../../components/footer'
 import { getInductees } from '../../lib/sanity'
 
+
+//TODO: update for academics page
+
 type Inductee = {
   firstName: string
   lastName: string
