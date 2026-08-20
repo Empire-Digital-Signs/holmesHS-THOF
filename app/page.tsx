@@ -24,9 +24,6 @@ export default async function HomePage() {
         fill
         className="object-cover"
       />
-      
-      {/* Header overlay */}
-      <Header />
 
       {/* Overlay images */}
       {/* Logo and School name */}

@@ -49,7 +49,9 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
                 e.currentTarget.style.backgroundColor = '#4a2d81'
               }
             }}
-            onClick={() => router.push(page.path)}
+            onClick={() => 
+              pathname === page.path ? router.push('/') : router.push(page.path)
+            }
           >
             {page.name}
           </button>
