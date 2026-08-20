@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter, usePathname} from 'next/navigation'
+import { useEffect } from 'react'
 
 interface FooterProps {
   onHallOfFameClick?: () => void
@@ -25,109 +26,81 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
     }
   }
 
+  // Handle rounded edges based on current path
+  useEffect(() => {
+    const historyButton = document.getElementById('history-button');
+    const academicsButton = document.getElementById('academics-button');
+    const athleticsButton = document.getElementById('athletics-button');
+    const yearbooksButton = document.getElementById('yearbooks-button');
+
+    // Remove all possible additions before rendering (home page has no rounded edges)
+    const removeRoundedEdges = () => {
+      historyButton?.classList.remove('rounded-tr-2xl');
+      academicsButton?.classList.remove('rounded-tl-2xl');
+      academicsButton?.classList.remove('rounded-tr-2xl');
+      athleticsButton?.classList.remove('rounded-tl-2xl');
+      athleticsButton?.classList.remove('rounded-tr-2xl');
+      yearbooksButton?.classList.remove('rounded-tl-2xl');
+    };
+
+    switch (pathname) {
+      case '/history': // Academic left edge rounded
+        removeRoundedEdges();
+        academicsButton?.classList.add('rounded-tl-2xl');
+        return;
+
+      case '/academics': // History right edge rounded, Athletics left edge rounded
+        removeRoundedEdges();
+        historyButton?.classList.add('rounded-tr-2xl');
+        athleticsButton?.classList.add('rounded-tl-2xl');
+        return;
+
+      case '/athletics': // Academics right edge rounded, Yearbooks left edge rounded
+        removeRoundedEdges();
+        academicsButton?.classList.add('rounded-tr-2xl');
+        yearbooksButton?.classList.add('rounded-tl-2xl');
+        return;
+
+      case '/yearbooks': // Athletics right edge rounded
+        removeRoundedEdges();
+        athleticsButton?.classList.add('rounded-tr-2xl');
+        return;
+
+      default:
+        return;
+    }
+  }, [pathname])
+
   return (
-    <footer className="w-full h-full flex justify-around items-center px-6" style={{ backgroundColor: '#332057' }}>
-      {
-        pages.map((page, key) => (
-          <button
-            className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)] transition whitespace-nowrap overflow-hidden truncate"
-            key={key}
-            style={{
-              backgroundColor: pathname === page.path ? '#b9a578' : '#4a2d81',
-              outline: pathname === page.path ? '3px solid white' : 'none',
-              outlineOffset: '-3px',
-              color: pathname === page.path ? '#4a2d81' : 'white',
-              fontFamily: 'OldSport, sans-serif',
-            }}
-            onMouseEnter={(e) => {
-              if (pathname !== page.path) {
-                e.currentTarget.style.backgroundColor = '#b9a578'
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (pathname !== page.path) {
-                e.currentTarget.style.backgroundColor = '#4a2d81'
-              }
-            }}
-            onClick={() => 
-              pathname === page.path ? router.push('/') : router.push(page.path)
+    <footer className="w-full h-[161px] absolute bottom-0 flex items-end bg-(--primary-red) z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
+      { pages.map((page, key) => (
+        <button
+          id={page.name.toLowerCase() + '-button'}
+          className={
+            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px]
+
+            ${pathname === page.path ? 'var(--primary-red) text-white' : 'bg-white text-black'}
+          `}
+          key={key}
+          onMouseEnter={(e) => {
+            if (pathname !== page.path) {
+              e.currentTarget.style.backgroundColor = 'var(--primary-red)'
+              e.currentTarget.style.color = 'white'
             }
-          >
-            {page.name}
-          </button>
-        ))
-      }
-      {/* <button
-        className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)] transition whitespace-nowrap overflow-hidden truncate"
-        style={{
-          backgroundColor: pathname === '/hall-of-fame' ? '#b9a578' : '#4a2d81',
-          outline: pathname === '/hall-of-fame' ? '3px solid white' : 'none',
-          outlineOffset: '-3px',
-          color: pathname === '/hall-of-fame' ? '#4a2d81' : 'white',
-          fontFamily: 'OldSport, sans-serif',
-        }}
-        onMouseEnter={(e) => {
-          if (pathname !== '/hall-of-fame') {
-            e.currentTarget.style.backgroundColor = '#b9a578'
+          }}
+          onMouseLeave={(e) => {
+            if (pathname !== page.path) {
+              e.currentTarget.style.backgroundColor = 'white'
+              e.currentTarget.style.color = 'black'
+            }
+          }}
+          onClick={() => 
+            pathname === page.path ? router.push('/') : router.push(page.path)
           }
-        }}
-        onMouseLeave={(e) => {
-          if (pathname !== '/hall-of-fame') {
-            e.currentTarget.style.backgroundColor = '#4a2d81'
-          }
-        }}
-        onClick={handleHallOfFameClick}
-      >
-        Hall of Fame
-      </button>
-
-      <button
-        className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)]  transition whitespace-nowrap overflow-hidden truncate"
-        style={{
-          backgroundColor: pathname === '/championships' ? '#b9a578' : '#4a2d81',
-          outline: pathname === '/championships' ? '3px solid white' : 'none',
-          outlineOffset: '-3px',
-          color: pathname === '/championships' ? '#4a2d81' : 'white',
-          fontFamily: 'OldSport, sans-serif',
-        }}
-        onMouseEnter={(e) => {
-          if (pathname !== '/championships') {
-            e.currentTarget.style.backgroundColor = '#b9a578'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (pathname !== '/championships') {
-            e.currentTarget.style.backgroundColor = '#4a2d81'
-          }
-        }}
-        onClick={() => router.push('/championships')}
-      >
-        Championships
-      </button>
-
-      <button
-        className="w-[25%] h-[80%] text-white text-[clamp(12px,2.2vw,46px)]  transition whitespace-nowrap overflow-hidden truncate"
-        style={{
-          backgroundColor: pathname === '/yearbooks' ? '#b9a578' : '#4a2d81',
-          outline: pathname === '/yearbooks' ? '3px solid white' : 'none',
-          outlineOffset: '-3px',
-          color: pathname === '/yearbooks' ? '#4a2d81' : 'white',
-          fontFamily: 'OldSport, sans-serif',
-        }}
-        onMouseEnter={(e) => {
-          if (pathname !== '/yearbooks') {
-            e.currentTarget.style.backgroundColor = '#b9a578'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (pathname !== '/yearbooks') {
-            e.currentTarget.style.backgroundColor = '#4a2d81'
-          }
-        }}
-        onClick={() => router.push('/yearbooks')}
-      >
-        Yearbooks
-      </button> */}
+        >
+          {page.name}
+        </button>
+      ))}
     </footer>
   )
 }

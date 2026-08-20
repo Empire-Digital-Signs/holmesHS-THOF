@@ -48,10 +48,8 @@ export default async function HomePage() {
         className="object-contain object-right"
       />
 
-      {/* Footer sticky to bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[10vh]">
-        <Footer />
-      </div>
+      {/* Nav bar */}
+      <Footer />
     </main>
   )
 }
