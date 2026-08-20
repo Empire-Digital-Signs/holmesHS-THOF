@@ -2,6 +2,7 @@ import HomeSlideshow from '../components/HomeSlideshow'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { getHomeSlides } from '../lib/sanity'
+import Image from 'next/image'
 
 export const revalidate = 60
 
@@ -10,28 +11,42 @@ export default async function HomePage() {
 
   return (
     <main className="w-screen h-screen relative overflow-hidden">
-      {/* Slideshow fills entire screen */}
-      <HomeSlideshow/>
-
+      {/* Slideshow fills entire screen
+      *** TODO: Setup images in Sanity. Using placeholder for now.
+      */}
+      {/* <HomeSlideshow/> */}
+      <Image
+        src="/images/slideshow-image.png"
+        alt="Slideshow Placeholder"
+        fill
+        className="object-cover"
+      />
+      
       {/* Header overlay */}
       <Header />
 
-      <div
-        className="
-          absolute left-0
-          bottom-[clamp(6vh,10vh,14vh)]
-          inline-block
-          bg-black text-white font-medium
-          px-[clamp(14px,1.6vw,36px)]
-          py-[clamp(8px,1.2vh,20px)]
-          text-[clamp(12px,1.8vw,36px)]
-          leading-tight
-          max-w-[90vw]
-        "
-      >
-        <span className="font-italic">Interactive System Graciously Funded by{' '}</span>
-        <span className="font-bold">The Sayville Athletic Foundation</span>
-      </div>
+      {/* Overlay images */}
+      {/* Logo and School name */}
+      <Image
+        src="/images/holmes-logo.png"
+        alt="Holmes High School"
+        fill
+        className="object-contain"
+      />
+      {/* Side Banner */}
+      <Image
+        src="/images/home-banner.png"
+        alt="Holmes High School"
+        fill
+        className="object-contain object-right"
+      />
+      {/* QR Code */}
+      <Image
+        src="/images/qr-code.png"
+        alt="QR Code"
+        fill
+        className="object-contain object-right"
+      />
 
       {/* Footer sticky to bottom */}
       <div className="absolute bottom-0 left-0 w-full h-[10vh]">
