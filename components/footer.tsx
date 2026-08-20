@@ -24,10 +24,12 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
     } else {
       router.push('/hall-of-fame')
     }
-  }
+  };
 
   // Handle rounded edges based on current path
   useEffect(() => {
+
+    // Get buttons
     const historyButton = document.getElementById('history-button');
     const academicsButton = document.getElementById('academics-button');
     const athleticsButton = document.getElementById('athletics-button');
@@ -43,33 +45,23 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
       yearbooksButton?.classList.remove('rounded-tl-2xl');
     };
 
-    switch (pathname) {
-      case '/history': // Academic left edge rounded
-        removeRoundedEdges();
-        academicsButton?.classList.add('rounded-tl-2xl');
-        return;
-
-      case '/academics': // History right edge rounded, Athletics left edge rounded
-        removeRoundedEdges();
-        historyButton?.classList.add('rounded-tr-2xl');
-        athleticsButton?.classList.add('rounded-tl-2xl');
-        return;
-
-      case '/athletics': // Academics right edge rounded, Yearbooks left edge rounded
-        removeRoundedEdges();
-        academicsButton?.classList.add('rounded-tr-2xl');
-        yearbooksButton?.classList.add('rounded-tl-2xl');
-        return;
-
-      case '/yearbooks': // Athletics right edge rounded
-        removeRoundedEdges();
-        athleticsButton?.classList.add('rounded-tr-2xl');
-        return;
-
-      default:
-        return;
+    // Add rounded edges based on the current path
+    if (pathname.startsWith('/history')) {
+      removeRoundedEdges();
+      academicsButton?.classList.add('rounded-tl-2xl');
     }
-  }, [pathname])
+    else if (pathname.startsWith('/academics')) {
+      historyButton?.classList.add('rounded-tr-2xl');
+      athleticsButton?.classList.add('rounded-tl-2xl');
+    }
+    else if (pathname.startsWith('/athletics')) {
+      academicsButton?.classList.add('rounded-tr-2xl');
+      yearbooksButton?.classList.add('rounded-tl-2xl');
+    }
+    else if (pathname.startsWith('/yearbooks')) {
+      athleticsButton?.classList.add('rounded-tr-2xl');
+    }
+  }, [pathname]);
 
   return (
     <footer className="w-full h-[161px] absolute bottom-0 flex items-end bg-(--primary-red) z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
@@ -79,7 +71,7 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
           className={
             `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px]
 
-            ${pathname === page.path ? 'var(--primary-red) text-white' : 'bg-white text-black'}
+            ${pathname === page.path || pathname.startsWith(page.path + '/') ? 'var(--primary-red) text-white' : 'bg-white text-black'}
           `}
           key={key}
           onMouseEnter={(e) => {
@@ -95,7 +87,7 @@ export default function Footer({ onHallOfFameClick }: FooterProps) {
             }
           }}
           onClick={() => 
-            pathname === page.path ? router.push('/') : router.push(page.path)
+            pathname === page.path || pathname.startsWith(page.path + '/') ? router.push('/') : router.push(page.path)
           }
         >
           {page.name}

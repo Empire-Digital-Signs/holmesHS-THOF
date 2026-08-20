@@ -12,7 +12,7 @@ export default async function HomePage() {
   return (
     <main className="w-screen h-screen relative overflow-hidden">
       {/* Date and Time */}
-      <Header />
+      <Header variant="home" />
 
       {/* Slideshow fills entire screen
       *** TODO: Setup images in Sanity. Using placeholder for now.
