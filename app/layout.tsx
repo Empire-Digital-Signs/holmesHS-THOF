@@ -1,6 +1,5 @@
 // app/layout.tsx
 import './globals.css'
-import Header from '../components/header'
 import InactivityTimer from '../components/InactivityTimer'
 import { Providers } from './providers'
 
@@ -13,8 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="w-screen h-screen overflow-hidden bg-black">
         <Providers>
-          <InactivityTimer timeout={600000} homeTimeout={300000} />          
-            <Header />
+          <InactivityTimer timeout={600000} homeTimeout={300000} />
           {/* directly render children */}
           {children}
         </Providers>
