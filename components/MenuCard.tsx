@@ -19,7 +19,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
         onClick={() => {router.push(item.link)}}
       >
         <p
-          className="text-center text-black mt-[75px] mb-[280px] text-[24px] uppercase"
+          className="text-center text-black mt-[75px] mb-[280px] mx-2 text-[24px] uppercase"
         >
           {item.title}
         </p>
