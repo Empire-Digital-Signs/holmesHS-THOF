@@ -24,7 +24,6 @@ export default function Header({ variant }: HeaderProps) {
     month: 'long',
     day: 'numeric',
   });
-  console.log(formattedDay);
 
   const formattedTime = currentTime.toLocaleTimeString('en-US', {
     hour: 'numeric',
