@@ -10,7 +10,7 @@ export default async function HomePage() {
   const slides = await getHomeSlides()
 
   return (
-    <main className="w-screen h-screen relative overflow-hidden">
+    <main className="relative overflow-hidden min-h-0 flex flex-1">
       {/* Date and Time */}
       <Header variant="home" />
 
@@ -47,9 +47,6 @@ export default async function HomePage() {
         fill
         className="object-contain object-right"
       />
-
-      {/* Nav bar */}
-      <Footer />
     </main>
   )
 }

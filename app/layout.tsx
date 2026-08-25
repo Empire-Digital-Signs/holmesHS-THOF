@@ -1,26 +1,28 @@
-// app/layout.tsx
 import './globals.css'
-import InactivityTimer from '../components/InactivityTimer'
-import { Providers } from './providers'
-import { Noto_Sans, Playfair_Display } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const playfairDisplayHeading = Playfair_Display({subsets:['latin'],variable:'--font-heading'});
-
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'});
+import { Providers } from './providers';
+import InactivityTimer from '../components/InactivityTimer';
+import background from '../public/images/background.png'
+import Footer from '@/components/footer';
 
 export const metadata = {
   title: 'Sayville High School',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
-    <html lang="en" className={cn("font-sans", notoSans.variable, playfairDisplayHeading.variable)}>
-      <body className="w-screen h-screen overflow-hidden bg-black">
+    <html lang="en">
+      <body className="w-screen h-screen min-h-0 overflow-hidden bg-black">
         <Providers>
           <InactivityTimer timeout={600000} homeTimeout={300000} />
           {/* directly render children */}
-          {children}
+          <div 
+            className='flex flex-col w-screen h-screen  '
+            style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }}
+          >
+            {children}
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

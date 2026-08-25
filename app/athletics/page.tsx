@@ -15,17 +15,12 @@ export default function AthleticsPage() {
   ]
 
   return (
-    <div
-      className='w-full h-full'
-      style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }} >
+    <div className='w-full h-full'>
       {/* Date and Time */}
       <Header variant="menu" />
 
       {/* Menu Items */}
       <Menu items={menuItems} />
-
-      {/* Nav */}
-      <Footer />
     </div>
   )
 }

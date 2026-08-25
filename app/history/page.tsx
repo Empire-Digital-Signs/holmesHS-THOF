@@ -159,10 +159,11 @@ export default function HistoryPage() {
 
   return (
     <div 
-      className='w-full h-full'
+      className='flex flex-col w-full h-full'
       style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }}
     >
-      <div className='flex flex-row justify-between h-full'>
+      {/* Content: List and Carousel */}
+      <div className='flex flex-row flex-1 min-h-0 justify-between'>
         {/* Years List */}
         <div className='flex flex-col align-start max-h-[891px]'>
           {/* Header */}
@@ -170,14 +171,19 @@ export default function HistoryPage() {
             Years
           </h1>
           {/* List Wrapper */}
-          <div className='h-full'>
+          <div className='h-full mb-[27px]'>
             {/* Background */}
             <div className='bg-black w-[187px] h-full' />
             {/* List */}
             <ul className='absolute top-[119px] flex flex-col gap-[20px] mb-[27px] overflow-y-scroll overflow-x-visible'>
               {
-                records.map((record) => (
-                  <li className='flex justify-end pr-[20px] w-[208px] h-[46px] bg-(--primary-red) border-4 border-black text-[25px] text-white'>
+                records.map((record, index) => (
+                  <li
+                    className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-(--primary-red) border-4 border-black text-[25px] text-white
+                      hover:cursor-pointer`}
+                    onClick={() => api?.scrollTo(index)}
+                    key={record.year}
+                  >
                     {record.year}
                   </li>
                 ))
@@ -200,9 +206,6 @@ export default function HistoryPage() {
         </Carousel>
       
       </div>
-
-      {/* Nav bar */}
-      <Footer />
     </div>
   )
 }

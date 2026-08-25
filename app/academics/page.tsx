@@ -23,9 +23,6 @@ export default function AcademicsPage() {
 
       {/* Menu Items */}
       <Menu items={menuItems} />
-
-      {/* Nav */}
-      <Footer />
     </div>
   )
 }
