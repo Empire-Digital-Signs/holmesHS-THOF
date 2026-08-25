@@ -17,10 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <InactivityTimer timeout={600000} homeTimeout={300000} />
           {/* directly render children */}
           <div 
-            className='flex flex-col w-screen h-screen  '
+            className='flex flex-col w-screen h-screen'
             style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }}
           >
-            {children}
+            <div className='flex-1 min-h-0'>
+              {children}
+            </div>
             <Footer />
           </div>
         </Providers>

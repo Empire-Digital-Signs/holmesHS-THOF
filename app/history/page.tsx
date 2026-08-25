@@ -165,36 +165,40 @@ export default function HistoryPage() {
       {/* Content: List and Carousel */}
       <div className='flex flex-row flex-1 min-h-0 justify-between'>
         {/* Years List */}
-        <div className='flex flex-col align-start max-h-[891px]'>
+        <div className='flex min-h-0 flex-col align-start mb-[27px]'>
           {/* Header */}
           <h1 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] text-[33px] border-4 border-black uppercase bg-white'>
             Years
           </h1>
           {/* List Wrapper */}
-          <div className='h-full mb-[27px]'>
-            {/* Background */}
-            <div className='bg-black w-[187px] h-full' />
-            {/* List */}
-            <ul className='absolute top-[119px] flex flex-col gap-[20px] mb-[27px] overflow-y-scroll overflow-x-visible'>
-              {
-                records.map((record, index) => (
-                  <li
-                    className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-(--primary-red) border-4 border-black text-[25px] text-white
-                      hover:cursor-pointer`}
-                    onClick={() => api?.scrollTo(index)}
-                    key={record.year}
-                  >
-                    {record.year}
-                  </li>
-                ))
-              }
-            </ul>
+          <div className='relative flex-1 min-h-0 overflow-y-auto no-scrollbar'>
+            <div className='relative min-h-full w-[220px]'>
+              {/* Background */}
+              <div className='absolute inset-y-0 left-0 w-[187px] bg-black' />
+              {/* List */}
+              <ul className='relative z-10 flex flex-col gap-[20px]'>
+                {
+                  records.map((record, index) => (
+                    <li
+                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-(--primary-red) border-4 border-black text-[25px] text-white
+                        hover:cursor-pointer`}
+                      onClick={() => api?.scrollTo(index)}
+                      key={record.year}
+                    >
+                      {record.year}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Carousel */}
         <Carousel setApi={setApi} className="w-full h-full" opts={emblaOptions}>
           <CarouselContent>
+            <CarouselItem />
+            <CarouselItem />
             {
               records.map((record, index) => (
                 <HistoryCard record={record} visible={visible} visiblePos={index} key={record.year} />
