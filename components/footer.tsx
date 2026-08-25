@@ -81,11 +81,11 @@ export default function Footer() {
         <button
           id={page.name.toLowerCase() + '-button'}
           className={
-            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px]
+            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px] cursor-pointer
 
             ${pathname === page.path || pathname.startsWith(page.path + '/') ?
               'bg-(--primary-red) text-white' :
-              'bg-white hover:bg-(--primary-red) text-black hover:text-white'}
+              'bg-white text-black'}
 
             ${getBorderClasses(page.name)}
           `}
