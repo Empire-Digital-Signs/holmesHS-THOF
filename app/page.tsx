@@ -10,7 +10,7 @@ export default async function HomePage() {
   const slides = await getHomeSlides()
 
   return (
-    <main className="relative overflow-hidden min-h-0 flex flex-1">
+    <main className="overflow-hidden flex flex-1">
       {/* Date and Time */}
       <Header variant="home" />
 
