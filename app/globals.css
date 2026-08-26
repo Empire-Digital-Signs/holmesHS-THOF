@@ -4,6 +4,8 @@
 
 @import "shadcn/tailwind.css";
 
+@plugin "tailwind-scrollbar";
+
 @font-face {
   font-family: 'Charter Black';
   src: url('/fonts/Charter-Black.otf') format('opentype');
@@ -19,7 +21,6 @@
 }
 
 :root {
-  --primary-red: #EA1E24;
   --background: oklch(1 0 0);
   --foreground: oklch(0.147 0.004 49.3);
   --card: oklch(1 0 0);
@@ -55,6 +56,7 @@
 }
 
 @theme inline {
+  --color-primary-red: #EA1E24;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Evolve Sans", var(--font-sans);;

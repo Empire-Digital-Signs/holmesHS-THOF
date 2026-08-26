@@ -3,8 +3,24 @@
 import Footer from '../../components/footer'
 import Header from '@/components/header'
 import background from '../../public/images/background.png'
-import { MenuItem } from '@/types'
+import { MenuItem, Page } from '@/types'
 import Menu from '@/components/Menu'
+import SubMenu from '@/components/SubMenu'
+
+const subMenuPages: Page[] = [
+  {
+    name: 'Academic Programs',
+    destination: '/academics/academic-programs'
+  },
+  {
+    name: 'Career and Technical Education',
+    destination: '/academics/career-and-technical-education'
+  },
+  {
+    name: 'Hall of Distinction',
+    destination: '/academics/hall-of-distinction'
+  }
+];
 
 export default function AcademicsPage() {
 
@@ -22,6 +38,7 @@ export default function AcademicsPage() {
       <Header variant="menu" />
 
       {/* Menu Items */}
+      {/* <SubMenu pages={subMenuPages} /> */}
       <Menu items={menuItems} />
     </div>
   )

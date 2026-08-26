@@ -8,3 +8,16 @@ export type HistoryItem = {
   title: string;
   description: string;
 }
+
+export type Inductee = {
+  firstName: string;
+  lastName: string;
+  year: number;
+  bio: string;
+  photoUrl: string;
+}
+
+export type Page = {
+  name: string;
+  destination: string;
+}

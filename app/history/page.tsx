@@ -78,7 +78,7 @@ function HistoryCard({ record, visible, visiblePos }: HistoryCardProps) {
   return (
     <CarouselItem
       className={
-        `flex flex-col bg-(--primary-red) border-black border-2 rounded-[20px]
+        `flex flex-col bg-primary-red border-black border-2 rounded-[20px]
         w-full`
       }
     >
@@ -167,9 +167,9 @@ export default function HistoryPage() {
         {/* Years List */}
         <div className='flex min-h-0 flex-col align-start mb-[27px]'>
           {/* Header */}
-          <h1 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] text-[33px] border-4 border-black uppercase bg-white'>
+          <h2 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] text-[33px] border-4 border-black uppercase bg-white'>
             Years
-          </h1>
+          </h2>
           {/* List Wrapper */}
           <div className='relative flex-1 min-h-0 overflow-y-auto no-scrollbar'>
             <div className='relative min-h-full w-[220px]'>
@@ -180,7 +180,7 @@ export default function HistoryPage() {
                 {
                   records.map((record, index) => (
                     <li
-                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-(--primary-red) border-4 border-black text-[25px] text-white
+                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-[25px] text-white
                         hover:cursor-pointer`}
                       onClick={() => api?.scrollTo(index)}
                       key={record.year}

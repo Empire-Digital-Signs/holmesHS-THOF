@@ -76,7 +76,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full pt-[26px] flex items-end bg-(--primary-red) z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
+    <footer className="w-full pt-[26px] flex items-end bg-primary-red z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
       { pages.map((page, key) => (
         <button
           id={page.name.toLowerCase() + '-button'}
@@ -84,7 +84,7 @@ export default function Footer() {
             `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px] cursor-pointer
 
             ${pathname === page.path || pathname.startsWith(page.path + '/') ?
-              'bg-(--primary-red) text-white' :
+              'bg-primary-red text-white' :
               'bg-white text-black'}
 
             ${getBorderClasses(page.name)}
