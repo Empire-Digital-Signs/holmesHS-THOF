@@ -1,12 +1,19 @@
 import { Inductee } from '@/types'
 import Image from 'next/image'
 
-export default function InducteeCard({ inductee }: { inductee: Inductee }) {
+export default function InducteeCard({
+  inductee,
+  onSelect,
+}: {
+  inductee: Inductee
+  onSelect: (inductee: Inductee) => void
+}) {
+
   return (
     <>
       <div
         className="relative h-[430px] overflow-hidden cursor-pointer bg-black"
-        onClick={() => {}}
+        onClick={() => onSelect(inductee)}
       >
         {/* Bottom layer: No image available */}
         {/* <img
@@ -21,9 +28,9 @@ export default function InducteeCard({ inductee }: { inductee: Inductee }) {
             src={inductee.photoUrl}
             alt={`${inductee.firstName} ${inductee.lastName}`}
             className="absolute inset-0 w-full h-full object-cover"
+            fill
           />
         )}
-
 
         {/* Open icon in bottom right */}
         {/* TODO: get icon SVG */}
@@ -39,6 +46,7 @@ export default function InducteeCard({ inductee }: { inductee: Inductee }) {
           </span>
         </div>
       </div>
+
     </>
   )
 }
