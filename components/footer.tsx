@@ -76,7 +76,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full pt-[26px] flex items-end bg-primary-red z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
+    <footer className="w-full pt-[25px] flex items-end bg-primary-red z-50 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]">
       { pages.map((page, key) => (
         <button
           id={page.name.toLowerCase() + '-button'}

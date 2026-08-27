@@ -12,7 +12,7 @@ export default function InducteeCard({
   return (
     <>
       <div
-        className="relative h-[430px] overflow-hidden cursor-pointer bg-black"
+        className="relative h-[350px] overflow-hidden cursor-pointer bg-black"
         onClick={() => onSelect(inductee)}
       >
         {/* Bottom layer: No image available */}
@@ -27,7 +27,7 @@ export default function InducteeCard({
           <Image 
             src={inductee.photoUrl}
             alt={`${inductee.firstName} ${inductee.lastName}`}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 object-cover"
             fill
           />
         )}

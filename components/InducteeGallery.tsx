@@ -8,60 +8,69 @@ export default function InducteeGallery({ inductees }: { inductees: Inductee[] }
 
   return (
     <>
-      <section className="flex-1 p-8 overflow-y-auto no-scrollbar">
-        <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
-        {inductees.map((inductee: Inductee, index: number) => (
-            <InducteeCard
-              key={index}
-              inductee={inductee}
-              onSelect={setSelectedInductee}
-            />
-        ))}
+      {selectedInductee === null && (
+        <div className="flex-1 p-8 overflow-y-auto no-scrollbar">
+          <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
+          {inductees.map((inductee: Inductee, index: number) => (
+              <InducteeCard
+                key={index}
+                inductee={inductee}
+                onSelect={setSelectedInductee}
+              />
+          ))}
+          </div>
         </div>
-      </section>
+      )}
 
       {/* Popup Overlay */}
       {selectedInductee && (
         // Overlay
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="flex-1 min-h-0 flex items-center justify-center p-[62px]"
           onClick={(e) => {setSelectedInductee(null); e.stopPropagation()}}
         >
-          {/* Information */}
-          <div className='flex flex-col'>
-            {/* Header */}
-            <div className='flex'>
-              {/* Header Left */}
-              <div className='flex flex-col'>
-                <h2 className=''>
-                  {selectedInductee.year}
-                </h2>
-                {/* TODO: Logo here */}
-                {/* <Image /> */}
+          <div className='flex h-full w-full min-h-0'>
+            {/* Information */}
+            <div className='my-[30px] flex min-h-0 flex-1 flex-col bg-white'>
+              {/* Header */}
+              <div className='flex justify-between p-[15px] gap-[10px]'>
+                {/* Header Left */}
+                <div className='flex flex-col'>
+                  <h2 className='text-[45px]'>
+                    {selectedInductee.year}
+                  </h2>
+                  <Image
+                    src={'/images/logo.png'}
+                    alt={'Holmes Logo'}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                {/* Header Right */}
+                <div className='flex flex-col gap-[7px] w-full text-right uppercase'>
+                  <h2 className='text-[62px]'>
+                    {selectedInductee.lastName}
+                  </h2>
+                  <h3 className='text-[44px]'>
+                    {selectedInductee.firstName}
+                  </h3>
+                </div>
               </div>
-              {/* Header Right */}
-              <div className='flex flex-col'>
-                <h2 className=''>
-                  {selectedInductee.lastName}
-                </h2>
-                <h3 className=''>
-                  {selectedInductee.firstName}
-                </h3>
-              </div>
+              {/* Bio */}
+              <p className='ml-[56px] my-[36px] mx-[30px] min-h-0 flex-1 overflow-y-auto scrollbar scrollbar-track-white scrollbar-thumb-primary-red font-sans text-[24px]'>
+                {selectedInductee.bio}
+              </p>
             </div>
-            {/* Bio */}
-            <p className=''>
-              {selectedInductee.bio}
-            </p>
+            {/* Image */}
+            <div className='relative h-full min-h-0 flex-1'>
+              <Image
+                src={selectedInductee.photoUrl || '/nophoto-v5.png'}
+                alt={`${selectedInductee.firstName} ${selectedInductee.lastName}`}
+                className="object-cover"
+                fill
+              />
+            </div>
           </div>
-          {/* Image */}
-          <Image
-            src={selectedInductee.photoUrl || '/nophoto-v5.png'}
-            alt={`${selectedInductee.firstName} ${selectedInductee.lastName}`}
-            className="object-cover"
-            width={200}
-            height={200}
-          />
         </div>
       )}
     </>

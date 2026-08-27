@@ -1,11 +1,9 @@
 'use client'
 
-import Footer from '../../components/footer'
 import Header from '@/components/header'
 import background from '../../public/images/background.png'
 import { MenuItem, Page } from '@/types'
 import Menu from '@/components/Menu'
-import SubMenu from '@/components/SubMenu'
 
 const subMenuPages: Page[] = [
   {

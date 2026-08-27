@@ -7,128 +7,126 @@ import InducteeList from '@/components/InducteeList'
 import { Inductee, Page } from '@/types'
 import InducteeGallery from '@/components/InducteeGallery'
 
-//TODO: update for academics page
-
 // temp data
 const inductees: Inductee[] = [
   {
     firstName: 'John',
     lastName: 'Doe',
     year: 2020,
-    bio: 'Something interesting',
-    photoUrl: ''
+    bio: 'Something interesting except its a really long paragraph that goes on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on.',
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'Johnny',
     lastName: 'Appleseed',
     year: 2000,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'Bob',
     lastName: 'Doe',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'Jane',
     lastName: 'Doe',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
   {
     firstName: 'First',
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: ''
+    photoUrl: '/images/inductee-temp.png'
   },
 
 ]
