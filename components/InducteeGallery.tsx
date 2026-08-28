@@ -3,24 +3,27 @@ import Image from 'next/image'
 import { useState } from 'react'
 import InducteeCard from './InducteeCard'
 
+/**
+ * Renders a gallery of inductees.
+ * @param inductees - An array of inductee objects to display in the gallery.
+ * @returns Gallery of inductee cards.
+ */
 export default function InducteeGallery({ inductees }: { inductees: Inductee[] }) {
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
 
   return (
     <>
-      {selectedInductee === null && (
-        <div className="flex-1 p-8 overflow-y-auto no-scrollbar">
-          <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
-          {inductees.map((inductee: Inductee, index: number) => (
-              <InducteeCard
-                key={index}
-                inductee={inductee}
-                onSelect={setSelectedInductee}
-              />
-          ))}
-          </div>
+      <div className={`${selectedInductee ? 'hidden' : 'flex-1'} p-8 overflow-y-auto no-scrollbar`}>
+        <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
+        {inductees.map((inductee: Inductee, index: number) => (
+            <InducteeCard
+              key={index}
+              inductee={inductee}
+              onSelect={setSelectedInductee}
+            />
+        ))}
         </div>
-      )}
+      </div>
 
       {/* Popup Overlay */}
       {selectedInductee && (

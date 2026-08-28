@@ -6,7 +6,7 @@ import Footer from '@/components/footer'
 import { getChampionships } from '@/lib/sanity'
 
 
-//TODO: update for championship page
+//TODO: update for timeline page
 
 type Championship = {
   sport: string

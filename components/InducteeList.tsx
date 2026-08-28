@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Inductee } from '@/types';
 
+/**
+ * Renders a list of inductees with search functionality.
+ * @param inductees - An array of inductee objects to display in the list.
+ * @returns A searchable list of inductees.
+ */
 export default function InducteeList({ inductees }: { inductees: Inductee[] }) {
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null);
 

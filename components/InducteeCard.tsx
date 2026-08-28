@@ -1,6 +1,12 @@
 import { Inductee } from '@/types'
 import Image from 'next/image'
 
+/**
+ * Renders a card for an inductee with their photo and name. Clicking the card will trigger the onSelect callback.
+ * @param inductee - The inductee object containing their details.
+ * @param onSelect - Callback function to be called when the card is clicked, passing the selected inductee.
+ * @returns A clickable card component displaying the inductee's photo and name.
+ */
 export default function InducteeCard({
   inductee,
   onSelect,
