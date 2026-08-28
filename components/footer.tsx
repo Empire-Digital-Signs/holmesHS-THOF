@@ -58,6 +58,9 @@ export default function Footer() {
 
     let classes = '';
 
+    // If home page, do not return borders
+    if (pathname === '/') return;
+
     if (pathname.startsWith('/history') && pageName === pages[1].name) {
       classes += 'rounded-tl-2xl ';
     }
