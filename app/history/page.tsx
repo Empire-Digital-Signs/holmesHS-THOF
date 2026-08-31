@@ -116,7 +116,9 @@ function HistoryCard({
               className='absolute -bottom-[20px] left-0 flex justify-around items-center w-full'
             >
               <button
-                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white`}
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
+                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                 onClick={prevCallback}
               >
                 {`< Previous`}
@@ -130,7 +132,9 @@ function HistoryCard({
                 className=''
               />
               <button
-                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white`}
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
+                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                 onClick={nextCallback}
               >
                 {`Next >`}
@@ -153,10 +157,6 @@ function HistoryCard({
 
 export default function HistoryPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const goPrevCard = () => {
-    
-  }
 
   return (
     <div 

@@ -1,214 +1,197 @@
 'use client'
 
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import Footer from '@/components/footer'
-import { getChampionships } from '@/lib/sanity'
+import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow-carousel';
+import { HistoryItem } from '@/types';
+import logoImage from '../../../public/images/logo.png';
+import Image from 'next/image';
+import YearsList from '@/components/YearsList';
 
+// TODO: get data from api
+const records: HistoryItem[] = [
+    {
+      year: 1910,
+      title: '0 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },
+    {
+      year: 1911,
+      title: '1 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },
+    {
+      year: 1912,
+      title: '2 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1913,
+      title: '3 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1914,
+      title: '4 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1915,
+      title: '5 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1916,
+      title: '6 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1917,
+      title: '7 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1918,
+      title: '8 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1919,
+      title: '9 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },{
+      year: 1920,
+      title: '10 School Opened',
+      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
+    },
+];
 
-//TODO: update for timeline page
+const years: number[] = records.map((r) => r.year);
 
-type Championship = {
-  sport: string
-  year: number
-  category: string
-  title: string
+function TimelineCard({
+  record,
+  selected,
+  hasPrev,
+  prevCallback,
+  hasNext,
+  nextCallback
+}: {
+  record: HistoryItem
+  selected: boolean
+  hasPrev: boolean
+  prevCallback: () => void
+  hasNext: boolean
+  nextCallback: () => void
+}) {
+
+  return (
+    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px]`}>
+      {/* Header: School and Year */}
+      <div
+        className='flex flex-col pl-[20px] pt-[30px]'
+      >
+        <h2
+          className={`uppercase text-[22px] ${selected ? 'text-white' : 'text-primary-red'}`}
+        >
+          Holmes High School
+        </h2>
+        <p className={`${selected ? 'text-[58px] text-white' : 'text-[38px] text-primary-red'}`}>
+          {record.year}
+        </p>
+      </div>
+      {selected ? (
+        <>
+          <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+            <p
+              className='uppercase text-left text-[22px] text-primary-red'
+            >
+              {record.title}
+            </p>
+            <p
+              className='min-h-0 overflow-hidden font-sans text-[18px]'
+            >
+              {record.description}
+            </p>
+            {/* Buttons and Crest */}
+            <div
+              className='absolute bottom-[20px] left-0 flex justify-around items-center w-full'
+            >
+              <button
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
+                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                onClick={prevCallback}
+              >
+                {`< Previous`}
+              </button>
+              <button
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
+                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                onClick={nextCallback}
+              >
+                {`Next >`}
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div
+          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center'
+          style={{ backgroundImage: `url(${logoImage.src})`, backgroundSize: '194px 172px' }}
+        >
+          <p className='line-clamp-3 font-sans text-[18px] text-black'>{record.description}</p>
+        </div>
+      )}
+    </div>
+  )
 }
 
-export default function ChampionshipsPage() {
-  const [selectedSport, setSelectedSport] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+export default function TimelinePage() {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  // Use React Query to fetch and cache championships
-  const { data: championshipData = [], isLoading } = useQuery<Championship[]>({
-    queryKey: ['championships'],
-    queryFn: getChampionships,
-  })
+  const slides: CoverflowSlide[] = records.map((record) => ({
+    src: '',
+    alt: `${record.year} ${record.title}`
+  }))
 
-  // Get unique sports from the data, sorted alphabetically
-  const sports = Array.from(new Set(championshipData.map((c: Championship) => c.sport).filter(Boolean))).sort()
-
-  // Set default selected sport to the first one if none selected
-  if (!selectedSport && sports.length > 0) {
-    setSelectedSport(sports[0])
-  }
-
-  // Filter championships by selected sport
-  const sportChampionships = selectedSport 
-    ? championshipData.filter((c: Championship) => c.sport === selectedSport)
-    : []
-  
-  // Get unique categories for the selected sport
-  const categories = Array.from(new Set(sportChampionships.map((c: Championship) => c.category).filter(Boolean)))
-  
-  // Filter championships by category if one is selected
-  const displayedChampionships = selectedCategory
-    ? sportChampionships.filter((c: Championship) => c.category === selectedCategory)
-    : sportChampionships
-
-  const handleSportChange = (sport: string) => {
-    setSelectedSport(sport)
-    setSelectedCategory(null)
-  }
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/bg.jpg')" }}>
-        <p className="text-white text-4xl">Loading...</p>
-      </div>
-    )
-  }
+  // TODO: If loading: return...?
 
   return (
     <>
-      <style jsx>{`
-        .hide-scrollbar {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      {/* Carousel */}
+      <CoverflowCarousel
+        slides={slides}
+        selectedIndex={selectedIndex}
+        onSelectedIndexChange={setSelectedIndex}
+        cardWidth='30vw'
+        gap={0}
+        rotate={0}
+        depth={1.25}
+        fade={0}
+        loop={false}
+        showNavigation={false}
+        label='Holmes High School history'
+        className='flex h-[600px] my-auto min-w-0 flex-1 items-center [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
+        cardClassName='h-full rounded-[20px] border-2 border-black'
+        renderSlide={(_, index, selected) => {
+          const hasPrev = index - 1 >= 0;
+          const hasNext = index + 1 < records.length;
+          return (
+            <TimelineCard
+              record={records[index]}
+              selected={selected}
+              hasPrev={hasPrev}
+              prevCallback={() => {
+                if (hasPrev) setSelectedIndex(index - 1)
+              }}
+              hasNext={hasNext}
+              nextCallback={() => {
+                if (hasNext) setSelectedIndex(index + 1)
+              }}
+            />
+          )
+        }}
+      />
 
-     <div
-  className="w-full h-screen flex flex-col bg-cover bg-center pt-[clamp(72px,8vh,140px)]"
-  style={{ backgroundImage: "url('/bg.jpg')" }}
->
-
-        <div className="flex-1 flex overflow-hidden">
-          {/* LEFT: Sports List */}
-<aside className="w-[25%] flex flex-col pl-3 pr-2 md:pl-4 md:pr-3 lg:pl-6 lg:pr-4 py-4 md:py-6 lg:py-8">            
-  <h2
-  className="shrink-0 text-white font-bold text-center py-2 md:py-4 leading-tight"
-  style={{
-    backgroundColor: '#4b2d83',
-    fontSize: 'clamp(1.1rem, 2.5vw, 1.875rem)',
-  }}
->
-  SPORTS
-</h2>
-
-            <ul className="overflow-y-auto bg-white hide-scrollbar" style={{ maxHeight: '85%' }}>
-              {sports.map((sport: string, index: number, arr: string[]) => {
-                const isSelected = selectedSport === sport
-
-                return (
-                  <li
-                    key={sport}
-                    onClick={() => handleSportChange(sport)}
-                    className="py-4 text-center text-2xl font-semibold cursor-pointer transition-colors text-black"
-                    style={{
-                      backgroundColor: isSelected ? '#b9a578' : 'white',
-                      borderBottom: index !== arr.length - 1 ? '1px solid black' : 'none',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isSelected) e.currentTarget.style.backgroundColor = '#b9a578'
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isSelected) e.currentTarget.style.backgroundColor = 'white'
-                    }}
-                  >
-                    <span
-  style={{
-    fontSize: 'clamp(0.9rem, 1.3vw, 1.875rem)',
-    lineHeight: '1',
-    display: 'block',
-    textAlign: 'center',
-  }}
->
-  {sport}
-</span>
-
-                  </li>
-                )
-              })}
-            </ul>
-          </aside>
-
-          {/* RIGHT: Championships Content */}
-          <div className="flex-1 flex flex-col">
-            <section className="flex-1 px-8 pb-8 overflow-y-auto hide-scrollbar">
-<div className="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] [@media(min-aspect-ratio:16/9)]:grid-cols-4">
-                  {displayedChampionships.map((championship: Championship, index: number) => (
-                 <div key={index} className="relative w-full overflow-hidden">
-  {/* Aspect-ratio box: ~16:9 without using "16/9" */}
-  <div style={{ paddingTop: '115%' }} />
-
-  {/* Actual banner content */}
-  <div className="absolute inset-0">
-    <img
-      src="/banner-style-edited.png"
-      alt=""
-      className="absolute inset-0 w-full h-full object-fill"
-    />
-
-   
-
-
-    <div className="absolute top-12 inset-0 flex flex-col text-white px-12">
-      <h3
-  style={{
-    fontSize: 'clamp(1rem, 3vw, 1rem)',
-    lineHeight: '1.1',
-    textAlign: 'center',
-    fontFamily:'OldSport, sans-serif'
-  }}
-  className=" mt-10" 
->
-  {championship.title}
-</h3>
-
-    </div>
-
-    <div className="absolute top-10 inset-0 flex items-center justify-center text-white pt-20">
-<p
-  style={{
-    fontSize: 'clamp(0.9rem, 2vw, 1.4rem)',
-    lineHeight: '1',
-    fontFamily:'OldSport, sans-serif'
-  }}
-
->
-  {championship.year}
-</p>    </div>
-  </div>
-</div>
-                ))}
-              </div>
-            </section>
-
-            {categories.length > 1 && (
-              <div className="flex flex-wrap items-center justify-center gap-4 px-8 py-2">
-                {categories.map((category: string) => (
-                  <button
-  key={category}
-  onClick={() =>
-    setSelectedCategory(selectedCategory === category ? null : category)
-  }
-  className="px-6 py-2 font-semibold rounded transition"
-  style={{
-    backgroundColor: selectedCategory === category ? '#b9a578' : 'transparent',
-    color: selectedCategory === category ? '#4a2d81' : 'white',
-    border: '2px solid white',
-
-    // ✅ proportional scaling ONLY (matches rest of page)
-    fontSize: 'clamp(0.7rem, 1.6vw, 1rem)',
-    lineHeight: '1',
-  }}
->
-  {category}
-</button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="h-[10vh]">
-          <Footer />
-        </div>
-      </div>
+      {/* Years List */}
+      <YearsList
+        years={years}
+        selectedYear={years[selectedIndex]}
+        onSelectYear={(year) => setSelectedIndex(years.indexOf(year))}
+      />
     </>
   )
 }
