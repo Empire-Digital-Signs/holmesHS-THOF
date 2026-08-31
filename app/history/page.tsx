@@ -1,12 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect, useMemo } from 'react'
-import background from '../../public/images/background.png'
-import Footer from '../../components/footer'
-import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import { useState } from 'react'
+import { CoverflowCarousel, type CoverflowSlide } from '@/components/ruixen/coverflow-carousel'
 import { HistoryItem } from '@/types'
 import Image from 'next/image'
-import useEmblaCarousel from 'embla-carousel-react'
+import crestImage from '../../public/images/crest.png'
 
 
 //TODO: import history facts from CSV
@@ -60,107 +58,109 @@ const records: HistoryItem[] = [
     },
 ]
 
-type HistoryCardProps = {
-  record: HistoryItem;
-  visible: number[] | undefined;
-  visiblePos: number;
-}
+const slides: CoverflowSlide[] = records.map((record) => ({
+  src: '/images/history-image.png',
+  alt: `${record.year} ${record.title}`
+}))
 
-/**
- * Cards for carousel - styled for History page
- */
-function HistoryCard({ record, visible, visiblePos }: HistoryCardProps) {
-  const isVisible = visible?.includes(visiblePos); // may not need?
-  const isVisibleLeft = visible?.at(0) === visiblePos || visible?.at(1) === visiblePos;
-  const isVisibleCenter = visible?.at(2) === visiblePos;
-  const isVisibleRight = visible?.at(3) === visiblePos || visible?.at(4) === visiblePos;
+function HistoryCard({
+  record,
+  selected,
+  textAlign,
+  hasPrev,
+  prevCallback,
+  hasNext,
+  nextCallback
+}: {
+  record: HistoryItem
+  selected: boolean
+  textAlign: 'left' | 'center' | 'right'
+  hasPrev: boolean
+  prevCallback: () => void
+  hasNext: boolean
+  nextCallback: () => void
+}) {
+  const alignmentClass = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right',
+  }[textAlign];
 
   return (
-    <CarouselItem
-      className={
-        `flex flex-col bg-primary-red border-black border-2 rounded-[20px]
-        w-full`
-      }
-    >
-      <p
-        className={`text-white
-          ${isVisibleLeft ? 'text-left' : isVisibleRight ? 'text-right' : 'text-center' }
-          ${isVisibleCenter ? 'text-[28px]' : 'text-[34px]'}`}
-      >
+    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px]`}>
+      <p className={`px-3.5 ${alignmentClass} ${selected ? 'text-[28px] text-white' : 'text-[34px] text-black'}`}>
         {record.year}
       </p>
-      <Image
-        src="/images/history-image.png" alt={''}
-        width={809}
-        height={503}
-        className='object-center'
-      />
-      <div
-        className='bg-white mb-[30px] p-[10px] flex flex-col gap-[30px]'
-      >
-        <p
-          className='uppercase text-[25px] text-center'
+      {selected ? (
+        <>
+          <Image
+            src='/images/history-image.png'
+            alt={`${record.year}: ${record.title}`}
+            width={809}
+            height={503}
+            className='object-cover h-[200px]'
+          />
+          <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+            <p
+              className='uppercase text-center text-[20px]'
+            >
+              {record.title}
+            </p>
+            <p
+              className='min-h-0 overflow-hidden font-sans text-[16px]'
+            >
+              {record.description}
+            </p>
+            {/* Buttons and Crest */}
+            <div
+              className='absolute -bottom-[20px] left-0 flex justify-around items-center w-full'
+            >
+              <button
+                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white`}
+                onClick={prevCallback}
+              >
+                {`< Previous`}
+              </button>
+              {/* Crest */}
+              <Image
+                src={'/images/crest.png'}
+                alt={''}
+                width={75}
+                height={108}
+                className=''
+              />
+              <button
+                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white`}
+                onClick={nextCallback}
+              >
+                {`Next >`}
+              </button>
+            </div>
+            
+          </div>
+        </>
+      ) : (
+        <div
+          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center opacity-50'
+          style={{ backgroundImage: `url(${crestImage.src})`, backgroundSize: '132px 180px' }}
         >
-          {record.title}
-        </p>
-        <p
-          className='font-sans text-[16px]'
-        >
-          {record.description}
-        </p>
-      </div>
-    </CarouselItem>
+          <p className='line-clamp-3 font-sans text-[16px] text-black'>{record.description}</p>
+        </div>
+      )}
+    </div>
   )
 }
 
 export default function HistoryPage() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Embla API
-  const [api, setApi] = useState<CarouselApi>();
-
-  // Slide visibility
-  const emblaOptions = useMemo(() => ({ inViewThreshold: 1 }), []);
-  // useEmblaCarousel({ inViewThreshold: 1 })
-  const [visible, setVisible] = useState<number[]>();
-
-  // Update visible variable when carousel moves
-  useEffect(() => {
-    if (!api) return;
-
-    // Callback
-    const updateVisible = () => {
-      // const visible = api.slidesInView();
-      // setVisible(visible);
-      // console.log('slides updated: ', visible);
-
-      const centerSlide = api.selectedScrollSnap();
-      const currVisible = [
-        centerSlide - 2,
-        centerSlide - 1,
-        centerSlide,
-        centerSlide + 1,
-        centerSlide + 2
-      ].filter((i) => i >= 0 && i < records.length);
-      console.log('center', centerSlide);
-      console.log('visible', currVisible);
-      setVisible(currVisible);
-    }
-    updateVisible();
-
-    // Event handling
-    api.on('select', updateVisible);
-    api.on('reInit', updateVisible);
-    return () => {
-      api.off('select', updateVisible);
-      api.off('reInit', updateVisible);
-    }
-  }, [api]);
-
+  const goPrevCard = () => {
+    
+  }
 
   return (
     <div 
       className='flex flex-col w-full h-full'
-      style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }}
     >
       {/* Content: List and Carousel */}
       <div className='flex flex-row flex-1 min-h-0 justify-between'>
@@ -182,7 +182,7 @@ export default function HistoryPage() {
                     <li
                       className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-[25px] text-white
                         hover:cursor-pointer`}
-                      onClick={() => api?.scrollTo(index)}
+                      onClick={() => setSelectedIndex(index)}
                       key={record.year}
                     >
                       {record.year}
@@ -194,20 +194,40 @@ export default function HistoryPage() {
           </div>
         </div>
 
-        {/* Carousel */}
-        <Carousel setApi={setApi} className="w-full h-full" opts={emblaOptions}>
-          <CarouselContent>
-            <CarouselItem />
-            <CarouselItem />
-            {
-              records.map((record, index) => (
-                <HistoryCard record={record} visible={visible} visiblePos={index} key={record.year} />
-              ))
-            }
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <CoverflowCarousel
+          slides={slides}
+          selectedIndex={selectedIndex}
+          onSelectedIndexChange={setSelectedIndex}
+          cardWidth='30vw'
+          gap={0}
+          rotate={0}
+          depth={1.25}
+          fade={0}
+          loop={false}
+          showNavigation={false}
+          label='Holmes High School history'
+          className='flex h-[750px] my-auto min-w-0 flex-1 items-center [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
+          cardClassName='h-full rounded-[20px] border-2 border-black'
+          renderSlide={(_, index, selected) => {
+            const hasPrev = index - 1 >= 0;
+            const hasNext = index + 1 < records.length;
+            return (
+              <HistoryCard
+                record={records[index]}
+                selected={selected}
+                textAlign={index < selectedIndex ? 'left' : index > selectedIndex ? 'right' : 'center'}
+                hasPrev={hasPrev}
+                prevCallback={() => {
+                  if (hasPrev) setSelectedIndex(index - 1)
+                }}
+                hasNext={hasNext}
+                nextCallback={() => {
+                  if (hasNext) setSelectedIndex(index + 1)
+                }}
+              />
+            )
+          }}
+        />
       
       </div>
     </div>
