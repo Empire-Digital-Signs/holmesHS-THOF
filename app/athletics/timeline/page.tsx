@@ -77,7 +77,10 @@ function TimelineCard({
 }) {
 
   return (
-    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px]`}>
+    <div
+      className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px] bg-no-repeat bg-center`}
+      style={!selected ? { backgroundImage: `url(${logoImage.src})`, backgroundSize: '190px' } : {}}
+    >
       {/* Header: School and Year */}
       <div
         className='flex flex-col pl-[20px] pt-[30px]'
@@ -129,8 +132,8 @@ function TimelineCard({
         </>
       ) : (
         <div
-          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center'
-          style={{ backgroundImage: `url(${logoImage.src})`, backgroundSize: '194px 172px' }}
+          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4'
+          
         >
           <p className='line-clamp-3 font-sans text-[18px] text-black'>{record.description}</p>
         </div>
