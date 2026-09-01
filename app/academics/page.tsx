@@ -21,7 +21,6 @@ export default function AcademicsPage() {
       <Header variant="menu" />
 
       {/* Menu Items */}
-      {/* <SubMenu pages={subMenuPages} /> */}
       <Menu items={menuItems} />
     </div>
   )
