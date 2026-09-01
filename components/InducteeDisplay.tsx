@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InducteeGallery from "./InducteeGallery";
 import InducteeList from "./InducteeList";
 import { Inductee } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { getInductees } from '@/lib/sanity'
+import Searchbar from "./Searchbar";
 
 // temp data
-const inductees: Inductee[] = [
+const inductees_temp: Inductee[] = [
   {
     firstName: 'John',
     lastName: 'Doe',
@@ -134,14 +135,19 @@ const inductees: Inductee[] = [
  * @returns Searchable list and gallery display of inductees.
  */
 export default function InducteeDisplay() {
+
+  // Store inductee data
+  const [inductees, setInductees] = useState<Inductee[]>(inductees_temp);
+  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees);
+
+  // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null);
 
-  
   // Use React Query to fetch and cache inductees
   const { data: inducteeData = [], isLoading } = useQuery<Inductee[]>({
     queryKey: ['inductees'],
     queryFn: getInductees,
-  })
+  });
 
   if (isLoading) {
     return (
@@ -160,8 +166,15 @@ export default function InducteeDisplay() {
         <div
           className='flex h-full min-h-0 flex-row'
         >
-          <InducteeList inductees={inductees} />
-          <InducteeGallery inductees={inductees} />
+          {/* Inductee List and Searchbar */}
+          <div className='flex h-full min-h-0 flex-col gap-[20px] items-start'>
+            <InducteeList inductees={filteredInductees} />
+            <Searchbar
+              inductees={inductees}
+              setFilteredInductees={setFilteredInductees}
+            />
+          </div>
+          <InducteeGallery inductees={filteredInductees} />
         </div>
       </div>
     </>

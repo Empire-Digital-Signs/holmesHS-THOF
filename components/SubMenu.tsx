@@ -8,7 +8,7 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
   const pathname = usePathname();
 
   return (
-    <div className="w-full min-w-0 flex items-stretch justify-center gap-[20px] overflow-hidden">
+      <div className="w-full min-w-0 flex items-stretch justify-center gap-[20px] overflow-hidden z-20 mb-[10px]">
       {pages.map((page, index) => {
 
         // Create shape for ends of menu items. Create a perfect rectangle for all middle items.
@@ -16,11 +16,9 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
         let polygonPoints = '0,0 100,0 100,100 0,100';
 
         if (index === 0) { // left most item
-          // alignClass = 'text-right';
           clipPath = "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)";
           polygonPoints = '0,0 100,0 100,100 12,100';
         } else if (index === 2) { // right most item
-          // alignClass = 'text-left';
           clipPath = "polygon(0% 0%, 100% 0%, 88% 100%, 0% 100%)";
           polygonPoints = '0,0 100,0 88,100 0,100';
         }
