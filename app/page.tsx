@@ -1,6 +1,5 @@
 import HomeSlideshow from '../components/HomeSlideshow'
 import Header from '../components/header'
-import Footer from '../components/footer'
 import { getHomeSlides } from '../lib/sanity'
 import Image from 'next/image'
 

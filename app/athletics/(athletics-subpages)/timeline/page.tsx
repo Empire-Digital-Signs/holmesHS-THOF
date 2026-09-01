@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow-carousel';
 import { HistoryItem } from '@/types';
-import logoImage from '../../../public/images/logo.png';
-import Image from 'next/image';
+import logoImage from '../../../../public/images/logo.png';
 import YearsList from '@/components/YearsList';
 
 // TODO: get data from api
@@ -195,6 +194,6 @@ export default function TimelinePage() {
         selectedYear={years[selectedIndex]}
         onSelectYear={(year) => setSelectedIndex(years.indexOf(year))}
       />
-    </>
+    </>    
   )
 }

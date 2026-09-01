@@ -5,7 +5,7 @@ import background from '../public/images/background.png'
 import Footer from '@/components/footer';
 
 export const metadata = {
-  title: 'Sayville High School',
+  title: 'Holmes High School Touch Hall of Fame',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -2,23 +2,8 @@
 
 import Header from '@/components/header'
 import background from '../../public/images/background.png'
-import { MenuItem, Page } from '@/types'
+import { MenuItem } from '@/types'
 import Menu from '@/components/Menu'
-
-const subMenuPages: Page[] = [
-  {
-    name: 'Academic Programs',
-    destination: '/academics/academic-programs'
-  },
-  {
-    name: 'Career and Technical Education',
-    destination: '/academics/career-and-technical-education'
-  },
-  {
-    name: 'Hall of Distinction',
-    destination: '/academics/hall-of-distinction'
-  }
-];
 
 export default function AcademicsPage() {
 
