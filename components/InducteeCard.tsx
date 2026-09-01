@@ -39,7 +39,13 @@ export default function InducteeCard({
         )}
 
         {/* Open icon in bottom right */}
-        {/* TODO: get icon SVG */}
+        <Image
+          src='/images/circle-plus.svg'
+          alt="Expand"
+          width={66}
+          height={66}
+          className="absolute bottom-0 right-0 z-10"
+        />
         
         {/* Text content */}
         <div className="absolute inset-0 bg-linear-to-t from-primary-red/70 from-0% via-primary-red/30 via-10% to-transparent to-20%" />
