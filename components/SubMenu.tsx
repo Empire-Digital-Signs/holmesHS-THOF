@@ -13,7 +13,6 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
 
         // Create shape for ends of menu items. Create a perfect rectangle for all middle items.
         let clipPath = '';
-        let alignClass = 'text-center';
         let polygonPoints = '0,0 100,0 100,100 0,100';
 
         if (index === 0) { // left most item
@@ -42,7 +41,7 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
               ['--button-outline']: outlineSvg,
             } as React.CSSProperties}
             className={`
-              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold text-[clamp(14px,1.5vw,26px)] uppercase ${alignClass} px-[20px] h-[56px]
+              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold text-[clamp(14px,1.5vw,26px)] uppercase text-center h-[56px]
               before:absolute before:inset-0 before:z-[-1] before:[clip-path:var(--button-clip)]
               before:[background-image:var(--button-outline)] before:bg-no-repeat before:bg-size-[100%_100%]
               ${isSelected ?
