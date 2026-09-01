@@ -1,5 +1,6 @@
 import { Inductee } from '@/types'
 import Image from 'next/image'
+import type { Ref } from 'react'
 
 /**
  * Renders a card for an inductee with their photo and name. Clicking the card will trigger the onSelect callback.
@@ -10,32 +11,37 @@ import Image from 'next/image'
 export default function InducteeCard({
   inductee,
   onSelect,
+  onOpenDetail,
+  isSelected = false,
+  cardRef,
 }: {
   inductee: Inductee
   onSelect: (inductee: Inductee) => void
+  onOpenDetail?: (inductee: Inductee) => void
+  isSelected?: boolean
+  cardRef?: Ref<HTMLDivElement>
 }) {
 
   return (
     <>
       <div
-        className="relative h-[350px] overflow-hidden cursor-pointer bg-black"
-        onClick={() => onSelect(inductee)}
-      >
-        {/* Bottom layer: No image available */}
-        {/* <img
-          src="/nophoto-v5.png" 
-          alt="No photo available"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        /> */}
-        
-        {/* Middle layer: Inductee photo (when available) */}
-        {inductee.photoUrl && (
+        ref={cardRef}
+        className='relative h-[350px] overflow-hidden cursor-pointer bg-black transition-all'
+        onClick={() => {
+          onSelect(inductee)
+          onOpenDetail?.(inductee)
+        }}
+      >        
+        {/* Inductee photo or black placeholder*/}
+        {inductee.photoUrl ? (
           <Image 
             src={inductee.photoUrl}
             alt={`${inductee.firstName} ${inductee.lastName}`}
             className="absolute inset-0 object-cover"
             fill
           />
+        ) : (
+          <div className="absolute inset-0 bg-black" />
         )}
 
         {/* Open icon in bottom right */}

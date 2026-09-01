@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InducteeGallery from "./InducteeGallery";
 import InducteeList from "./InducteeList";
 import { Inductee } from "@/types";
@@ -41,7 +41,7 @@ const inductees_temp: Inductee[] = [
     lastName: 'Last',
     year: 2020,
     bio: 'Something interesting',
-    photoUrl: '/images/inductee-temp.png'
+    photoUrl: ''
   },
   {
     firstName: 'First',
@@ -138,7 +138,7 @@ export default function InducteeDisplay() {
 
   // Store inductee data
   const [inductees, setInductees] = useState<Inductee[]>(inductees_temp);
-  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees);
+  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees_temp);
 
   // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null);
@@ -168,13 +168,21 @@ export default function InducteeDisplay() {
         >
           {/* Inductee List and Searchbar */}
           <div className='flex h-full min-h-0 flex-col gap-[20px] items-start'>
-            <InducteeList inductees={filteredInductees} />
+            <InducteeList
+              inductees={filteredInductees}
+              selectedInductee={selectedInductee}
+              onSelect={setSelectedInductee}
+            />
             <Searchbar
               inductees={inductees}
               setFilteredInductees={setFilteredInductees}
             />
           </div>
-          <InducteeGallery inductees={filteredInductees} />
+          <InducteeGallery
+            inductees={filteredInductees}
+            selectedInductee={selectedInductee}
+            onSelect={setSelectedInductee}
+          />
         </div>
       </div>
     </>

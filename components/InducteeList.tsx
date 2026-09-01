@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Inductee } from '@/types';
 
 /**
@@ -6,9 +5,15 @@ import { Inductee } from '@/types';
  * @param inductees - An array of inductee objects to display in the list.
  * @returns A searchable list of inductees.
  */
-export default function InducteeList({ inductees }: { inductees: Inductee[] }) {
-  const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null);
-
+export default function InducteeList({
+  inductees,
+  selectedInductee,
+  onSelect,
+}: {
+  inductees: Inductee[]
+  selectedInductee: Inductee | null
+  onSelect: (inductee: Inductee) => void
+}) {
   return (
     <div className="flex min-h-0 flex-1 flex-col w-[412px]">
       <h2
@@ -21,11 +26,13 @@ export default function InducteeList({ inductees }: { inductees: Inductee[] }) {
         scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         ">
         {inductees.map((inductee: Inductee, index: number) => {
-          const isSelected = selectedInductee === inductee;
+          const isSelected = selectedInductee?.firstName === inductee.firstName
+            && selectedInductee?.lastName === inductee.lastName
+            && selectedInductee?.year === inductee.year;
           return (
             <li
-              key={index}
-              onClick={() => setSelectedInductee(inductee)}
+              key={`${inductee.firstName}-${inductee.lastName}-${inductee.year}-${index}`}
+              onClick={() => onSelect(inductee)}
               className={`text-center text-[20px] uppercase cursor-pointer
                 flex items-center justify-center border-4 border-black h-[80px]
                 ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
