@@ -30,30 +30,3 @@ export async function getHomeSlides() {
     imageUrl: slide.image ? urlFor(slide.image).url() : undefined,
   }))
 }
-
-export async function getInductees(filter = '') {
-  const inductees = await sanityClient.fetch(`
-    *[_type == "inductee"${filter ? ` && ${filter}` : ''}] | order(year desc, lastName asc) {
-      firstName,
-      lastName,
-      year,
-      "bio": coalesce(bio, qualifications, contributions, ""),
-      "photoUrl": photo.asset->url
-    }
-  `)
-  
-  return inductees
-}
-
-export async function getChampionships() {
-  const championships = await sanityClient.fetch(`
-    *[_type == "championship"] | order(sport asc, year desc) {
-      sport,
-      year,
-      category,
-      title
-    }
-  `)
-  
-  return championships
-}
