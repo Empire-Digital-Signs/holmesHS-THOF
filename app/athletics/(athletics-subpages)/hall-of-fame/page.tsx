@@ -1,9 +1,9 @@
-'use client'
-
 import InducteeDisplay from '@/components/InducteeDisplay'
+import { getInductees } from '@/sanity/lib/client'
 
-export default function HallOfFamePage() {
+export default async function HallOfFamePage() {
+  const inductees = await getInductees('hallOfFame == true')
   return (
-    <InducteeDisplay />
+    <InducteeDisplay inductees={inductees} />
   )
 }

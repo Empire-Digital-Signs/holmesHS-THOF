@@ -7,17 +7,17 @@ export type HistoryItem = {
   year: number;
   title: string;
   description: string;
-}
+};
 
 export type Inductee = {
   firstName: string;
   lastName: string;
   year: number;
   bio: string;
-  photoUrl: string;
-}
+  photo: string;
+};
 
 export type Page = {
   name: string;
   destination: string;
-}
+};

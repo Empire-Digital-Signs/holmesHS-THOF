@@ -31,15 +31,13 @@ export async function getHomeSlides() {
   }))
 }
 
-export async function getInductees() {
+export async function getInductees(filter = '') {
   const inductees = await sanityClient.fetch(`
-    *[_type == "inductee"] | order(inductionYear desc, lastName asc) {
+    *[_type == "inductee"${filter ? ` && ${filter}` : ''}] | order(year desc, lastName asc) {
       firstName,
       lastName,
-      inductionYear,
-      classYear,
-      qualifications,
-      contributions,
+      year,
+      "bio": coalesce(bio, qualifications, contributions, ""),
       "photoUrl": photo.asset->url
     }
   `)

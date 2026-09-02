@@ -33,9 +33,9 @@ export default function InducteeCard({
         }}
       >        
         {/* Inductee photo or black placeholder*/}
-        {inductee.photoUrl ? (
+        {inductee.photo ? (
           <Image 
-            src={inductee.photoUrl}
+            src={inductee.photo}
             alt={`${inductee.firstName} ${inductee.lastName}`}
             className="absolute inset-0 object-cover"
             fill

@@ -5,60 +5,10 @@ import { CoverflowCarousel, type CoverflowSlide } from '@/components/ruixen/cove
 import { HistoryItem } from '@/types'
 import Image from 'next/image'
 import crestImage from '../../public/images/crest.png'
+import { getHistory } from '@/sanity/lib/client'
 
-
-//TODO: import history facts from CSV
-const records: HistoryItem[] = [
-    {
-      year: 1910,
-      title: '0 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },
-    {
-      year: 1911,
-      title: '1 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },
-    {
-      year: 1912,
-      title: '2 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1913,
-      title: '3 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1914,
-      title: '4 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1915,
-      title: '5 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1916,
-      title: '6 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1917,
-      title: '7 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1918,
-      title: '8 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1919,
-      title: '9 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },{
-      year: 1920,
-      title: '10 School Opened',
-      description: 'Holmes High School opened its doors on January 6th, 1919 — initially operating under the name Covington High School. The new institution would grow to become one of the most respected high schools in Kentucky.'
-    },
-]
-
-const slides: CoverflowSlide[] = records.map((record) => ({
+const records = await getHistory();
+const slides: CoverflowSlide[] = records.map((record: HistoryItem) => ({
   src: '/images/history-image.png',
   alt: `${record.year} ${record.title}`
 }))
@@ -178,7 +128,7 @@ export default function HistoryPage() {
               {/* List */}
               <ul className='relative z-10 flex flex-col gap-[20px]'>
                 {
-                  records.map((record, index) => (
+                  records.map((record: HistoryItem, index: number) => (
                     <li
                       className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-[25px] text-white
                         hover:cursor-pointer`}

@@ -1,10 +1,9 @@
-'use client'
-
 import InducteeDisplay from '@/components/InducteeDisplay'
+import { getInductees } from '@/sanity/lib/client'
 
-export default function CareerAndTechnicalEducationPage() {
-
+export default async function CareerAndTechnicalEducationPage() {
+  const inductees = await getInductees('defined(careerAndTechnicalEducation)')
   return (
-    <InducteeDisplay />
+    <InducteeDisplay inductees={inductees} />
   )
 }

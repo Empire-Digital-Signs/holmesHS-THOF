@@ -1,9 +1,9 @@
-'use client'
-
 import InducteeDisplay from '@/components/InducteeDisplay'
+import { getInductees } from '@/sanity/lib/client'
 
-export default function ChampionshipsPage() {
+export default async function ChampionshipsPage() {
+  const inductees = await getInductees('defined(championshipName)')
   return (
-    <InducteeDisplay />
+    <InducteeDisplay inductees={inductees} />
   )
 }

@@ -77,9 +77,9 @@ export default function InducteeGallery({
             </div>
             {/* Right Side: Image */}
             <div className='relative h-full min-h-0 flex-1'>
-              { detailInductee.photoUrl ? (
+              { detailInductee.photo ? (
                 <Image
-                  src={detailInductee.photoUrl}
+                  src={detailInductee.photo}
                   alt={`${detailInductee.firstName} ${detailInductee.lastName}`}
                   className="object-cover"
                   fill
