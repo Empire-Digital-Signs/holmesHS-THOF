@@ -55,7 +55,7 @@ const yearbookUrls: Record<number, string> = {
   1974: 'https://online.fliphtml5.com/ufqib/1974-dr4h/',
   1973: 'https://online.fliphtml5.com/ufqib/1973-lH9t/',
   1972: 'https://online.fliphtml5.com/ufqib/1972-VcGl/',
-  //TODO: upload 1971 and resolve a/b versions
+  1971: 'https://online.fliphtml5.com/ufqib/myrp/',
   1970: 'https://online.fliphtml5.com/ufqib/1970-xZzy/',
   1969: 'https://online.fliphtml5.com/ufqib/1969-kb7c/',
   1968: 'https://online.fliphtml5.com/ufqib/1968-pnFT/',
