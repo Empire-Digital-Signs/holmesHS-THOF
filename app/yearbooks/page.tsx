@@ -82,7 +82,7 @@ const yearbookUrls: Record<number, string> = {
   1947: 'https://online.fliphtml5.com/ufqib/1947-eMKT/',
   1946: 'https://online.fliphtml5.com/ufqib/1946-3Ew9/',
   1945: 'https://online.fliphtml5.com/ufqib/1945-FF8k/',
-  //TODO: upload and add 1944 book here
+  1944: 'https://online.fliphtml5.com/ufqib/1944-5qRY/',
 }
 
 const years = Object.keys(yearbookUrls).map(Number)
