@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 import { CoverflowCarousel, type CoverflowSlide } from '@/components/ruixen/coverflow-carousel'
-import { HistoryItem } from '@/types'
 import Image from 'next/image'
 import crestImage from '../../public/images/crest.png'
 import { getHistory } from '@/sanity/lib/client'
+import { History } from '@/sanity.types'
 
-const records = await getHistory()
-const slides: CoverflowSlide[] = records.map((record: HistoryItem) => ({
+const records: History[] = await getHistory()
+const slides: CoverflowSlide[] = records.map((record: History) => ({
   src: '/images/history-image.png',
   alt: `${record.year} ${record.title}`,
 }))
@@ -22,7 +22,7 @@ function HistoryCard({
   hasNext,
   nextCallback,
 }: {
-  record: HistoryItem
+  record: History
   selected: boolean
   textAlign: 'left' | 'center' | 'right'
   hasPrev: boolean
@@ -130,7 +130,7 @@ export default function HistoryPage() {
               {/* List */}
               <ul className='relative z-10 flex flex-col gap-[20px]'>
                 {
-                  records.map((record: HistoryItem, index: number) => (
+                  records.map((record: History, index: number) => (
                     <li
                       className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-[25px] text-white
                         hover:cursor-pointer`}

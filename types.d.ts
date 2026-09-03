@@ -3,12 +3,6 @@ export type MenuItem = {
   link: string
 }
 
-export type HistoryItem = {
-  year: number
-  title: string
-  description: string
-}
-
 export type Inductee = {
   firstName: string
   lastName: string

@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow-carousel'
-import { HistoryItem } from '@/types'
 import logoImage from '../../../../public/images/logo.png'
 import YearsList from '@/components/YearsList'
 import { getTimeline } from '@/sanity/lib/client'
+import { Timeline } from '@/sanity.types'
 
 const records = await getTimeline()
 
-const years: number[] = records.map((r: HistoryItem) => r.year)
+const years: number[] = records.map((r: Timeline) => r.year)
 
 function TimelineCard({
   record,
@@ -19,7 +19,7 @@ function TimelineCard({
   hasNext,
   nextCallback,
 }: {
-  record: HistoryItem
+  record: Timeline
   selected: boolean
   hasPrev: boolean
   prevCallback: () => void
@@ -97,7 +97,7 @@ function TimelineCard({
 export default function TimelinePage() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
-  const slides: CoverflowSlide[] = records.map((record: HistoryItem) => ({
+  const slides: CoverflowSlide[] = records.map((record: Timeline) => ({
     src: '',
     alt: `${record.year} ${record.title}`,
   }))
