@@ -22,7 +22,7 @@ export default function InducteeList({
       >
         Inductees
       </h2>
-      <ul className="min-h-0 flex-1 overflow-y-auto
+      <ul className="min-h-0 flex-1 overflow-y-auto bg-black
         scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         ">
         {inductees.map((inductee: Inductee, index: number) => {

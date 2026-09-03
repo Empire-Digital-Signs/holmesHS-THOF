@@ -91,27 +91,38 @@ export default function InducteeGallery({
           </div>
         </div>
       ) : (
-        <div className="h-full p-8 overflow-y-auto no-scrollbar">
-          <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
-          {inductees.map((inductee: Inductee, index: number) => {
-            const key = getInducteeKey(inductee)
-            const isSelected = selectedInductee ? getInducteeKey(selectedInductee) === key : false
-
-            return (
-              <InducteeCard
-                key={`${key}-${index}`}
-                inductee={inductee}
-                isSelected={isSelected}
-                onSelect={onSelect}
-                onOpenDetail={setDetailInductee}
-                cardRef={(element) => {
-                  cardRefs.current[key] = element
-                }}
-              />
-            )
-          })}
+        <>
+        {inductees.length === 0 ? (
+          // If no indctees, display message
+          <div className='h-full flex justify-center items-center'>
+            <p className="text-center text-[36px] my-auto text-white">
+              No inductees found.
+            </p>
           </div>
-        </div>
+        ):(
+          <div className="h-full p-8 overflow-y-auto no-scrollbar">
+            <div className="grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]">
+              {inductees.map((inductee: Inductee, index: number) => {
+                const key = getInducteeKey(inductee)
+                const isSelected = selectedInductee ? getInducteeKey(selectedInductee) === key : false
+
+              return (
+                <InducteeCard
+                  key={`${key}-${index}`}
+                  inductee={inductee}
+                  isSelected={isSelected}
+                  onSelect={onSelect}
+                  onOpenDetail={setDetailInductee}
+                  cardRef={(element) => {
+                    cardRefs.current[key] = element
+                  }}
+                />
+              )
+            })}
+            </div>
+          </div>
+        )}
+        </>
       )}
     </div>
   )
