@@ -19,11 +19,11 @@ export default function InducteeDisplay({ inductees }: { inductees: Inductee[] }
   return (
     <>
       <div
-        className='flex h-full min-h-0 flex-col'
+        className='flex min-h-0 flex-1 flex-col'
       >
         {/* List and Gallery Wrapper */}
         <div
-          className='flex h-full min-h-0 flex-row'
+          className='flex min-h-0 flex-1 flex-row'
         >
           {/* Inductee List and Searchbar */}
           <div className='flex h-full min-h-0 flex-col gap-[20px] items-start'>
