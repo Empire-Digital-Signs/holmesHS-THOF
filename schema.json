@@ -64,57 +64,122 @@
           "type": "string"
         }
       },
-      "photo": {
+      "title": {
         "type": "objectAttribute",
         "value": {
-          "type": "object",
-          "attributes": {
-            "asset": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "inline",
-                "name": "sanity.imageAsset.reference"
+          "type": "string"
+        },
+        "optional": true
+      },
+      "slides": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "photo": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "asset": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageAsset.reference"
+                      },
+                      "optional": true
+                    },
+                    "media": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "unknown"
+                      },
+                      "optional": true
+                    },
+                    "hotspot": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageHotspot"
+                      },
+                      "optional": true
+                    },
+                    "crop": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageCrop"
+                      },
+                      "optional": true
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "image"
+                      }
+                    }
+                  }
+                },
+                "optional": true
               },
-              "optional": true
-            },
-            "media": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "unknown"
+              "name": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
               },
-              "optional": true
-            },
-            "hotspot": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "inline",
-                "name": "sanity.imageHotspot"
+              "startDate": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
               },
-              "optional": true
-            },
-            "crop": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "inline",
-                "name": "sanity.imageCrop"
+              "endDate": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
               },
-              "optional": true
+              "duration": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "number"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "slide"
+                }
+              }
             },
-            "_type": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string",
-                "value": "image"
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
         },
         "optional": true
       },
-      "name": {
+      "transitionDuration": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "number"
         },
         "optional": true
       }
@@ -253,7 +318,7 @@
       "year": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "number"
         },
         "optional": true
       },
@@ -372,14 +437,20 @@
       "academicProgram": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
         },
         "optional": true
       },
       "careerAndTechnicalEducation": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
         },
         "optional": true
       },
@@ -393,7 +464,10 @@
       "championshipName": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
         },
         "optional": true
       },
@@ -451,7 +525,7 @@
       "year": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "number"
         },
         "optional": true
       },

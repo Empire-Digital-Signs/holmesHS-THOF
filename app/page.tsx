@@ -1,13 +1,8 @@
 import HomeSlideshow from '../components/HomeSlideshow'
 import Header from '../components/header'
-import { getHomeSlides } from '../lib/sanity'
 import Image from 'next/image'
 
-export const revalidate = 60
-
 export default async function HomePage() {
-  const slides = await getHomeSlides()
-
   return (
     <main className='overflow-hidden flex flex-1'>
       {/* Date and Time */}
@@ -16,16 +11,11 @@ export default async function HomePage() {
       {/* Slideshow fills entire screen
       *** TODO: Setup images in Sanity. Using placeholder for now.
       */}
-      {/* <HomeSlideshow/> */}
-      <Image
-        src='/images/slideshow-image.png'
-        alt='Slideshow Placeholder'
-        fill
-        className='object-cover'
-      />
+      <HomeSlideshow />
 
       {/* Overlay images */}
       {/* Logo and School name */}
+      {/* TODO: turn this into a dynamic component */}
       <Image
         src='/images/holmes-logo.png'
         alt='Holmes High School'
@@ -33,6 +23,7 @@ export default async function HomePage() {
         className='object-contain'
       />
       {/* Side Banner */}
+      {/* TODO: turn this into a dynamic component */}
       <Image
         src='/images/home-banner.png'
         alt='Holmes High School'
@@ -40,6 +31,7 @@ export default async function HomePage() {
         className='object-contain object-right'
       />
       {/* QR Code */}
+      {/* TODO: turn this into a dynamic component */}
       <Image
         src='/images/qr-code.png'
         alt='QR Code'

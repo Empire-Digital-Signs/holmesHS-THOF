@@ -5,13 +5,10 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const slides = await sanityClient.fetch(`
-    *[_type == "homeSlideshow"][0].slides[]{
-      "imageUrl": image.asset->url,
-      title,
-      caption,
+    *[_id == "mainSlideshow"][0].slides[]{
+      "imageUrl": photo.asset->url,
+      "title": name,
       duration,
-      startDate,
-      endDate
     }
   `)
 
