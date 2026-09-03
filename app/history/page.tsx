@@ -7,10 +7,10 @@ import Image from 'next/image'
 import crestImage from '../../public/images/crest.png'
 import { getHistory } from '@/sanity/lib/client'
 
-const records = await getHistory();
+const records = await getHistory()
 const slides: CoverflowSlide[] = records.map((record: HistoryItem) => ({
   src: '/images/history-image.png',
-  alt: `${record.year} ${record.title}`
+  alt: `${record.year} ${record.title}`,
 }))
 
 function HistoryCard({
@@ -20,7 +20,7 @@ function HistoryCard({
   hasPrev,
   prevCallback,
   hasNext,
-  nextCallback
+  nextCallback,
 }: {
   record: HistoryItem
   selected: boolean
@@ -34,82 +34,84 @@ function HistoryCard({
     left: 'text-left',
     center: 'text-center',
     right: 'text-right',
-  }[textAlign];
+  }[textAlign]
 
   return (
-    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px]`}>
+    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px]`}>
       <p className={`px-3.5 ${alignmentClass} ${selected ? 'text-[28px] text-white' : 'text-[34px] text-black'}`}>
         {record.year}
       </p>
-      {selected ? (
-        <>
-          <Image
-            src='/images/history-image.png'
-            alt={`${record.year}: ${record.title}`}
-            width={809}
-            height={503}
-            className='object-cover h-[200px]'
-          />
-          <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
-            <p
-              className='uppercase text-center text-[20px]'
-            >
-              {record.title}
-            </p>
-            <p
-              className='min-h-0 overflow-hidden font-sans text-[16px]'
-            >
-              {record.description}
-            </p>
-            {/* Buttons and Crest */}
-            <div
-              className='absolute -bottom-[20px] left-0 flex justify-around items-center w-full'
-            >
-              <button
-                onPointerDown={(e) => e.stopPropagation()}
-                onPointerUp={(e) => e.stopPropagation()}
-                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
-                onClick={prevCallback}
-              >
-                {`< Previous`}
-              </button>
-              {/* Crest */}
+      {selected
+        ? (
+            <>
               <Image
-                src={'/images/crest.png'}
-                alt={''}
-                width={75}
-                height={108}
-                className=''
+                src='/images/history-image.png'
+                alt={`${record.year}: ${record.title}`}
+                width={809}
+                height={503}
+                className='object-cover h-[200px]'
               />
-              <button
-                onPointerDown={(e) => e.stopPropagation()}
-                onPointerUp={(e) => e.stopPropagation()}
-                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
-                onClick={nextCallback}
-              >
-                {`Next >`}
-              </button>
+              <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+                <p
+                  className='uppercase text-center text-[20px]'
+                >
+                  {record.title}
+                </p>
+                <p
+                  className='min-h-0 overflow-hidden font-sans text-[16px]'
+                >
+                  {record.description}
+                </p>
+                {/* Buttons and Crest */}
+                <div
+                  className='absolute -bottom-[20px] left-0 flex justify-around items-center w-full'
+                >
+                  <button
+                    onPointerDown={e => e.stopPropagation()}
+                    onPointerUp={e => e.stopPropagation()}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    onClick={prevCallback}
+                  >
+                    {`< Previous`}
+                  </button>
+                  {/* Crest */}
+                  <Image
+                    src='/images/crest.png'
+                    alt=''
+                    width={75}
+                    height={108}
+                    className=''
+                  />
+                  <button
+                    onPointerDown={e => e.stopPropagation()}
+                    onPointerUp={e => e.stopPropagation()}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    onClick={nextCallback}
+                  >
+                    {`Next >`}
+                  </button>
+                </div>
+
+              </div>
+            </>
+          )
+        : (
+            <div
+              className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center opacity-50'
+              style={{ backgroundImage: `url(${crestImage.src})`, backgroundSize: '132px 180px' }}
+            >
+              <p className='line-clamp-3 font-sans text-[16px] text-black'>{record.description}</p>
             </div>
-            
-          </div>
-        </>
-      ) : (
-        <div
-          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center opacity-50'
-          style={{ backgroundImage: `url(${crestImage.src})`, backgroundSize: '132px 180px' }}
-        >
-          <p className='line-clamp-3 font-sans text-[16px] text-black'>{record.description}</p>
-        </div>
-      )}
+          )}
     </div>
   )
 }
 
 export default function HistoryPage() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
-    <div 
+    <div
       className='flex flex-col w-full h-full'
     >
       {/* Content: List and Carousel */}
@@ -159,8 +161,8 @@ export default function HistoryPage() {
           className='flex h-[750px] my-auto min-w-0 flex-1 items-center [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
           cardClassName='h-full rounded-[20px] border-2 border-black'
           renderSlide={(_, index, selected) => {
-            const hasPrev = index - 1 >= 0;
-            const hasNext = index + 1 < records.length;
+            const hasPrev = index - 1 >= 0
+            const hasNext = index + 1 < records.length
             return (
               <HistoryCard
                 record={records[index]}
@@ -178,7 +180,7 @@ export default function HistoryPage() {
             )
           }}
         />
-      
+
       </div>
     </div>
   )

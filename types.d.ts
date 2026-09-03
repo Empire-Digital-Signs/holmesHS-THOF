@@ -1,23 +1,23 @@
 export type MenuItem = {
-  title: string;
-  link: string;
-};
+  title: string
+  link: string
+}
 
 export type HistoryItem = {
-  year: number;
-  title: string;
-  description: string;
-};
+  year: number
+  title: string
+  description: string
+}
 
 export type Inductee = {
-  firstName: string;
-  lastName: string;
-  year: number;
-  bio: string;
-  photo: string;
-};
+  firstName: string
+  lastName: string
+  year: number
+  bio: string
+  photo: string
+}
 
 export type Page = {
-  name: string;
-  destination: string;
-};
+  name: string
+  destination: string
+}

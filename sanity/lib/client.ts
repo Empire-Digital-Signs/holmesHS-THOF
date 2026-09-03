@@ -7,7 +7,7 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-});
+})
 
 /**
  * Retrieves inductees based on filter.
@@ -23,8 +23,8 @@ export async function getInductees(filter = '') {
       bio,
       "photo": photo.asset->url
     }
-  `);
-  return inductees;
+  `)
+  return inductees
 }
 
 /**
@@ -39,8 +39,8 @@ export async function getHistory() {
       description,
       "photo": photo.asset->url
     }
-  `);
-  return history;
+  `)
+  return history
 };
 
 /**
@@ -54,6 +54,6 @@ export async function getTimeline() {
       year,
       description,
     }
-  `);
-  return timeline;
+  `)
+  return timeline
 }

@@ -45,7 +45,7 @@ export default function HomeSlideshow() {
   }, [slides])
 
   const now = new Date()
-  const activeSlides = slides.filter(slide => {
+  const activeSlides = slides.filter((slide) => {
     const start = slide.startDate ? new Date(slide.startDate) : null
     const end = slide.endDate ? new Date(slide.endDate) : null
     if (start && now < start) return false
@@ -69,11 +69,11 @@ export default function HomeSlideshow() {
   const slide = activeSlides[index]
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-black">
-      <AnimatePresence mode="sync">
+    <div className='w-full h-full relative overflow-hidden bg-black'>
+      <AnimatePresence mode='sync'>
         <motion.div
           key={index}
-          className="absolute inset-0"
+          className='absolute inset-0'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -85,7 +85,7 @@ export default function HomeSlideshow() {
           <img
             src={slide.imageUrl}
             alt={slide.title || 'Slide'}
-            className="w-full h-full object-cover"
+            className='w-full h-full object-cover'
           />
         </motion.div>
       </AnimatePresence>

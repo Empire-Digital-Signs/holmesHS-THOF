@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 /**
  * Inductee Type. Reused in multiple pages. Fields:
@@ -7,16 +7,16 @@ import {defineField, defineType} from 'sanity'
  * Year                             - Required
  * Picture                          - Required
  * Bio                              - Optional // TODO: resolve how many bios to use. One for academics and one for athletics?
- * 
+ *
  * Academics
  * L Academic Program               - Optional
  * L Career and Technical Education - Optional
  * L Hall of Distinction            - Optional
- * 
+ *
  * Athletics
  * L Championship Name              - Optional
  * L Hall of Fame                   - Optional
- * 
+ *
  * Induction year? - Optional TODO: decide if using
  */
 export const inducteeType = defineType({
@@ -37,22 +37,22 @@ export const inducteeType = defineType({
     defineField({
       name: 'firstName',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'lastName',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'year',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'photo',
       type: 'image',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
 
     // --- Academics ---

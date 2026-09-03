@@ -21,7 +21,6 @@ export default function InducteeCard({
   isSelected?: boolean
   cardRef?: Ref<HTMLDivElement>
 }) {
-
   return (
     <>
       <div
@@ -31,31 +30,33 @@ export default function InducteeCard({
           onSelect(inductee)
           onOpenDetail?.(inductee)
         }}
-      >        
-        {/* Inductee photo or black placeholder*/}
-        {inductee.photo ? (
-          <Image 
-            src={inductee.photo}
-            alt={`${inductee.firstName} ${inductee.lastName}`}
-            className="absolute inset-0 object-cover"
-            fill
-          />
-        ) : (
-          <div className="absolute inset-0 bg-black" />
-        )}
+      >
+        {/* Inductee photo or black placeholder */}
+        {inductee.photo
+          ? (
+              <Image
+                src={inductee.photo}
+                alt={`${inductee.firstName} ${inductee.lastName}`}
+                className='absolute inset-0 object-cover'
+                fill
+              />
+            )
+          : (
+              <div className='absolute inset-0 bg-black' />
+            )}
 
         {/* Open icon in bottom right */}
         <Image
           src='/images/circle-plus.svg'
-          alt="Expand"
+          alt='Expand'
           width={66}
           height={66}
-          className="absolute bottom-0 right-0 z-10"
+          className='absolute bottom-0 right-0 z-10'
         />
-        
+
         {/* Text content */}
-        <div className="absolute inset-0 bg-linear-to-t from-primary-red/70 from-0% via-primary-red/30 via-10% to-transparent to-20%" />
-        <div className="absolute bottom-[10px] left-[15px] flex flex-col items-start text-white uppercase">
+        <div className='absolute inset-0 bg-linear-to-t from-primary-red/70 from-0% via-primary-red/30 via-10% to-transparent to-20%' />
+        <div className='absolute bottom-[10px] left-[15px] flex flex-col items-start text-white uppercase'>
           <span className='text-[27px]'>
             {inductee.lastName}
           </span>

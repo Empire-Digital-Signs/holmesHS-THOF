@@ -1,34 +1,34 @@
-import { Page } from "./types";
+import { Page } from './types'
 
 export const ACADEMICS_PAGES: Page[] = [
   {
     name: 'Academic Programs',
-    destination: '/academics/academic-programs'
+    destination: '/academics/academic-programs',
   },
   {
     name: 'Career and Technical Education',
-    destination: '/academics/career-and-technical-education'
+    destination: '/academics/career-and-technical-education',
   },
   {
     name: 'Hall of Distinction',
-    destination: '/academics/hall-of-distinction'
-  }
-];
+    destination: '/academics/hall-of-distinction',
+  },
+]
 
 export const ATHLETICS_PAGES: Page[] = [
   {
     name: 'Hall of Fame',
-    destination: '/athletics/hall-of-fame'
+    destination: '/athletics/hall-of-fame',
   },
   {
     name: 'Championship',
-    destination: '/athletics/championship'
+    destination: '/athletics/championship',
   },
   {
     name: 'Timeline',
-    destination: '/athletics/timeline'
-  }
-];
+    destination: '/athletics/timeline',
+  },
+]
 
 // Map years to FlipHTML5 URLs
 export const YEARBOOK_URLS: Record<number, string> = {
@@ -110,4 +110,4 @@ export const YEARBOOK_URLS: Record<number, string> = {
   1946: 'https://online.fliphtml5.com/ufqib/1946-3Ew9/',
   1945: 'https://online.fliphtml5.com/ufqib/1945-FF8k/',
   1944: 'https://online.fliphtml5.com/ufqib/1944-5qRY/',
-};
+}

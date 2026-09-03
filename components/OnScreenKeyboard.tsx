@@ -14,23 +14,27 @@ export default function OnScreenKeyboard({ value, onChange, onClose }: OnScreenK
   const handleKeyPress = (button: string) => {
     if (button === '{bksp}') {
       onChange(value.slice(0, -1))
-    } else if (button === '{space}') {
+    }
+    else if (button === '{space}') {
       onChange(value + ' ')
-    } else if (button === '{enter}') {
+    }
+    else if (button === '{enter}') {
       // Could trigger search or just close
       onClose()
-    } else if (button === '{shift}' || button === '{lock}') {
+    }
+    else if (button === '{shift}' || button === '{lock}') {
       // Handle shift/caps lock if needed
-    } else {
+    }
+    else {
       onChange(value + button)
     }
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-900 p-4">
+    <div className='fixed bottom-0 left-0 right-0 z-50 bg-gray-900 p-4'>
       <button
         onClick={onClose}
-        className="absolute top-2 right-2 text-white text-2xl font-bold px-4 py-2"
+        className='absolute top-2 right-2 text-white text-2xl font-bold px-4 py-2'
       >
         ✕
       </button>
@@ -41,8 +45,8 @@ export default function OnScreenKeyboard({ value, onChange, onClose }: OnScreenK
           default: [
             'Q W E R T Y U I O P {bksp}',
             'A S D F G H J K L {enter}',
-            'Z X C V B N M {space}'
-          ]
+            'Z X C V B N M {space}',
+          ],
         }}
       />
     </div>

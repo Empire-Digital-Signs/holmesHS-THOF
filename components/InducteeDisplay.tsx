@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from "react";
-import InducteeGallery from "./InducteeGallery";
-import InducteeList from "./InducteeList";
-import { Inductee } from "@/types";
-import Searchbar from "./Searchbar";
+import { useState } from 'react'
+import InducteeGallery from './InducteeGallery'
+import InducteeList from './InducteeList'
+import { Inductee } from '@/types'
+import Searchbar from './Searchbar'
 
 /**
  * Displays inductees and additional information. Used for inductee pages.
@@ -12,14 +12,14 @@ import Searchbar from "./Searchbar";
  */
 export default function InducteeDisplay({ inductees }: { inductees: Inductee[] }) {
   // Store inductee data
-  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees);
+  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees)
   // The inductee to center on
-  const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null);
+  const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
 
   return (
-    <>      
+    <>
       <div
-        className="flex h-full min-h-0 flex-col"
+        className='flex h-full min-h-0 flex-col'
       >
         {/* List and Gallery Wrapper */}
         <div

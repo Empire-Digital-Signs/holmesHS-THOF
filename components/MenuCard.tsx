@@ -8,18 +8,17 @@ import { useRouter } from 'next/navigation'
  * @returns TSX Element
  */
 export default function MenuCard({ item }: { item: MenuItem }) {
-
   const router = useRouter()
 
   return (
     <>
       <button
-        className={`bg-contain bg-no-repeat bg-center h-[444px] w-[290px] flex justify-center items-center`}
+        className='bg-contain bg-no-repeat bg-center h-[444px] w-[290px] flex justify-center items-center'
         style={{ backgroundImage: `url(${MenuBanner.src})`, backgroundSize: 'contain' }}
-        onClick={() => {router.push(item.link)}}
+        onClick={() => { router.push(item.link) }}
       >
         <p
-          className="text-center text-black mt-[75px] mb-[280px] mx-2 text-[24px] uppercase"
+          className='text-center text-black mt-[75px] mb-[280px] mx-2 text-[24px] uppercase'
         >
           {item.title}
         </p>

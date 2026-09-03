@@ -24,7 +24,8 @@ export default function InactivityTimer({ timeout = 120000, homeTimeout = 300000
         if (pathname === '/') {
           // On home page: refresh to get updates
           router.refresh()
-        } else {
+        }
+        else {
           // On other pages: go back to home
           router.push('/')
         }
@@ -35,7 +36,7 @@ export default function InactivityTimer({ timeout = 120000, homeTimeout = 300000
     const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click']
 
     // Set up event listeners
-    events.forEach(event => {
+    events.forEach((event) => {
       document.addEventListener(event, resetTimer)
     })
 
@@ -45,7 +46,7 @@ export default function InactivityTimer({ timeout = 120000, homeTimeout = 300000
     // Cleanup
     return () => {
       clearTimeout(timer)
-      events.forEach(event => {
+      events.forEach((event) => {
         document.removeEventListener(event, resetTimer)
       })
     }

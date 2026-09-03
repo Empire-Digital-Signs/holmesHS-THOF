@@ -21,8 +21,8 @@ type SearchbarProps<T extends Inductee> = {
 export default function Searchbar<T extends Inductee>({
   inductees,
   setFilteredInductees,
-  placeholder = "Search inductees...",
-  searchKeys = ["firstName", "lastName"] as const,
+  placeholder = 'Search inductees...',
+  searchKeys = ['firstName', 'lastName'] as const,
 }: SearchbarProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");

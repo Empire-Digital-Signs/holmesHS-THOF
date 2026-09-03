@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 interface HeaderProps {
   // Home: Home page
   // Menu: Academics and Athletics landing pages (with menus)
-  variant: 'home' | 'menu';
+  variant: 'home' | 'menu'
 }
 
 /**
@@ -23,12 +23,12 @@ export default function Header({ variant }: HeaderProps) {
   const formattedDay = currentTime.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
-  });
+  })
 
   const formattedTime = currentTime.toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
-  });
+  })
 
   return (
     <header

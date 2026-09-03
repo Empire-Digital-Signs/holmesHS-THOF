@@ -1,15 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow-carousel';
-import { HistoryItem } from '@/types';
-import logoImage from '../../../../public/images/logo.png';
-import YearsList from '@/components/YearsList';
-import { getTimeline } from '@/sanity/lib/client';
+import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow-carousel'
+import { HistoryItem } from '@/types'
+import logoImage from '../../../../public/images/logo.png'
+import YearsList from '@/components/YearsList'
+import { getTimeline } from '@/sanity/lib/client'
 
-const records = await getTimeline();
+const records = await getTimeline()
 
-const years: number[] = records.map((r: HistoryItem) => r.year);
+const years: number[] = records.map((r: HistoryItem) => r.year)
 
 function TimelineCard({
   record,
@@ -17,7 +17,7 @@ function TimelineCard({
   hasPrev,
   prevCallback,
   hasNext,
-  nextCallback
+  nextCallback,
 }: {
   record: HistoryItem
   selected: boolean
@@ -26,10 +26,9 @@ function TimelineCard({
   hasNext: boolean
   nextCallback: () => void
 }) {
-
   return (
     <div
-      className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white' } pb-[30px] bg-no-repeat bg-center`}
+      className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px] bg-no-repeat bg-center`}
       style={!selected ? { backgroundImage: `url(${logoImage.src})`, backgroundSize: '190px' } : {}}
     >
       {/* Header: School and Year */}
@@ -45,60 +44,62 @@ function TimelineCard({
           {record.year}
         </p>
       </div>
-      {selected ? (
-        <>
-          <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
-            <p
-              className='uppercase text-left text-[22px] text-primary-red'
-            >
-              {record.title}
-            </p>
-            <p
-              className='min-h-0 overflow-hidden font-sans text-[18px]'
-            >
-              {record.description}
-            </p>
-            {/* Buttons and Crest */}
+      {selected
+        ? (
+            <>
+              <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+                <p
+                  className='uppercase text-left text-[22px] text-primary-red'
+                >
+                  {record.title}
+                </p>
+                <p
+                  className='min-h-0 overflow-hidden font-sans text-[18px]'
+                >
+                  {record.description}
+                </p>
+                {/* Buttons and Crest */}
+                <div
+                  className='absolute bottom-[20px] left-0 flex justify-around items-center w-full'
+                >
+                  <button
+                    onPointerDown={e => e.stopPropagation()}
+                    onPointerUp={e => e.stopPropagation()}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    onClick={prevCallback}
+                  >
+                    {`< Previous`}
+                  </button>
+                  <button
+                    onPointerDown={e => e.stopPropagation()}
+                    onPointerUp={e => e.stopPropagation()}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    onClick={nextCallback}
+                  >
+                    {`Next >`}
+                  </button>
+                </div>
+              </div>
+            </>
+          )
+        : (
             <div
-              className='absolute bottom-[20px] left-0 flex justify-around items-center w-full'
+              className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4'
+
             >
-              <button
-                onPointerDown={(e) => e.stopPropagation()}
-                onPointerUp={(e) => e.stopPropagation()}
-                className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
-                onClick={prevCallback}
-              >
-                {`< Previous`}
-              </button>
-              <button
-                onPointerDown={(e) => e.stopPropagation()}
-                onPointerUp={(e) => e.stopPropagation()}
-                className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
-                onClick={nextCallback}
-              >
-                {`Next >`}
-              </button>
+              <p className='line-clamp-3 font-sans text-[18px] text-black'>{record.description}</p>
             </div>
-          </div>
-        </>
-      ) : (
-        <div
-          className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4'
-          
-        >
-          <p className='line-clamp-3 font-sans text-[18px] text-black'>{record.description}</p>
-        </div>
-      )}
+          )}
     </div>
   )
 }
 
 export default function TimelinePage() {
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
-  const slides: CoverflowSlide[] = records.map((record) => ({
+  const slides: CoverflowSlide[] = records.map((record: HistoryItem) => ({
     src: '',
-    alt: `${record.year} ${record.title}`
+    alt: `${record.year} ${record.title}`,
   }))
 
   // TODO: If loading: return...?
@@ -121,8 +122,8 @@ export default function TimelinePage() {
         className='flex h-[600px] my-auto min-w-0 flex-1 items-center [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
         cardClassName='h-full rounded-[20px] border-2 border-black'
         renderSlide={(_, index, selected) => {
-          const hasPrev = index - 1 >= 0;
-          const hasNext = index + 1 < records.length;
+          const hasPrev = index - 1 >= 0
+          const hasNext = index + 1 < records.length
           return (
             <TimelineCard
               record={records[index]}
@@ -144,8 +145,8 @@ export default function TimelinePage() {
       <YearsList
         years={years}
         selectedYear={years[selectedIndex]}
-        onSelectYear={(year) => setSelectedIndex(years.indexOf(year))}
+        onSelectYear={year => setSelectedIndex(years.indexOf(year))}
       />
-    </>    
+    </>
   )
 }
