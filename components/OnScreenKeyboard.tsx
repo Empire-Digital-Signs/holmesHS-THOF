@@ -39,9 +39,9 @@ export default function OnScreenKeyboard({ value, onChange, onClose }: OnScreenK
         onKeyPress={handleKeyPress}
         layout={{
           default: [
-            'q w e r t y u i o p {bksp}',
-            'a s d f g h j k l {enter}',
-            'z x c v b n m {space}'
+            'Q W E R T Y U I O P {bksp}',
+            'A S D F G H J K L {enter}',
+            'Z X C V B N M {space}'
           ]
         }}
       />
