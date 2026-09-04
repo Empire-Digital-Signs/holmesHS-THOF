@@ -81,8 +81,8 @@ export default function Navigation() {
         <button
           id={page.name.toLowerCase() + '-button'}
           className={
-            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate cursor-pointer
-
+            `flex-1 uppercase whitespace-nowrap overflow-hidden cursor-pointer truncate
+            p-[10px] md:p-[30px]
             ${pathname === page.path || pathname.startsWith(page.path + '/')
           ? 'bg-primary-red text-white'
           : 'bg-white text-black'}

@@ -8,7 +8,7 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
   const pathname = usePathname()
 
   return (
-    <div className='w-full min-w-0 flex items-stretch justify-center gap-[20px] overflow-hidden z-20 mb-[10px]'>
+    <div className='w-full min-w-0 flex items-stretch justify-center gap-[20px] overflow-hidden z-20 mb-[10px] px-[30px]'>
       {pages.map((page, index) => {
         // Create shape for ends of menu items. Create a perfect rectangle for all middle items.
         let clipPath = ''
@@ -39,7 +39,8 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
               ['--button-outline']: outlineSvg,
             } as React.CSSProperties}
             className={`
-              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold uppercase text-center px-[26px] lg:p-[16px]
+              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold uppercase text-center text-wrap
+              p-[20px]
               before:absolute before:inset-0 before:z-[-1] before:[clip-path:var(--button-clip)]
               before:[background-image:var(--button-outline)] before:bg-no-repeat before:bg-size-[100%_100%]
               ${isSelected

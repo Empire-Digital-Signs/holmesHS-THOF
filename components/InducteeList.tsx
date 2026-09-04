@@ -15,10 +15,11 @@ export default function InducteeList({
   onSelect: (inductee: Inductee) => void
 }) {
   return (
-    <div className='flex min-h-0 flex-1 flex-col w-[412px]'>
+    <div className='flex min-h-0 flex-1 flex-col w-full'>
       <h4
-        className='shrink-0 bg-primary-red w-[412px] h-[117px] border-4 border-black
-          text-white uppercase flex items-center justify-center'
+        className='shrink-0 bg-primary-red border-4 border-black
+          text-white uppercase flex items-center justify-center
+          p-[30px] lg:px-[60px]'
       >
         Inductees
       </h4>
@@ -34,7 +35,7 @@ export default function InducteeList({
             <li
               key={`${inductee.firstName}-${inductee.lastName}-${inductee.year}-${index}`}
               className={`text-center uppercase cursor-pointer
-                flex items-center justify-center border-4 border-black h-[80px]
+                flex items-center justify-center border-4 border-black py-[10px] lg:py-[20px]
                 ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
             >
               <button

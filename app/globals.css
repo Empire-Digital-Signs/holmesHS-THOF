@@ -132,10 +132,17 @@ h6 {
 }
 
 nav > button {
-  font-size: clamp(1.3rem, 4vw, 2.625rem);
+  font-size: 20px;
 }
-button {
-  font-size: clamp(0.75rem, 3vw, 1.5rem);
+@media (min-width: 0px) {
+  nav > button {
+    font-size: clamp(1.3rem, 2.5vw, 2.625rem);
+  }
+}
+@media (min-width: 1535px) {
+  .submenu-button {
+    font-size: clamp(0.75rem, 3vw, 1.5rem);
+  }
 }
 
 .primary-text {
