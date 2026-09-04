@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
-import { Inductee } from "@/types";
-import Image from "next/image";
-import OnScreenKeyboard from "./OnScreenKeyboard";
+import React, { useRef, useState } from 'react'
+import { Inductee } from '@/types'
+import Image from 'next/image'
+import OnScreenKeyboard from './OnScreenKeyboard'
 
 type SearchbarProps<T extends Inductee> = {
-  inductees: T[];
-  setFilteredInductees: (items: T[]) => void;
-  placeholder?: string;
-  searchKeys?: (keyof T)[];
-};
+  inductees: T[]
+  setFilteredInductees: (items: T[]) => void
+  placeholder?: string
+  searchKeys?: (keyof T)[]
+}
 
 /**
  * Inductee Search Bar
@@ -24,29 +24,29 @@ export default function Searchbar<T extends Inductee>({
   placeholder = 'Search inductees...',
   searchKeys = ['firstName', 'lastName'] as const,
 }: SearchbarProps<T>) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [query, setQuery] = useState("");
-  const [showKeyboard, setShowKeyboard] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [query, setQuery] = useState('')
+  const [showKeyboard, setShowKeyboard] = useState(false)
 
   const handleSearch = (value: string) => {
-    setQuery(value);
+    setQuery(value)
 
-    const normalizedQuery = value.trim().toLowerCase();
+    const normalizedQuery = value.trim().toLowerCase()
 
     if (!normalizedQuery) {
-      setFilteredInductees(inductees);
-      return;
+      setFilteredInductees(inductees)
+      return
     }
 
-    const filtered = inductees.filter((inductee) =>
+    const filtered = inductees.filter(inductee =>
       searchKeys.some((key) => {
-        const fieldValue = inductee[key];
-        return typeof fieldValue === "string" && fieldValue.toLowerCase().includes(normalizedQuery);
-      })
-    );
+        const fieldValue = inductee[key]
+        return typeof fieldValue === 'string' && fieldValue.toLowerCase().includes(normalizedQuery)
+      }),
+    )
 
-    setFilteredInductees(filtered);
-  };
+    setFilteredInductees(filtered)
+  }
 
   return (
     <>
@@ -55,31 +55,31 @@ export default function Searchbar<T extends Inductee>({
         <div
           className='flex items-center gap-[10px] w-full bg-white rounded-[12px] p-[5px]'
           onClick={() => {
-            inputRef.current?.focus();
-            setShowKeyboard(true);
+            inputRef.current?.focus()
+            setShowKeyboard(true)
           }}
         >
           <Image
-            src="/images/search.svg"
-            alt="Search"
+            src='/images/search.svg'
+            alt='Search'
             onClick={() => inputRef.current?.focus()}
             width={53}
             height={53}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           />
           <input
             ref={inputRef}
-            type="search"
-            inputMode="search"
+            type='search'
+            inputMode='search'
             value={query}
-            onChange={(event) => handleSearch(event.target.value)}
+            onChange={event => handleSearch(event.target.value)}
             onClick={() => {
-              inputRef.current?.focus();
-              setShowKeyboard(true);
+              inputRef.current?.focus()
+              setShowKeyboard(true)
             }}
             placeholder={placeholder}
-            aria-label="Search inductees"
-            className='flex-1 min-w-0 text-[20px] h-full'
+            aria-label='Search inductees'
+            className='flex-1 min-w-0 primary-text h-full uppercase'
           />
         </div>
       </div>
@@ -88,19 +88,19 @@ export default function Searchbar<T extends Inductee>({
         <>
           {/* Must be above all elements except the search bar */}
           <div
-            className="fixed inset-0 z-30 bg-black/10"
+            className='fixed inset-0 z-30 bg-black/10'
             onClick={() => setShowKeyboard(false)}
           />
           <OnScreenKeyboard
             value={query}
             onChange={(nextValue) => {
-              setQuery(nextValue);
-              handleSearch(nextValue);
+              setQuery(nextValue)
+              handleSearch(nextValue)
             }}
             onClose={() => setShowKeyboard(false)}
           />
         </>
       )}
     </>
-  );
+  )
 }

@@ -3,7 +3,7 @@ import { Providers } from './providers'
 import InactivityTimer from '../components/InactivityTimer'
 import OrientationWarning from '@/components/OrientationWarning'
 import background from '../public/images/background.png'
-import Footer from '@/components/footer'
+import Navigation from '@/components/Navigation'
 
 export const metadata = {
   title: 'Holmes High School Touch Hall of Fame',
@@ -15,7 +15,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className='w-screen h-screen min-h-0 overflow-hidden bg-black'>
         <Providers>
           <InactivityTimer timeout={600000} homeTimeout={300000} />
-          <OrientationWarning />
+          {/* FIXME: turn this back on after resolving design issues */}
+          {/* <OrientationWarning /> */}
           {/* directly render children */}
           <div
             className='flex flex-col w-screen h-screen'
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className='flex-1 min-h-0'>
               {children}
             </div>
-            <Footer />
+            <Navigation />
           </div>
         </Providers>
       </body>

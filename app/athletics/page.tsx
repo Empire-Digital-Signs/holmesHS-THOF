@@ -1,8 +1,6 @@
 'use client'
 
-import Footer from '../../components/footer'
 import Header from '@/components/header'
-import background from '../../public/images/background.png'
 import { MenuItem } from '@/types'
 import Menu from '@/components/Menu'
 

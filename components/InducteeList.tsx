@@ -16,12 +16,12 @@ export default function InducteeList({
 }) {
   return (
     <div className='flex min-h-0 flex-1 flex-col w-[412px]'>
-      <h2
+      <h4
         className='shrink-0 bg-primary-red w-[412px] h-[117px] border-4 border-black
-          text-white text-[33px] uppercase flex items-center justify-center'
+          text-white uppercase flex items-center justify-center'
       >
         Inductees
-      </h2>
+      </h4>
       <ul className='min-h-0 flex-1 overflow-y-auto bg-black
         scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         '
@@ -33,14 +33,18 @@ export default function InducteeList({
           return (
             <li
               key={`${inductee.firstName}-${inductee.lastName}-${inductee.year}-${index}`}
-              onClick={() => onSelect(inductee)}
-              className={`text-center text-[20px] uppercase cursor-pointer
+              className={`text-center uppercase cursor-pointer
                 flex items-center justify-center border-4 border-black h-[80px]
                 ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
             >
-              {inductee.firstName}
-              {' '}
-              {inductee.lastName}
+              <button
+                onClick={() => onSelect(inductee)}
+                className='uppercase text-center'
+              >
+                {inductee.firstName}
+                {' '}
+                {inductee.lastName}
+              </button>
             </li>
           )
         })}

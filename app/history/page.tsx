@@ -5,11 +5,11 @@ import { CoverflowCarousel, type CoverflowSlide } from '@/components/ruixen/cove
 import Image from 'next/image'
 import crestImage from '../../public/images/crest.png'
 import { getHistory } from '@/sanity/lib/client'
-import { History } from '@/sanity.types'
+import { HISTORY_QUERY_RESULT } from '@/sanity.types'
 
-const records: History[] = await getHistory()
-const slides: CoverflowSlide[] = records.map((record: History) => ({
-  src: '/images/history-image.png',
+const records: HISTORY_QUERY_RESULT = await getHistory()
+const slides: CoverflowSlide[] = records.map(record => ({
+  src: record.photo || '',
   alt: `${record.year} ${record.title}`,
 }))
 
@@ -22,7 +22,7 @@ function HistoryCard({
   hasNext,
   nextCallback,
 }: {
-  record: History
+  record: HISTORY_QUERY_RESULT[number]
   selected: boolean
   textAlign: 'left' | 'center' | 'right'
   hasPrev: boolean
@@ -38,12 +38,12 @@ function HistoryCard({
 
   return (
     <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px]`}>
-      <p className={`px-3.5 ${alignmentClass} ${selected ? 'text-[28px] text-white' : 'text-[34px] text-black'}`}>
-        {record.year}
-      </p>
       {selected
         ? (
             <>
+              <h4 className={`px-3.5 ${alignmentClass} text-white`}>
+                {record.year}
+              </h4>
               <Image
                 src='/images/history-image.png'
                 alt={`${record.year}: ${record.title}`}
@@ -52,13 +52,13 @@ function HistoryCard({
                 className='object-cover h-[200px]'
               />
               <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
-                <p
-                  className='uppercase text-center text-[20px]'
+                <h2
+                  className='uppercase text-center'
                 >
                   {record.title}
-                </p>
+                </h2>
                 <p
-                  className='min-h-0 overflow-hidden font-sans text-[16px]'
+                  className='primary-text min-h-0 overflow-hidden font-sans'
                 >
                   {record.description}
                 </p>
@@ -69,7 +69,7 @@ function HistoryCard({
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                     onClick={prevCallback}
                   >
                     {`< Previous`}
@@ -85,7 +85,7 @@ function HistoryCard({
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                     onClick={nextCallback}
                   >
                     {`Next >`}
@@ -96,12 +96,17 @@ function HistoryCard({
             </>
           )
         : (
-            <div
-              className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center opacity-50'
-              style={{ backgroundImage: `url(${crestImage.src})`, backgroundSize: '132px 180px' }}
-            >
-              <p className='line-clamp-3 font-sans text-[16px] text-black'>{record.description}</p>
-            </div>
+            <>
+              <h5 className={`px-3.5 ${alignmentClass} text-black`}>
+                {record.year}
+              </h5>
+              <div
+                className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4 bg-no-repeat bg-center opacity-50'
+                style={{ backgroundImage: `url(${crestImage.src})`, backgroundSize: '132px 180px' }}
+              >
+                <p className='secondary-text line-clamp-3 font-sans text-black'>{record.description}</p>
+              </div>
+            </>
           )}
     </div>
   )
@@ -119,9 +124,9 @@ export default function HistoryPage() {
         {/* Years List */}
         <div className='flex min-h-0 flex-col align-start mb-[27px]'>
           {/* Header */}
-          <h2 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] text-[33px] border-4 border-black uppercase bg-white'>
+          <h4 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] border-4 border-black uppercase bg-white'>
             Years
-          </h2>
+          </h4>
           {/* List Wrapper */}
           <div className='relative flex-1 min-h-0 overflow-y-auto no-scrollbar'>
             <div className='relative min-h-full w-[220px]'>
@@ -130,14 +135,17 @@ export default function HistoryPage() {
               {/* List */}
               <ul className='relative z-10 flex flex-col gap-[20px]'>
                 {
-                  records.map((record: History, index: number) => (
+                  records.map((record, index: number) => (
                     <li
-                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-[25px] text-white
+                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-white
                         hover:cursor-pointer`}
-                      onClick={() => setSelectedIndex(index)}
                       key={record.year}
                     >
-                      {record.year}
+                      <button
+                        onClick={() => setSelectedIndex(index)}
+                      >
+                        {record.year}
+                      </button>
                     </li>
                   ))
                 }

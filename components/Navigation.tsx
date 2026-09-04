@@ -10,7 +10,7 @@ const pages = [
   { name: 'Yearbooks', path: '/yearbooks' },
 ]
 
-export default function Footer() {
+export default function Navigation() {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -76,12 +76,12 @@ export default function Footer() {
   }
 
   return (
-    <footer className='w-full pt-[25px] flex items-end bg-primary-red z-10 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]'>
+    <nav className='w-full pt-[25px] flex items-end bg-primary-red z-10 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]'>
       { pages.map((page, key) => (
         <button
           id={page.name.toLowerCase() + '-button'}
           className={
-            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate text-[41.5px] cursor-pointer
+            `h-[135px] flex-1 uppercase transition whitespace-nowrap overflow-hidden truncate cursor-pointer
 
             ${pathname === page.path || pathname.startsWith(page.path + '/')
           ? 'bg-primary-red text-white'
@@ -97,6 +97,6 @@ export default function Footer() {
           {page.name}
         </button>
       ))}
-    </footer>
+    </nav>
   )
 }

@@ -5,11 +5,11 @@ import { CoverflowCarousel, CoverflowSlide } from '@/components/ruixen/coverflow
 import logoImage from '../../../../public/images/logo.png'
 import YearsList from '@/components/YearsList'
 import { getTimeline } from '@/sanity/lib/client'
-import { Timeline } from '@/sanity.types'
+import { TIMELINE_QUERY_RESULT } from '@/sanity.types'
 
-const records = await getTimeline()
+const records: TIMELINE_QUERY_RESULT = await getTimeline()
 
-const years: number[] = records.map((r: Timeline) => r.year)
+const years: number[] = records.map(r => r.year || -1).filter(year => year !== -1)
 
 function TimelineCard({
   record,
@@ -19,7 +19,7 @@ function TimelineCard({
   hasNext,
   nextCallback,
 }: {
-  record: Timeline
+  record: TIMELINE_QUERY_RESULT[number]
   selected: boolean
   hasPrev: boolean
   prevCallback: () => void
@@ -31,30 +31,31 @@ function TimelineCard({
       className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px] bg-no-repeat bg-center`}
       style={!selected ? { backgroundImage: `url(${logoImage.src})`, backgroundSize: '190px' } : {}}
     >
-      {/* Header: School and Year */}
-      <div
-        className='flex flex-col pl-[20px] pt-[30px]'
-      >
-        <h2
-          className={`uppercase text-[22px] ${selected ? 'text-white' : 'text-primary-red'}`}
-        >
-          Holmes High School
-        </h2>
-        <p className={`${selected ? 'text-[58px] text-white' : 'text-[38px] text-primary-red'}`}>
-          {record.year}
-        </p>
-      </div>
       {selected
         ? (
             <>
+              {/* Header: School and Year */}
+              <div
+                className='flex flex-col pl-[20px] pt-[30px]'
+              >
+                <h3
+                  className='uppercase text-white'
+                >
+                  Holmes High School
+                </h3>
+                <h2 className='text-white'>
+                  {record.year}
+                </h2>
+              </div>
+
               <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
-                <p
-                  className='uppercase text-left text-[22px] text-primary-red'
+                <h4
+                  className='uppercase text-left text-primary-red'
                 >
                   {record.title}
-                </p>
+                </h4>
                 <p
-                  className='min-h-0 overflow-hidden font-sans text-[18px]'
+                  className='primary-text min-h-0 overflow-hidden font-sans'
                 >
                   {record.description}
                 </p>
@@ -65,7 +66,7 @@ function TimelineCard({
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                     onClick={prevCallback}
                   >
                     {`< Previous`}
@@ -73,7 +74,7 @@ function TimelineCard({
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasNext ? 'visible' : 'invisible'} uppercase text-[16px] w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
                     onClick={nextCallback}
                   >
                     {`Next >`}
@@ -83,12 +84,28 @@ function TimelineCard({
             </>
           )
         : (
-            <div
-              className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4'
-
-            >
-              <p className='line-clamp-3 font-sans text-[18px] text-black'>{record.description}</p>
-            </div>
+            <>
+              {/* Header: School and Year */}
+              <div
+                className='flex flex-col pl-[20px] pt-[30px]'
+              >
+                <h6
+                  className='uppercase text-primary-red'
+                >
+                  Holmes High School
+                </h6>
+                <h5 className='text-primary-red'>
+                  {record.year}
+                </h5>
+              </div>
+              <div
+                className='relative flex flex-1 flex-col justify-end p-3.5 h-3/4'
+              >
+                <p className='secondary-text line-clamp-3 font-sans text-black'>
+                  {record.description}
+                </p>
+              </div>
+            </>
           )}
     </div>
   )
@@ -97,7 +114,7 @@ function TimelineCard({
 export default function TimelinePage() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
-  const slides: CoverflowSlide[] = records.map((record: Timeline) => ({
+  const slides: CoverflowSlide[] = records.map((record: TIMELINE_QUERY_RESULT[number]) => ({
     src: '',
     alt: `${record.year} ${record.title}`,
   }))

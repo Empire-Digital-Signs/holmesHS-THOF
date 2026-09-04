@@ -54,7 +54,7 @@ export default function YearsList({ years, selectedYear, onSelectYear }: { years
                 ref={(button) => { yearButtonRefs.current[year] = button }}
                 aria-pressed={isSelected}
                 className={`flex items-center justify-center
-                  text-center text-[24px] uppercase cursor-pointer p-[2px]
+                  text-center uppercase cursor-pointer p-[2px]
                   border-10 rounded-full
                   ${isSelected ? 'border-primary-red' : 'border-transparent'}`}
               >

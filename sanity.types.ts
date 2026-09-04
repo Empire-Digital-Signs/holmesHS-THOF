@@ -12,266 +12,266 @@
  * ---------------------------------------------------------------------------------
  */
 
-export declare const internalGroqTypeReferenceTo: unique symbol;
+export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
 export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
 
 export type Slideshow = {
-  _id: string;
-  _type: "slideshow";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
+  _id: string
+  _type: 'slideshow'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
   slides?: Array<{
     photo?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    name?: string;
-    startDate?: string;
-    endDate?: string;
-    duration?: number;
-    _type: "slide";
-    _key: string;
-  }>;
-  transitionDuration?: number;
-};
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    name?: string
+    startDate?: string
+    endDate?: string
+    duration?: number
+    _type: 'slide'
+    _key: string
+  }>
+  transitionDuration?: number
+}
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
 
 export type Timeline = {
-  _id: string;
-  _type: "timeline";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  year?: number;
-  description?: string;
-};
+  _id: string
+  _type: 'timeline'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  year?: number
+  description?: string
+}
 
 export type Inductee = {
-  _id: string;
-  _type: "inductee";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  firstName?: string;
-  lastName?: string;
-  year?: string;
+  _id: string
+  _type: 'inductee'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  firstName?: string
+  lastName?: string
+  year?: string
   photo?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  academicProgram?: Array<string>;
-  careerAndTechnicalEducation?: Array<string>;
-  hallOfDistinction?: boolean;
-  championshipName?: Array<string>;
-  hallOfFame?: boolean;
-};
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  academicProgram?: Array<string>
+  careerAndTechnicalEducation?: Array<string>
+  hallOfDistinction?: boolean
+  championshipName?: Array<string>
+  hallOfFame?: boolean
+}
 
 export type History = {
-  _id: string;
-  _type: "history";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  year?: number;
-  description?: string;
+  _id: string
+  _type: 'history'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  year?: number
+  description?: string
   photo?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-};
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+}
 
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
+  _type: 'sanity.imagePaletteSwatch'
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
+}
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
+  _type: 'sanity.imagePalette'
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
+}
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
+  _type: 'sanity.imageDimensions'
+  height?: number
+  width?: number
+  aspectRatio?: number
+}
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  thumbHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  thumbHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
 
 export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.fileAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
+}
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
+}
 
 export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
 
 export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
+  _type: 'geopoint'
+  lat?: number
+  lng?: number
+  alt?: number
+}
 
 export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
+  _type: 'slug'
+  current?: string
+  source?: string
+}
 
-export type AllSanitySchemaTypes =
-  | SanityImageAssetReference
-  | Slideshow
-  | SanityImageCrop
-  | SanityImageHotspot
-  | Timeline
-  | Inductee
-  | History
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint
-  | Slug;
+export type AllSanitySchemaTypes
+  = | SanityImageAssetReference
+    | Slideshow
+    | SanityImageCrop
+    | SanityImageHotspot
+    | Timeline
+    | Inductee
+    | History
+    | SanityImagePaletteSwatch
+    | SanityImagePalette
+    | SanityImageDimensions
+    | SanityImageMetadata
+    | SanityFileAsset
+    | SanityAssetSourceData
+    | SanityImageAsset
+    | Geopoint
+    | Slug
 
 // Source: sanity/lib/client.ts
 // Variable: SLIDES_QUERY
 // Query: *[_id == "mainSlideshow"][0].slides[]{    "imageUrl": photo.asset->url,    transitionDuration,    duration,    startDate,    endDate,  }
 export type SLIDES_QUERY_RESULT = Array<{
-  imageUrl: string | null;
-  transitionDuration: null;
-  duration: number | null;
-  startDate: string | null;
-  endDate: string | null;
-}> | null;
+  imageUrl: string | null
+  transitionDuration: null
+  duration: number | null
+  startDate: string | null
+  endDate: string | null
+}> | null
 
 // Source: sanity/lib/client.ts
 // Variable: HISTORY_QUERY
 // Query: *[_type == 'history'] | order(year asc) {    title,    year,    description,    "photo": photo.asset->url  }
 export type HISTORY_QUERY_RESULT = Array<{
-  title: string | null;
-  year: number | null;
-  description: string | null;
-  photo: string | null;
-}>;
+  title: string | null
+  year: number | null
+  description: string | null
+  photo: string | null
+}>
 
 // Source: sanity/lib/client.ts
 // Variable: TIMELINE_QUERY
 // Query: *[_type == 'timeline'] | order(year asc) {    title,    year,    description,  }
 export type TIMELINE_QUERY_RESULT = Array<{
-  title: string | null;
-  year: number | null;
-  description: string | null;
-}>;
+  title: string | null
+  year: number | null
+  description: string | null
+}>
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+import '@sanity/client'
+declare module '@sanity/client' {
   interface SanityQueries {
-    '\n  *[_id == "mainSlideshow"][0].slides[]{\n    "imageUrl": photo.asset->url,\n    transitionDuration,\n    duration,\n    startDate,\n    endDate,\n  }': SLIDES_QUERY_RESULT;
-    "\n  *[_type == 'history'] | order(year asc) {\n    title,\n    year,\n    description,\n    \"photo\": photo.asset->url\n  }": HISTORY_QUERY_RESULT;
-    "\n  *[_type == 'timeline'] | order(year asc) {\n    title,\n    year,\n    description,\n  }": TIMELINE_QUERY_RESULT;
+    '\n  *[_id == "mainSlideshow"][0].slides[]{\n    "imageUrl": photo.asset->url,\n    transitionDuration,\n    duration,\n    startDate,\n    endDate,\n  }': SLIDES_QUERY_RESULT
+    '\n  *[_type == \'history\'] | order(year asc) {\n    title,\n    year,\n    description,\n    "photo": photo.asset->url\n  }': HISTORY_QUERY_RESULT
+    '\n  *[_type == \'timeline\'] | order(year asc) {\n    title,\n    year,\n    description,\n  }': TIMELINE_QUERY_RESULT
   }
 }

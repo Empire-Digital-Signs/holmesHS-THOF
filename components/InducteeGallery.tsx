@@ -54,9 +54,9 @@ export default function InducteeGallery({
                   <div className='flex justify-between p-[15px] gap-[10px]'>
                     {/* Header Left */}
                     <div className='flex flex-col'>
-                      <h2 className='text-[45px]'>
+                      <h4>
                         {detailInductee.year}
-                      </h2>
+                      </h4>
                       <Image
                         src='/images/logo.png'
                         alt='Holmes Logo'
@@ -66,16 +66,16 @@ export default function InducteeGallery({
                     </div>
                     {/* Header Right */}
                     <div className='flex flex-col gap-[7px] w-full text-right uppercase'>
-                      <h2 className='text-[62px]'>
+                      <h2>
                         {detailInductee.lastName}
                       </h2>
-                      <h3 className='text-[44px]'>
+                      <h3>
                         {detailInductee.firstName}
                       </h3>
                     </div>
                   </div>
                   {/* Bio */}
-                  <p className='ml-[56px] my-[36px] mx-[30px] min-h-0 flex-1 overflow-y-auto scrollbar scrollbar-track-white scrollbar-thumb-primary-red font-sans text-[24px]'>
+                  <p className='primary-text ml-[56px] my-[36px] mx-[30px] min-h-0 flex-1 overflow-y-auto scrollbar scrollbar-track-white scrollbar-thumb-primary-red font-sans'>
                     {detailInductee.bio}
                   </p>
                 </div>
@@ -103,9 +103,9 @@ export default function InducteeGallery({
                 ? (
                   // If no indctees, display message
                     <div className='h-full flex justify-center items-center'>
-                      <p className='text-center text-[36px] my-auto text-white'>
-                        No inductees found.
-                      </p>
+                      <h3 className='text-center my-auto text-white uppercase'>
+                        No inductees found
+                      </h3>
                     </div>
                   )
                 : (
