@@ -12,8 +12,8 @@ export default function MenuCard({ item }: { item: MenuItem }) {
 
   return (
     <div
-      className='bg-contain bg-no-repeat bg-center h-[444px] w-[290px] flex justify-center items-center'
-      style={{ backgroundImage: `url(${MenuBanner.src})`, backgroundSize: 'contain' }}
+      className='bg-cover bg-no-repeat bg-center h-[444px] w-[290px] flex justify-center items-center'
+      style={{ backgroundImage: `url(${MenuBanner.src})` }}
     >
       <button
       // TODO: adjust padding to text fits inside as banner is resized
