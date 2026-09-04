@@ -124,20 +124,23 @@ export default function HistoryPage() {
         {/* Years List */}
         <div className='flex min-h-0 flex-col align-start mb-[27px]'>
           {/* Header */}
-          <h4 className='flex text-center items-center justify-center w-[255px] h-[119px] py-[35px] border-4 border-black uppercase bg-white'>
+          <h4
+            className='flex text-center items-center justify-center border-4 border-black uppercase bg-white
+            p-[30px] lg:px-[60px]'
+          >
             Years
           </h4>
           {/* List Wrapper */}
           <div className='relative flex-1 min-h-0 overflow-y-auto no-scrollbar'>
-            <div className='relative min-h-full w-[220px]'>
+            <div className='relative min-h-full w-full pr-[30px]'>
               {/* Background */}
-              <div className='absolute inset-y-0 left-0 w-[187px] bg-black' />
+              <div className='absolute inset-y-0 left-0 w-[calc(100%-60px)] bg-black' />
               {/* List */}
               <ul className='relative z-10 flex flex-col gap-[20px]'>
                 {
                   records.map((record, index: number) => (
                     <li
-                      className={`flex justify-end pr-[20px] w-[208px] h-[46px] bg-primary-red border-4 border-black text-white
+                      className={`flex justify-end px-[20px] w-full bg-primary-red border-4 border-black text-white
                         hover:cursor-pointer`}
                       key={record.year}
                     >
