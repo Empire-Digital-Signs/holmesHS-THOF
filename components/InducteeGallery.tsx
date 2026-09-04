@@ -110,7 +110,10 @@ export default function InducteeGallery({
                   )
                 : (
                     <div className='h-full p-8 overflow-y-auto no-scrollbar'>
-                      <div className='grid gap-4 grid-cols-4 gap-x-[40px] gap-y-[20px]'>
+                      <div className='grid gap-4
+                        grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
+                        gap-x-[20px] lg:gap-x-[40px] gap-y-[20px]'
+                      >
                         {inductees.map((inductee: Inductee, index: number) => {
                           const key = getInducteeKey(inductee)
                           const isSelected = selectedInductee ? getInducteeKey(selectedInductee) === key : false
