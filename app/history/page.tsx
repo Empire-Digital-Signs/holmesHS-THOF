@@ -49,7 +49,7 @@ function HistoryCard({
                 alt={`${record.year}: ${record.title}`}
                 width={809}
                 height={503}
-                className='object-cover h-[200px]'
+                className='object-cover h-[200px] [@media(max-height:800px)]:hidden'
               />
               <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
                 <h2
@@ -80,7 +80,7 @@ function HistoryCard({
                     alt=''
                     width={75}
                     height={108}
-                    className=''
+                    className='hidden lg  :block'
                   />
                   <button
                     onPointerDown={e => e.stopPropagation()}
@@ -97,7 +97,7 @@ function HistoryCard({
           )
         : (
             <>
-              <h5 className={`px-3.5 ${alignmentClass} text-black`}>
+              <h5 className={`px-[20px] ${alignmentClass} text-black`}>
                 {record.year}
               </h5>
               <div
@@ -161,7 +161,7 @@ export default function HistoryPage() {
           slides={slides}
           selectedIndex={selectedIndex}
           onSelectedIndexChange={setSelectedIndex}
-          cardWidth='30vw'
+          cardWidth='clamp(250px, 30vw, 600px)'
           gap={0}
           rotate={0}
           depth={1.25}
@@ -169,7 +169,7 @@ export default function HistoryPage() {
           loop={false}
           showNavigation={false}
           label='Holmes High School history'
-          className='flex h-[750px] my-auto min-w-0 flex-1 items-center [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
+          className='flex h-full my-auto min-w-0 flex-1 items-center overflow-y-scroll [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
           cardClassName='h-full rounded-[20px] border-2 border-black'
           renderSlide={(_, index, selected) => {
             const hasPrev = index - 1 >= 0

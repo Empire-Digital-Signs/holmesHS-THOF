@@ -286,7 +286,7 @@ export function CoverflowCarousel({
             }
           }}
           // Vertical padding keeps the drop shadows clear of the overflow clip.
-          className='cursor-grab overflow-hidden py-10 outline-none ring-ring focus-visible:ring-2 active:cursor-grabbing'
+          className='cursor-grab overflow-hidden [@media(min-height:801px)]:p-10 outline-none ring-ring focus-visible:ring-2 active:cursor-grabbing'
           style={{
             perspective: `calc(var(--cf-card) * ${perspective})`,
             // Horizontal drag is ours; the page keeps vertical scrolling.
