@@ -3,16 +3,17 @@
 import { useState } from 'react'
 import InducteeGallery from './InducteeGallery'
 import InducteeList from './InducteeList'
-import { Inductee } from '@/types'
 import Searchbar from './Searchbar'
+import { INDUCTEES_QUERY_RESULT } from '@/sanity.types'
+import { Inductee } from '@/types'
 
 /**
  * Displays inductees and additional information. Used for inductee pages.
  * @returns Searchable list and gallery display of inductees.
  */
-export default function InducteeDisplay({ inductees }: { inductees: Inductee[] }) {
+export default function InducteeDisplay({ inductees, usePopup = false }: { inductees: INDUCTEES_QUERY_RESULT, usePopup?: boolean }) {
   // Store inductee data
-  const [filteredInductees, setFilteredInductees] = useState<Inductee[]>(inductees)
+  const [filteredInductees, setFilteredInductees] = useState<INDUCTEES_QUERY_RESULT>(inductees)
   // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
 
@@ -41,6 +42,7 @@ export default function InducteeDisplay({ inductees }: { inductees: Inductee[] }
             inductees={filteredInductees}
             selectedInductee={selectedInductee}
             onSelect={setSelectedInductee}
+            usePopup={usePopup}
           />
         </div>
       </div>

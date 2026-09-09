@@ -14,12 +14,14 @@ export default function InducteeCard({
   onOpenDetail,
   isSelected = false,
   cardRef,
+  usePopup = false,
 }: {
   inductee: Inductee
   onSelect: (inductee: Inductee) => void
   onOpenDetail?: (inductee: Inductee) => void
   isSelected?: boolean
   cardRef?: Ref<HTMLDivElement>
+  usePopup?: boolean
 }) {
   return (
     <>
@@ -27,8 +29,10 @@ export default function InducteeCard({
         ref={cardRef}
         className='relative h-[350px] overflow-hidden cursor-pointer bg-black transition-all'
         onClick={() => {
-          onSelect(inductee)
-          onOpenDetail?.(inductee)
+          if (usePopup) {
+            onSelect(inductee)
+            onOpenDetail?.(inductee)
+          }
         }}
       >
         {/* Inductee photo or black placeholder */}
@@ -46,13 +50,17 @@ export default function InducteeCard({
             )}
 
         {/* Open icon in bottom right */}
-        <Image
-          src='/images/circle-plus.svg'
-          alt='Expand'
-          width={66}
-          height={66}
-          className='absolute bottom-0 right-0 z-10'
-        />
+        {
+          usePopup && (
+            <Image
+              src='/images/circle-plus.svg'
+              alt='Expand'
+              width={66}
+              height={66}
+              className='absolute bottom-0 right-0 z-10'
+            />
+          )
+        }
 
         {/* Text content */}
         <div className='absolute inset-0 bg-linear-to-t from-primary-red/70 from-0% via-primary-red/30 via-10% to-transparent to-20%' />

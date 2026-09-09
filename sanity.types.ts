@@ -12,8 +12,6 @@
  * ---------------------------------------------------------------------------------
  */
 
-export declare const internalGroqTypeReferenceTo: unique symbol
-
 // Source: schema.json
 export type SanityImageAssetReference = {
   _ref: string
@@ -82,7 +80,6 @@ export type Inductee = {
   _rev: string
   firstName?: string
   lastName?: string
-  year?: string
   photo?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -90,11 +87,14 @@ export type Inductee = {
     crop?: SanityImageCrop
     _type: 'image'
   }
-  academicProgram?: Array<string>
+  bio?: string
+  academicPrograms?: Array<string>
   careerAndTechnicalEducation?: Array<string>
   hallOfDistinction?: boolean
-  championshipName?: Array<string>
+  hodYear?: number
+  championships?: Array<string>
   hallOfFame?: boolean
+  hofYear?: number
 }
 
 export type History = {
@@ -236,6 +236,8 @@ export type AllSanitySchemaTypes
     | Geopoint
     | Slug
 
+export declare const internalGroqTypeReferenceTo: unique symbol
+
 // Source: sanity/lib/client.ts
 // Variable: SLIDES_QUERY
 // Query: *[_id == "mainSlideshow"][0].slides[]{    "imageUrl": photo.asset->url,    transitionDuration,    duration,    startDate,    endDate,  }
@@ -246,6 +248,23 @@ export type SLIDES_QUERY_RESULT = Array<{
   startDate: string | null
   endDate: string | null
 }> | null
+
+// Source: sanity/lib/client.ts
+// Variable: INDUCTEES_QUERY
+// Query: *[_type == "inductee"] | order(lastName asc) {    firstName,    lastName,    "photo": photo.asset->url,    bio,    academicPrograms,    careerAndTechnicalEducation,    hallOfDistinction,    hodYear,    championships,    hallOfFame,    hofYear,  }
+export type INDUCTEES_QUERY_RESULT = Array<{
+  firstName: string | null
+  lastName: string | null
+  photo: string | null
+  bio: string | null
+  academicPrograms: Array<string> | null
+  careerAndTechnicalEducation: Array<string> | null
+  hallOfDistinction: boolean | null
+  hodYear: number | null
+  championships: Array<string> | null
+  hallOfFame: boolean | null
+  hofYear: number | null
+}>
 
 // Source: sanity/lib/client.ts
 // Variable: HISTORY_QUERY
@@ -271,6 +290,7 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '\n  *[_id == "mainSlideshow"][0].slides[]{\n    "imageUrl": photo.asset->url,\n    transitionDuration,\n    duration,\n    startDate,\n    endDate,\n  }': SLIDES_QUERY_RESULT
+    '\n  *[_type == "inductee"] | order(lastName asc) {\n    firstName,\n    lastName,\n    "photo": photo.asset->url,\n    bio,\n\n    academicPrograms,\n    careerAndTechnicalEducation,\n    hallOfDistinction,\n    hodYear,\n\n    championships,\n    hallOfFame,\n    hofYear,\n  }': INDUCTEES_QUERY_RESULT
     '\n  *[_type == \'history\'] | order(year asc) {\n    title,\n    year,\n    description,\n    "photo": photo.asset->url\n  }': HISTORY_QUERY_RESULT
     '\n  *[_type == \'timeline\'] | order(year asc) {\n    title,\n    year,\n    description,\n  }': TIMELINE_QUERY_RESULT
   }

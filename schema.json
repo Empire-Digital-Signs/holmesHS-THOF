@@ -380,13 +380,6 @@
         },
         "optional": true
       },
-      "year": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
       "photo": {
         "type": "objectAttribute",
         "value": {
@@ -434,7 +427,14 @@
         },
         "optional": true
       },
-      "academicProgram": {
+      "bio": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "academicPrograms": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -461,7 +461,14 @@
         },
         "optional": true
       },
-      "championshipName": {
+      "hodYear": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "championships": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -475,6 +482,13 @@
         "type": "objectAttribute",
         "value": {
           "type": "boolean"
+        },
+        "optional": true
+      },
+      "hofYear": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
         },
         "optional": true
       }

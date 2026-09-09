@@ -1,29 +1,44 @@
-import { Inductee } from '@/types'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import InducteeCard from './InducteeCard'
+import { usePathname } from 'next/navigation'
+import { Inductee } from '@/types'
 
 // Helper function to generate the inductee key from the gallery.
-const getInducteeKey = (inductee: Inductee) => `${inductee.firstName}-${inductee.lastName}-${inductee.year}`
+const getInducteeKey = (inductee: Inductee) => `${inductee.firstName}-${inductee.lastName}`
+
+// Helper function to determine if using
+// Hall of Fame or Hall of Distinction year
+const getYear = (inductee: Inductee, path: string) => {
+  const isHod = path.endsWith('hall-of-distinction') || path.endsWith('hall-of-disctinction/')
+  if (isHod) return inductee.hodYear
+  else return inductee.hofYear
+}
 
 /**
  * Renders a gallery of inductees.
  * @param inductees - An array of inductee objects to display in the gallery.
  * @param selectedInductee - The currently selected inductee to scroll to.
  * @param onSelect - A callback function to handle selection of an inductee.
+ * @param usePopup - Determines whether or not to open an Inductee's popup.
  * @returns Gallery of inductee cards.
  */
 export default function InducteeGallery({
   inductees,
   selectedInductee,
   onSelect,
+  usePopup = false,
 }: {
   inductees: Inductee[]
   selectedInductee: Inductee | null
   onSelect: (inductee: Inductee | null) => void
+  usePopup?: boolean
 }) {
   const [detailInductee, setDetailInductee] = useState<Inductee | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
+  const pathname = usePathname()
+
+  console.log('inductee', inductees[0].firstName)
 
   useEffect(() => {
     if (!selectedInductee) return
@@ -55,8 +70,11 @@ export default function InducteeGallery({
                     {/* Header Left */}
                     <div className='flex flex-col'>
                       <h4>
-                        {detailInductee.year}
+                        {getYear(detailInductee, pathname)}
                       </h4>
+                      {
+
+                      }
                       <Image
                         src='/images/logo.png'
                         alt='Holmes Logo'
@@ -128,6 +146,7 @@ export default function InducteeGallery({
                               cardRef={(element) => {
                                 cardRefs.current[key] = element
                               }}
+                              usePopup={usePopup}
                             />
                           )
                         })}

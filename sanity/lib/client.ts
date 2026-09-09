@@ -19,13 +19,21 @@ const SLIDES_QUERY = defineQuery(`
     endDate,
   }`)
 
-const INDUCTEES_QUERY = (filter: string = '') => defineQuery(`
-  *[_type == "inductee"${filter ? ` && ${filter}` : ''}] | order(year desc, lastName asc) {
+const INDUCTEES_QUERY = defineQuery(`
+  *[_type == "inductee"] | order(lastName asc) {
     firstName,
     lastName,
-    year,
+    "photo": photo.asset->url,
     bio,
-    "photo": photo.asset->url
+
+    academicPrograms,
+    careerAndTechnicalEducation,
+    hallOfDistinction,
+    hodYear,
+
+    championships,
+    hallOfFame,
+    hofYear,
   }`)
 
 const HISTORY_QUERY = defineQuery(`
@@ -57,8 +65,8 @@ export async function getSlides() {
  * @param filter Condition to apply to query
  * @returns List of inductees
  */
-export async function getInductees(filter = '') {
-  const inductees = await client.fetch(INDUCTEES_QUERY(filter))
+export async function getInductees() {
+  const inductees = await client.fetch(INDUCTEES_QUERY)
   return inductees
 }
 

@@ -16,6 +16,8 @@ import { defineField, defineType } from 'sanity'
  * Athletics
  * L Championship Name              - Optional
  * L Hall of Fame                   - Optional
+ *
+ * Validations for arrays prevent empty values from getting stored.
  */
 export const inducteeType = defineType({
   name: 'inductee',
@@ -62,14 +64,20 @@ export const inducteeType = defineType({
       name: 'academicPrograms',
       title: 'Academic Programs',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{
+        type: 'string',
+        validation: Rule => Rule.required(),
+      }],
       group: 'academics',
     }),
     defineField({
       name: 'careerAndTechnicalEducation',
       title: 'Career and Technical Education',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{
+        type: 'string',
+        validation: Rule => Rule.required(),
+      }],
       group: 'academics',
     }),
     defineField({
@@ -91,7 +99,10 @@ export const inducteeType = defineType({
       name: 'championships',
       title: 'Championship Names',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{
+        type: 'string',
+        validation: Rule => Rule.required(),
+      }],
       group: 'athletics',
     }),
     defineField({

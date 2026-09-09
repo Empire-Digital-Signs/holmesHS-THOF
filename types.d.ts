@@ -3,15 +3,10 @@ export type MenuItem = {
   link: string
 }
 
-export type Inductee = {
-  firstName: string
-  lastName: string
-  year: number
-  bio: string
-  photo: string
-}
-
 export type Page = {
   name: string
   destination: string
 }
+
+// Get single Inductee from query result array
+export type Inductee = INDUCTEES_QUERY_RESULT[number]
