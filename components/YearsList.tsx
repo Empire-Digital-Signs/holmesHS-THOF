@@ -29,7 +29,7 @@ export default function YearsList({ years, selectedYear, onSelectYear }: { years
   }
 
   return (
-    <div className='flex min-w-0 w-auto self-stretch items-center justify-between gap-5 mx-[100px] bg-white rounded-[16px] mb-[10px] px-[20px]'>
+    <div className='flex min-w-0 w-auto self-stretch items-center justify-between gap-5 md:mx-[100px] bg-white rounded-[16px] mb-[10px] sm:px-[20px]'>
       {/* Left button */}
       <button
         type='button'
@@ -38,7 +38,11 @@ export default function YearsList({ years, selectedYear, onSelectYear }: { years
         aria-label='Previous year'
         className='shrink-0 disabled:opacity-30'
       >
-        <svg viewBox='0 0 50 50' className='w-[50px] h-[50px]' aria-hidden='true'>
+        <svg
+          viewBox='0 0 50 50'
+          className='w-[50px] h-[50px] hidden sm:block'
+          aria-hidden='true'
+        >
           <polygon points='43.301,0 43.301,50 0,25' fill='var(--primary-red)' />
         </svg>
       </button>
@@ -72,7 +76,11 @@ export default function YearsList({ years, selectedYear, onSelectYear }: { years
         aria-label='Next year'
         className='shrink-0 disabled:opacity-30'
       >
-        <svg viewBox='0 0 50 50' className='w-[50px] h-[50px]' aria-hidden='true'>
+        <svg
+          viewBox='0 0 50 50'
+          className='w-[50px] h-[50px] hidden sm:block'
+          aria-hidden='true'
+        >
           <polygon points='6.699,0 50,25 6.699,50' fill='var(--primary-red)' />
         </svg>
       </button>
