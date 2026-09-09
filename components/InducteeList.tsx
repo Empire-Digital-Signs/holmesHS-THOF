@@ -32,10 +32,10 @@ export default function InducteeList({
       ))
 
   return (
-    <div className='flex min-h-0 flex-1 flex-col w-full'>
+    <div className='flex min-h-0 flex-1 flex-col max-w-[600px]'>
       <h4
         className='shrink-0 bg-primary-red border-4 border-black
-          text-white uppercase flex items-center justify-center
+          text-white uppercase flex items-center justify-center text-center
           p-[30px] lg:px-[60px]'
       >
         {listName}
@@ -50,7 +50,7 @@ export default function InducteeList({
             <button
               key={`${content}-${index}`}
               className={`text-center uppercase cursor-pointer w-full
-                  flex items-center justify-center border-4 border-black py-[10px] lg:py-[20px]
+                  flex items-center justify-center border-4 border-black p-[10px] lg:py-[20px]
                   ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
               onClick={() => {
                 // If selected, go back to all inductees
