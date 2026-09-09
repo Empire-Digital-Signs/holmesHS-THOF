@@ -73,14 +73,27 @@ export default function InducteeGallery({
                         {getYear(detailInductee, pathname)}
                       </h4>
                       {
-
+                        pathname.endsWith('hall-of-distinction') || pathname.endsWith('hall-of-disctinction/')
+                          ? (
+                              // Show this on Academics page (HoD)
+                              <Image
+                                src='/images/crest.png'
+                                alt='Holmes Crest'
+                                width={100}
+                                height={100}
+                              />
+                            )
+                          : (
+                              // Show this on Athletics page (HoF)
+                              <Image
+                                src='/images/logo.png'
+                                alt='Holmes Logo'
+                                width={100}
+                                height={100}
+                              />
+                            )
                       }
-                      <Image
-                        src='/images/logo.png'
-                        alt='Holmes Logo'
-                        width={100}
-                        height={100}
-                      />
+
                     </div>
                     {/* Header Right */}
                     <div className='flex flex-col gap-[7px] w-full text-right uppercase'>
