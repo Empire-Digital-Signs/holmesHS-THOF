@@ -45,21 +45,21 @@ export const inducteeType = defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'year',
-      title: 'Year',
-      type: 'string',
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
       name: 'photo',
       title: 'Photo',
       type: 'image',
       validation: Rule => Rule.required(),
     }),
+    defineField({
+      name: 'bio',
+      title: 'Bio',
+      type: 'text',
+      description: 'Appears in Hall of Fame and Hall of Distinction',
+    }),
 
     // --- Academics ---
     defineField({
-      name: 'academicProgram',
+      name: 'academicPrograms',
       title: 'Academic Programs',
       type: 'array',
       of: [{ type: 'string' }],
@@ -74,15 +74,21 @@ export const inducteeType = defineType({
     }),
     defineField({
       name: 'hallOfDistinction',
-      title: 'Hall of Distinction',
+      title: 'Inducted into the Hall of Distinction',
       description: 'Determines if this inductee is in the Hall of Distinction',
       type: 'boolean',
+      group: 'academics',
+    }),
+    defineField({
+      name: 'hodYear',
+      title: 'Hall of Distinction Induction Year',
+      type: 'number',
       group: 'academics',
     }),
 
     // --- Athletics ---
     defineField({
-      name: 'championshipName',
+      name: 'championships',
       title: 'Championship Names',
       type: 'array',
       of: [{ type: 'string' }],
@@ -90,9 +96,15 @@ export const inducteeType = defineType({
     }),
     defineField({
       name: 'hallOfFame',
-      title: 'Hall of Fame',
+      title: 'Inducted into the Hall of Fame',
       description: 'Determines if this inductee is in the Hall of Fame',
       type: 'boolean',
+      group: 'athletics',
+    }),
+    defineField({
+      name: 'hofYear',
+      title: 'Hall of Fame Induction Year',
+      type: 'number',
       group: 'athletics',
     }),
   ],
