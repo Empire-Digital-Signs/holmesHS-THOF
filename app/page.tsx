@@ -13,7 +13,7 @@ export default async function HomePage() {
 
       {/* Logo and School name */}
       <div
-        className='flex flex-col sm:flex-row mt-[10vh] z-10 gap-[20px] ml-[20px]'
+        className='absolute top-[10vh] left-[20px] flex flex-col sm:flex-row z-10 gap-[20px]'
       >
         {/* Logo */}
         <Image
@@ -40,14 +40,27 @@ export default async function HomePage() {
         fill
         className='object-fill object-right'
       />
-      {/* QR Code */}
+      {/* QR Code CTA: Only on larger screens */}
       {/* TODO: turn this into a dynamic component */}
-      <Image
-        src='/images/qr-code.png'
-        alt='QR Code'
-        fill
-        className='object-contain object-right'
-      />
+      <div
+        className='hidden absolute bottom-[20vh] right-[20px] sm:flex sm:flex-col md:flex-row items-center justify-end z-10 gap-[20px]'
+      >
+        {/* Text */}
+        <div
+          className='flex flex-col uppercase text-white w-full text-right'
+        >
+          <h1>Scan for</h1>
+          <h2>on the go</h2>
+          <h1>Access</h1>
+        </div>
+        {/* QR Code */}
+        {/* TODO: replace this with real URL... Sanity? */}
+        <img
+          src='https://placehold.co/200x200'
+          alt=''
+          className=''
+        />
+      </div>
     </main>
   )
 }
