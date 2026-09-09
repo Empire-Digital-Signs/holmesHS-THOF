@@ -20,25 +20,23 @@ const getYear = (inductee: Inductee, path: string) => {
  * @param inductees - An array of inductee objects to display in the gallery.
  * @param selectedInductee - The currently selected inductee to scroll to.
  * @param onSelect - A callback function to handle selection of an inductee.
- * @param usePopup - Determines whether or not to open an Inductee's popup.
+ * @param hasPopup - Determines whether or not to open an Inductee's popup.
  * @returns Gallery of inductee cards.
  */
 export default function InducteeGallery({
   inductees,
   selectedInductee,
   onSelect,
-  usePopup = false,
+  hasPopup = false,
 }: {
   inductees: Inductee[]
   selectedInductee: Inductee | null
   onSelect: (inductee: Inductee | null) => void
-  usePopup?: boolean
+  hasPopup?: boolean
 }) {
   const [detailInductee, setDetailInductee] = useState<Inductee | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const pathname = usePathname()
-
-  console.log('inductee', inductees[0].firstName)
 
   useEffect(() => {
     if (!selectedInductee) return
@@ -159,7 +157,7 @@ export default function InducteeGallery({
                               cardRef={(element) => {
                                 cardRefs.current[key] = element
                               }}
-                              usePopup={usePopup}
+                              hasPopup={hasPopup}
                             />
                           )
                         })}

@@ -5,17 +5,20 @@ import InducteeGallery from './InducteeGallery'
 import InducteeList from './InducteeList'
 import Searchbar from './Searchbar'
 import { INDUCTEES_QUERY_RESULT } from '@/sanity.types'
-import { Inductee } from '@/types'
+import { Inductee, Page } from '@/types'
 
 /**
  * Displays inductees and additional information. Used for inductee pages.
+ * @param inductees - All unfiltered inductee data.
+ * @param page - Page the gallery will appear on.
  * @returns Searchable list and gallery display of inductees.
  */
-export default function InducteeDisplay({ inductees, usePopup = false }: { inductees: INDUCTEES_QUERY_RESULT, usePopup?: boolean }) {
+export default function InducteeDisplay({ inductees, page }: { inductees: INDUCTEES_QUERY_RESULT, page: Page }) {
   // Store inductee data
   const [filteredInductees, setFilteredInductees] = useState<INDUCTEES_QUERY_RESULT>(inductees)
   // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
+  const [selectedListItem, setSelectedListItem] = useState<string | null>(null)
 
   return (
     <>
@@ -29,9 +32,15 @@ export default function InducteeDisplay({ inductees, usePopup = false }: { induc
           {/* Inductee List and Searchbar */}
           <div className='flex h-full min-h-0 flex-col gap-[20px] items-start'>
             <InducteeList
-              inductees={filteredInductees}
-              selectedInductee={selectedInductee}
-              onSelect={setSelectedInductee}
+              allInductees={inductees}
+              listName={page.listName}
+              searchKeys={page.searchKeys}
+              selectedListItem={selectedListItem}
+              onFilter={(content, matchingInductees) => {
+                setSelectedInductee(null)
+                setSelectedListItem(content)
+                setFilteredInductees(matchingInductees ?? inductees)
+              }}
             />
             <Searchbar
               inductees={inductees}
@@ -42,7 +51,7 @@ export default function InducteeDisplay({ inductees, usePopup = false }: { induc
             inductees={filteredInductees}
             selectedInductee={selectedInductee}
             onSelect={setSelectedInductee}
-            usePopup={usePopup}
+            hasPopup={page.hasPopup}
           />
         </div>
       </div>

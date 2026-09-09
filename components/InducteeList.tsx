@@ -2,18 +2,35 @@ import { Inductee } from '@/types'
 
 /**
  * Renders a list of inductees with search functionality.
- * @param inductees - An array of inductee objects to display in the list.
+ * @param allInductees - An array of inductee objects to display in the list.
+ * @param listName - Header of the list.
+ * @param searchKeys - Criteria to search in the inductees.
+ * @param selectedListItem - The selected item in the list.
+ * @param onFilter - Callback to update Gallery according to the selected item in the list.
  * @returns A searchable list of inductees.
  */
 export default function InducteeList({
-  inductees,
-  selectedInductee,
-  onSelect,
+  allInductees,
+  listName,
+  searchKeys,
+  selectedListItem,
+  onFilter,
 }: {
-  inductees: Inductee[]
-  selectedInductee: Inductee | null
-  onSelect: (inductee: Inductee) => void
+  allInductees: Inductee[]
+  listName: string
+  searchKeys: (keyof Inductee)[]
+  selectedListItem: string | null
+  onFilter: (content: string | null, inductees?: Inductee[]) => void
 }) {
+  const listItems: string[] = searchKeys.length === 2
+    ? allInductees.map(inductee => `${inductee.firstName ?? ''} ${inductee.lastName ?? ''}`.trim())
+    : Array.from(new Set(
+        allInductees.flatMap(inductee => searchKeys.flatMap((key) => {
+          const value = inductee[key]
+          return Array.isArray(value) ? value.map(String) : value != null ? [String(value)] : []
+        })),
+      ))
+
   return (
     <div className='flex min-h-0 flex-1 flex-col w-full'>
       <h4
@@ -21,32 +38,43 @@ export default function InducteeList({
           text-white uppercase flex items-center justify-center
           p-[30px] lg:px-[60px]'
       >
-        Inductees
+        {listName}
       </h4>
       <ul className='min-h-0 flex-1 overflow-y-auto bg-black
         scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         '
       >
-        {inductees.map((inductee: Inductee, index: number) => {
-          const isSelected = selectedInductee?.firstName === inductee.firstName
-            && selectedInductee?.lastName === inductee.lastName
-            && selectedInductee?.year === inductee.year
+        {listItems.map((content, index) => {
+          const isSelected = selectedListItem === content
           return (
-            <li
-              key={`${inductee.firstName}-${inductee.lastName}-${inductee.year}-${index}`}
-              className={`text-center uppercase cursor-pointer
-                flex items-center justify-center border-4 border-black py-[10px] lg:py-[20px]
-                ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
+            <button
+              key={`${content}-${index}`}
+              className={`text-center uppercase cursor-pointer w-full
+                  flex items-center justify-center border-4 border-black py-[10px] lg:py-[20px]
+                  ${isSelected ? 'bg-primary-red text-white' : 'bg-white text-black'}`}
+              onClick={() => {
+                // If selected, go back to all inductees
+                if (isSelected) {
+                  onFilter(null)
+                  return
+                }
+
+                // Find matching inductees to content criteria
+                const matchingInductees = allInductees.filter((candidate) => {
+                  const fullName = `${candidate.firstName ?? ''} ${candidate.lastName ?? ''}`.trim().toLowerCase()
+                  if (fullName === content.toLowerCase()) return true
+                  return searchKeys.some((key) => {
+                    const value = candidate[key]
+                    return Array.isArray(value)
+                      ? value.some(item => String(item) === content)
+                      : value != null && String(value) === content
+                  })
+                })
+                onFilter(content, matchingInductees)
+              }}
             >
-              <button
-                onClick={() => onSelect(inductee)}
-                className='uppercase text-center'
-              >
-                {inductee.firstName}
-                {' '}
-                {inductee.lastName}
-              </button>
-            </li>
+              {content}
+            </button>
           )
         })}
       </ul>

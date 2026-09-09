@@ -6,6 +6,7 @@ import type { Ref } from 'react'
  * Renders a card for an inductee with their photo and name. Clicking the card will trigger the onSelect callback.
  * @param inductee - The inductee object containing their details.
  * @param onSelect - Callback function to be called when the card is clicked, passing the selected inductee.
+ * @param onOpenDetail - Callback to handle popup.
  * @returns A clickable card component displaying the inductee's photo and name.
  */
 export default function InducteeCard({
@@ -14,22 +15,22 @@ export default function InducteeCard({
   onOpenDetail,
   isSelected = false,
   cardRef,
-  usePopup = false,
+  hasPopup = false,
 }: {
   inductee: Inductee
   onSelect: (inductee: Inductee) => void
   onOpenDetail?: (inductee: Inductee) => void
   isSelected?: boolean
   cardRef?: Ref<HTMLDivElement>
-  usePopup?: boolean
+  hasPopup?: boolean
 }) {
   return (
     <>
       <div
         ref={cardRef}
-        className='relative h-[350px] overflow-hidden cursor-pointer bg-black transition-all'
+        className={`relative h-[350px] overflow-hidden ${hasPopup && 'cursor-pointer'} bg-black transition-all`}
         onClick={() => {
-          if (usePopup) {
+          if (hasPopup) {
             onSelect(inductee)
             onOpenDetail?.(inductee)
           }
@@ -49,9 +50,9 @@ export default function InducteeCard({
               <div className='absolute inset-0 bg-black' />
             )}
 
-        {/* Open icon in bottom right */}
+        {/* Open icon in bottom right if this page has popups on */}
         {
-          usePopup && (
+          hasPopup && (
             <Image
               src='/images/circle-plus.svg'
               alt='Expand'

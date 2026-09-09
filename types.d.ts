@@ -3,9 +3,14 @@ export type MenuItem = {
   link: string
 }
 
+export type InducteeSearchKey = 'firstName' | 'lastName' | 'academicPrograms' | 'careerAndTechnicalEducation' | 'championships' | 'hodYear' | 'hofYear'
+
 export type Page = {
   name: string
   destination: string
+  hasPopup: boolean
+  listName: string
+  searchKeys: InducteeSearchKey[]
 }
 
 // Get single Inductee from query result array

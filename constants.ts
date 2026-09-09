@@ -4,14 +4,23 @@ export const ACADEMICS_PAGES: Page[] = [
   {
     name: 'Academic Programs',
     destination: '/academics/academic-programs',
+    hasPopup: false,
+    listName: 'Academic Programs',
+    searchKeys: ['academicPrograms'],
   },
   {
     name: 'Career and Technical Education',
     destination: '/academics/career-and-technical-education',
+    hasPopup: false,
+    listName: 'Career and Technical Education',
+    searchKeys: ['careerAndTechnicalEducation'],
   },
   {
     name: 'Hall of Distinction',
     destination: '/academics/hall-of-distinction',
+    hasPopup: true,
+    listName: 'Induction Years',
+    searchKeys: ['hodYear'],
   },
 ]
 
@@ -19,14 +28,23 @@ export const ATHLETICS_PAGES: Page[] = [
   {
     name: 'Hall of Fame',
     destination: '/athletics/hall-of-fame',
+    hasPopup: true,
+    listName: 'Induction Years',
+    searchKeys: ['hofYear'],
   },
   {
     name: 'Championship',
     destination: '/athletics/championship',
+    hasPopup: false,
+    listName: 'Championships',
+    searchKeys: ['championships'],
   },
   {
     name: 'Timeline',
     destination: '/athletics/timeline',
+    hasPopup: false,
+    listName: '',
+    searchKeys: [],
   },
 ]
 
