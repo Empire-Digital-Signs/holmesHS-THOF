@@ -39,7 +39,7 @@ function TimelineCard({
                 className='flex flex-col pl-[20px] pt-[30px]'
               >
                 <h3
-                  className='uppercase text-white'
+                  className='uppercase text-white hidden lg:block'
                 >
                   Holmes High School
                 </h3>
@@ -90,7 +90,7 @@ function TimelineCard({
                 className='flex flex-col pl-[20px] pt-[30px]'
               >
                 <h6
-                  className='uppercase text-primary-red'
+                  className='uppercase text-primary-red hidden lg:block'
                 >
                   Holmes High School
                 </h6>
@@ -128,7 +128,7 @@ export default function TimelinePage() {
         slides={slides}
         selectedIndex={selectedIndex}
         onSelectedIndexChange={setSelectedIndex}
-        cardWidth='30vw'
+        cardWidth='clamp(300px, 30vw, 400px)'
         gap={0}
         rotate={0}
         depth={1.25}
