@@ -37,7 +37,7 @@ function HistoryCard({
   }[textAlign]
 
   return (
-    <div className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px]`}>
+    <div className={`flex h-full flex-col justify-start border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px]`}>
       {selected
         ? (
             <>
@@ -51,25 +51,25 @@ function HistoryCard({
                 height={503}
                 className='object-cover h-[200px] [@media(max-height:800px)]:hidden'
               />
-              <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+              <div className='flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
                 <h2
-                  className='uppercase text-center'
+                  className='uppercase text-center text-ellipsis line-clamp-3'
                 >
                   {record.title}
                 </h2>
                 <p
-                  className='primary-text min-h-0 overflow-hidden font-sans'
+                  className='primary-text min-h-0 overflow-y-scroll font-sans'
                 >
                   {record.description}
                 </p>
                 {/* Buttons and Crest */}
                 <div
-                  className='absolute -bottom-[20px] left-0 flex justify-around items-center w-full'
+                  className='mt-auto mb-[10px] flex items-center justify-evenly w-full gap-[5px]'
                 >
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-full xl:h-min p-[10px] bg-primary-red text-white cursor-pointer text-nowrap`}
                     onClick={prevCallback}
                   >
                     {`< Previous`}
@@ -80,18 +80,17 @@ function HistoryCard({
                     alt=''
                     width={75}
                     height={108}
-                    className='hidden lg  :block'
+                    className='hidden xl:block'
                   />
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-full p-[10px] bg-primary-red text-white cursor-pointer text-nowrap`}
                     onClick={nextCallback}
                   >
                     {`Next >`}
                   </button>
                 </div>
-
               </div>
             </>
           )
