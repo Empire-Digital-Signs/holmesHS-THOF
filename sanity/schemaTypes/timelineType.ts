@@ -26,7 +26,7 @@ export const timelineType = defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'string',
+      type: 'text',
     }),
   ],
 })
