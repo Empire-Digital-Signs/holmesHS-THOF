@@ -132,7 +132,7 @@ h6 {
 }
 
 nav > button {
-  font-size: clamp(1.3rem, 2.5vw, 2.625rem);
+  font-size: clamp(1rem, 2.5vw, 2.625rem);
 }
 button {
   font-size: clamp(0.75rem, 2vw, 1.5rem);

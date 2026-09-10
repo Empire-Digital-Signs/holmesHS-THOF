@@ -12,12 +12,11 @@ export default function MenuCard({ item }: { item: MenuItem }) {
 
   return (
     <div
-      className='bg-cover bg-no-repeat bg-center h-[444px] w-[290px] flex justify-center items-center'
+      className='relative aspect-3/5 w-full max-w-[290px] shrink-0 bg-cover bg-no-repeat bg-center'
       style={{ backgroundImage: `url(${MenuBanner.src})` }}
     >
       <button
-      // TODO: adjust padding to text fits inside as banner is resized
-        className='text-center text-black pt-[75px] pb-[280px] mx-2 uppercase'
+        className='absolute inset-0 w-full pt-[70px] pb-[280px] px-2 text-center text-black uppercase'
         onClick={() => { router.push(item.link) }}
       >
         {item.title}
