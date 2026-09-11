@@ -121,7 +121,7 @@ export default function HistoryPage() {
       {/* Content: List and Carousel */}
       <div className='flex flex-row flex-1 min-h-0 justify-between'>
         {/* Years List */}
-        <div className='flex min-h-0 flex-col align-start mb-[27px]'>
+        <div className='hidden lg:flex min-h-0 flex-col align-start mb-[27px]'>
           {/* Header */}
           <h4
             className='flex text-center items-center justify-center border-4 border-black uppercase bg-white
