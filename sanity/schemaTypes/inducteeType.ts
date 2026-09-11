@@ -4,18 +4,19 @@ import { defineField, defineType } from 'sanity'
  * Inductee Type. Reused in multiple pages. Fields:
  * First Name                       - Required
  * Last Name                        - Required
- * Year                             - Required // TODO: decide if using induction year, grad year, or both
- * Picture                          - Required
- * Bio                              - Optional // TODO: resolve how many bios to use. One for academics and one for athletics?
+ * Photo                            - Required
+ * Bio                              - Optional
  *
  * Academics
- * L Academic Program               - Optional
+ * L Academic Programs              - Optional
  * L Career and Technical Education - Optional
  * L Hall of Distinction            - Optional
+ * L Hall of Distinction Year       - Optional
  *
  * Athletics
- * L Championship Name              - Optional
+ * L Championship Names             - Optional
  * L Hall of Fame                   - Optional
+ * L Hall of Fame Year              - Optional
  *
  * Validations for arrays prevent empty values from getting stored.
  */

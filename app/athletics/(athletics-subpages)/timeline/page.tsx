@@ -119,8 +119,6 @@ export default function TimelinePage() {
     alt: `${record.year} ${record.title}`,
   }))
 
-  // TODO: If loading: return...?
-
   return (
     <>
       {/* Carousel */}

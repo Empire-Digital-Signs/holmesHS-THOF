@@ -138,17 +138,14 @@ export default function HistoryPage() {
               <ul className='relative z-10 flex flex-col gap-[20px]'>
                 {
                   records.map((record, index: number) => (
-                    <li
+                    <button
+                      onClick={() => setSelectedIndex(index)}
                       className={`flex justify-end px-[20px] w-full bg-primary-red border-4 border-black text-white
-                        hover:cursor-pointer`}
+                          hover:cursor-pointer`}
                       key={record.year}
                     >
-                      <button
-                        onClick={() => setSelectedIndex(index)}
-                      >
-                        {record.year}
-                      </button>
-                    </li>
+                      {record.year}
+                    </button>
                   ))
                 }
               </ul>

@@ -112,7 +112,6 @@ body {
 ** Maximum values are based on new text hierarchy and min
 ** is an rough half of the max value. Adjusted for readability,
 ** especially those below 12px. */
-/* TODO: play with middle values for a good balance */
 h1 {
   font-size: clamp(2.25rem, 4vw, 4.5rem);
 }
