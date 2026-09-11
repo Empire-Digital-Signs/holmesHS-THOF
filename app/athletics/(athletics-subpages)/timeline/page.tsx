@@ -126,7 +126,7 @@ export default function TimelinePage() {
         slides={slides}
         selectedIndex={selectedIndex}
         onSelectedIndexChange={setSelectedIndex}
-        cardWidth='clamp(300px, 30vw, 600px)'
+        cardWidth='clamp(300px, 40vw, 600px)'
         gap={0}
         rotate={0}
         depth={1.25}

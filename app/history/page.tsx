@@ -157,7 +157,7 @@ export default function HistoryPage() {
           slides={slides}
           selectedIndex={selectedIndex}
           onSelectedIndexChange={setSelectedIndex}
-          cardWidth='clamp(250px, 30vw, 600px)'
+          cardWidth='clamp(250px, 40vw, 600px)'
           gap={0}
           rotate={0}
           depth={1.25}
