@@ -36,7 +36,7 @@ function TimelineCard({
             <>
               {/* Header: School and Year */}
               <div
-                className='flex flex-col pl-[20px] pt-[30px]'
+                className='flex flex-col px-[20px] py-[10px] justify-center'
               >
                 <h3
                   className='uppercase text-white hidden lg:block'
@@ -50,12 +50,12 @@ function TimelineCard({
 
               <div className='flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px] overflow-hidden'>
                 <h4
-                  className='uppercase text-left text-primary-red text-ellipsis line-clamp-3'
+                  className='shrink-0 uppercase text-left text-primary-red text-ellipsis line-clamp-3'
                 >
                   {record.title}
                 </h4>
                 <p
-                  className='primary-text min-h-0 font-sans overflow-y-scoll'
+                  className='primary-text min-h-0 font-sans overflow-y-scroll overflow-hidden scrollbar scrollbar-track-white scrollbar-thumb-primary-red'
                 >
                   {record.description}
                 </p>
@@ -128,7 +128,7 @@ export default function TimelinePage() {
         slides={slides}
         selectedIndex={selectedIndex}
         onSelectedIndexChange={setSelectedIndex}
-        cardWidth='clamp(300px, 30vw, 400px)'
+        cardWidth='clamp(300px, 30vw, 600px)'
         gap={0}
         rotate={0}
         depth={1.25}

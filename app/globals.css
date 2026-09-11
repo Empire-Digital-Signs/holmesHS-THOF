@@ -110,25 +110,26 @@ body {
 
 /* Clamp min and max should be at least a difference of a factor of two.
 ** Maximum values are based on new text hierarchy and min
-** is an rough half of the max value. Adjusted for readability. */
+** is an rough half of the max value. Adjusted for readability,
+** especially those below 12px. */
 /* TODO: play with middle values for a good balance */
 h1 {
   font-size: clamp(2.25rem, 4vw, 4.5rem);
 }
 h2 {
-  font-size: clamp(1.25rem, 2vw, 2.875rem);
+  font-size: clamp(1.25rem, 3vw, 2.875rem);
 }
 h3 {
-  font-size: clamp(1.125rem, 2vw, 2.25rem);
+  font-size: clamp(1.125rem, 2.75vw, 2.25rem);
 }
 h4 {
-  font-size: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
 h5 {
   font-size: clamp(0.8rem, 4vw, 1.625rem);
 }
 h6 {
-  font-size: clamp(0.675rem, 3vw, 1.375rem);
+  font-size: clamp(12px, 3vw, 1.375rem);
 }
 
 nav > button {
@@ -144,10 +145,10 @@ button {
 }
 
 .primary-text {
-  font-size: clamp(0.625rem, 3vw, 1.25rem);
+  font-size: clamp(12px, 3vw, 1.25rem);
 }
 p.secondary-text {
-  font-size: clamp(0.5625rem, 3vw, 1.125rem);
+  font-size: clamp(12px, 3vw, 1.125rem);
 }
 
 button:hover {

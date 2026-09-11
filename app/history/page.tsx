@@ -58,7 +58,7 @@ function HistoryCard({
                   {record.title}
                 </h2>
                 <p
-                  className='primary-text min-h-0 overflow-y-scroll font-sans'
+                  className='primary-text min-h-0 overflow-y-scroll scrollbar scrollbar-track-white scrollbar-thumb-primary-red font-sans'
                 >
                   {record.description}
                 </p>
