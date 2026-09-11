@@ -27,10 +27,10 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
       >
         {/* List and Gallery Wrapper */}
         <div
-          className='flex min-h-0 flex-1 flex-row'
+          className='grid min-h-0 flex-1 grid-cols-4'
         >
           {/* Inductee List and Searchbar */}
-          <div className='flex h-full min-h-0 flex-col gap-[20px] items-start'>
+          <div className='h-full min-h-0 flex-col gap-[20px] items-start hidden md:flex col-span-1'>
             <InducteeList
               allInductees={inductees}
               listName={page.listName}

@@ -50,7 +50,7 @@ export default function InducteeGallery({
   }, [selectedInductee, inductees])
 
   return (
-    <div className='relative flex-1 min-h-0 w-full'>
+    <div className='relative col-span-4 min-h-0 md:col-span-3'>
       {detailInductee
         ? (
             <div
@@ -91,7 +91,6 @@ export default function InducteeGallery({
                               />
                             )
                       }
-
                     </div>
                     {/* Header Right */}
                     <div className='flex flex-col gap-[7px] w-full text-right uppercase'>
@@ -140,7 +139,7 @@ export default function InducteeGallery({
                 : (
                     <div className='h-full p-8 overflow-y-auto no-scrollbar'>
                       <div className='grid gap-4
-                        grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
+                        grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
                         gap-x-[20px] lg:gap-x-[40px] gap-y-[20px]'
                       >
                         {inductees.map((inductee: Inductee, index: number) => {

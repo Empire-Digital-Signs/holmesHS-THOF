@@ -32,7 +32,7 @@ export default function InducteeList({
       ))
 
   return (
-    <div className='flex min-h-0 flex-1 flex-col max-w-[600px]'>
+    <div className='flex min-h-0 flex-1 flex-col w-full'>
       <h4
         className='shrink-0 bg-primary-red border-4 border-black
           text-white uppercase flex items-center justify-center text-center
