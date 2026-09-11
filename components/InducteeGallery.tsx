@@ -62,7 +62,7 @@ export default function InducteeGallery({
             >
               <div className='flex h-full w-full min-h-0'>
                 {/* Left Side: Information */}
-                <div className='my-[30px] flex min-h-0 flex-1 flex-col bg-white'>
+                <div className='my-[30px] flex min-h-0 flex-1 flex-col bg-white overflow-hidden'>
                   {/* Header */}
                   <div className='flex justify-between p-[15px] gap-[10px]'>
                     {/* Header Left */}
@@ -94,10 +94,10 @@ export default function InducteeGallery({
                     </div>
                     {/* Header Right */}
                     <div className='flex flex-col gap-[7px] w-full text-right uppercase'>
-                      <h2>
+                      <h2 className='line-clamp-2 text-ellipsis'>
                         {detailInductee.lastName}
                       </h2>
-                      <h3>
+                      <h3 className='line-clamp-2 text-ellipsis'>
                         {detailInductee.firstName}
                       </h3>
                     </div>

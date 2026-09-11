@@ -94,7 +94,7 @@ export default function Searchbar({
             }}
             placeholder={placeholder}
             aria-label='Search inductees'
-            className='flex-1 min-w-0 primary-text h-full uppercase'
+            className='flex-1 min-w-0 primary-text h-full uppercase text-ellipsis'
           />
         </div>
       </div>

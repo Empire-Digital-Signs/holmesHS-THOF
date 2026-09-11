@@ -65,11 +65,11 @@ export default function InducteeCard({
 
         {/* Text content */}
         <div className='absolute inset-0 bg-linear-to-t from-primary-red/70 from-0% via-primary-red/30 via-10% to-transparent to-20%' />
-        <div className='absolute bottom-[10px] left-[15px] flex flex-col items-start text-white uppercase'>
-          <h5>
+        <div className='absolute bottom-[10px] left-[15px] right-[15px] flex min-w-0 flex-col items-stretch text-white uppercase'>
+          <h5 className='w-full min-w-0 line-clamp-2 text-ellipsis'>
             {inductee.lastName}
           </h5>
-          <h6>
+          <h6 className='w-full min-w-0 line-clamp-2 text-ellipsis'>
             {inductee.firstName}
           </h6>
         </div>

@@ -28,7 +28,7 @@ function TimelineCard({
 }) {
   return (
     <div
-      className={`flex h-full flex-col border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px] bg-no-repeat bg-center`}
+      className={`flex h-full flex-col justify-start border-2 border-black ${selected ? 'bg-primary-red' : 'bg-white'} pb-[30px] bg-no-repeat bg-center`}
       style={!selected ? { backgroundImage: `url(${logoImage.src})`, backgroundSize: '190px' } : {}}
     >
       {selected
@@ -48,25 +48,25 @@ function TimelineCard({
                 </h2>
               </div>
 
-              <div className='relative flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
+              <div className='flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px] overflow-hidden'>
                 <h4
-                  className='uppercase text-left text-primary-red'
+                  className='uppercase text-left text-primary-red text-ellipsis line-clamp-3'
                 >
                   {record.title}
                 </h4>
                 <p
-                  className='primary-text min-h-0 overflow-hidden font-sans'
+                  className='primary-text min-h-0 font-sans overflow-y-scoll'
                 >
                   {record.description}
                 </p>
                 {/* Buttons and Crest */}
                 <div
-                  className='absolute bottom-[20px] left-0 flex justify-around items-center w-full'
+                  className='mt-auto mb-[10px] flex justify-evenly items-center w-full gap-[5px]'
                 >
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasPrev ? 'visible' : 'invisible'} uppercase w-full h-min p-[10px] text-nowrap bg-primary-red text-white cursor-pointer`}
                     onClick={prevCallback}
                   >
                     {`< Previous`}
@@ -74,7 +74,7 @@ function TimelineCard({
                   <button
                     onPointerDown={e => e.stopPropagation()}
                     onPointerUp={e => e.stopPropagation()}
-                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-[170px] h-[58px] bg-primary-red text-white cursor-pointer`}
+                    className={`${hasNext ? 'visible' : 'invisible'} uppercase w-full h-min p-[10px] text-nowrap bg-primary-red text-white cursor-pointer`}
                     onClick={nextCallback}
                   >
                     {`Next >`}
