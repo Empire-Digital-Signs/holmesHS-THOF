@@ -33,7 +33,7 @@ type SearchbarProps = {
 export default function Searchbar({
   inductees,
   setFilteredInductees,
-  placeholder = 'Search inductees...',
+  placeholder = 'Search...',
   searchKeys = ['firstName', 'lastName'] as const,
 }: SearchbarProps) {
   const inputRef = useRef<HTMLInputElement>(null)
