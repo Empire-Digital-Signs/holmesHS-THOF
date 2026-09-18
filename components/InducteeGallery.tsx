@@ -54,7 +54,7 @@ export default function InducteeGallery({
       {detailInductee
         ? (
             <div
-              className='h-full w-full p-[62px]'
+              className='h-full w-full md:p-[62px]'
               onClick={(e) => {
                 setDetailInductee(null)
                 e.stopPropagation()
