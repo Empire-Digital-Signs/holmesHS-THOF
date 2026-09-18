@@ -1,7 +1,9 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import background from '@/public/images/background.png'
 
 const pages = [
   { name: 'History', path: '/history' },
@@ -13,6 +15,7 @@ const pages = [
 export default function Navigation() {
   const router = useRouter()
   const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Handle rounded edges based on current path
   useEffect(() => {
@@ -76,27 +79,83 @@ export default function Navigation() {
   }
 
   return (
-    <nav className='w-full pt-[25px] flex items-end bg-primary-red z-10 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)]'>
-      { pages.map((page, key) => (
-        <button
-          id={page.name.toLowerCase() + '-button'}
-          className={
-            `flex-1 uppercase whitespace-nowrap overflow-hidden cursor-pointer truncate
-            p-[10px] md:p-[30px]
-            ${pathname === page.path || pathname.startsWith(page.path + '/')
-          ? 'bg-primary-red text-white'
-          : 'bg-white text-black'}
+    <>
+      <button
+        type='button'
+        aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isMenuOpen}
+        onClick={() => setIsMenuOpen(isOpen => !isOpen)}
+        className={`
+          ${isMenuOpen ? 'bg-black border-white' : 'bg-white border-black'}
+          fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center sm:hidden border-3`}
+      >
+        <Image
+          src={isMenuOpen ? '/images/close.svg' : '/images/menu.svg'}
+          alt=''
+          aria-hidden='true'
+          width={28}
+          height={28}
+          className='h-7 w-7'
+        />
+      </button>
 
-            ${getBorderClasses(page.name)}
-          `
-          }
-          key={key}
-          onClick={() =>
-            pathname === page.path || pathname.startsWith(page.path + '/') ? router.push('/') : router.push(page.path)}
-        >
-          {page.name}
-        </button>
-      ))}
-    </nav>
+      <div
+        aria-hidden={!isMenuOpen}
+        className={`fixed inset-0 z-40 flex min-h-screen w-screen flex-col bg-cover bg-center transition-transform duration-300 ease-in-out sm:hidden ${
+          isMenuOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+        }`}
+        style={{ backgroundImage: `url(${background.src})`, backgroundSize: 'cover' }}
+      >
+        <header className='px-8 pt-12 pb-8 text-center text-2xl font-bold uppercase text-white'>
+          Holmes High School
+          <br />
+          Touch Hall of Fame
+        </header>
+        <div className='flex flex-1 flex-col justify-start'>
+          {pages.map((page) => {
+            const isActive = pathname === page.path || pathname.startsWith(page.path + '/')
+
+            return (
+              <button
+                type='button'
+                className={`w-full border-b border-black/20 px-8 py-6 text-right text-2xl font-bold uppercase ${
+                  isActive ? 'bg-primary-red text-white' : 'bg-white text-black'
+                }`}
+                key={page.path}
+                onClick={() => {
+                  setIsMenuOpen(false)
+                  router.push(page.path)
+                }}
+              >
+                {page.name}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <nav className='hidden w-full pt-[25px] items-end bg-primary-red z-10 shadow-[0_-8px_12px_-6px_rgba(0,0,0,0.6)] sm:flex'>
+        { pages.map((page, key) => (
+          <button
+            id={page.name.toLowerCase() + '-button'}
+            className={
+              `flex-1 uppercase whitespace-nowrap overflow-hidden cursor-pointer truncate
+              p-[10px] md:p-[30px]
+              ${pathname === page.path || pathname.startsWith(page.path + '/')
+            ? 'bg-primary-red text-white'
+            : 'bg-white text-black'}
+
+              ${getBorderClasses(page.name)}
+            `
+            }
+            key={key}
+            onClick={() =>
+              pathname === page.path || pathname.startsWith(page.path + '/') ? router.push('/') : router.push(page.path)}
+          >
+            {page.name}
+          </button>
+        ))}
+      </nav>
+    </>
   )
 }
