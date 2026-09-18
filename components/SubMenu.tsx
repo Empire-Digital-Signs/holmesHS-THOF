@@ -3,6 +3,22 @@
 import { Page } from '@/types'
 import { usePathname, useRouter } from 'next/navigation'
 
+type ButtonProps = React.PropsWithChildren<{
+  classes: string
+  onClick: () => void
+  style: React.CSSProperties
+}>
+
+const Button = ({ children, classes, onClick, style }: ButtonProps) => (
+  <button
+    onClick={onClick}
+    style={style}
+    className={classes}
+  >
+    {children}
+  </button>
+)
+
 export default function SubMenu({ pages }: { pages: Page[] }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -25,12 +41,17 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
 
         // Resolve pathname
         const isSelected = pathname.includes(page.destination)
+        const alignmentClass = index === 0
+          ? 'ml-auto'
+          : index === 1
+            ? 'mx-auto'
+            : 'mr-auto'
 
         // Create outline based on button position
         const outlineSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='${polygonPoints}' fill='none' stroke='black' stroke-width='6' vector-effect='non-scaling-stroke' /%3E%3C/svg%3E")`
 
         return (
-          <button
+          <Button
             key={index}
             onClick={() => router.push(page.destination)}
             style={{
@@ -38,9 +59,9 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
               ['--button-clip']: clipPath,
               ['--button-outline']: outlineSvg,
             } as React.CSSProperties}
-            className={`
-              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold uppercase text-center text-wrap
-              p-[20px]
+            classes={`
+              submenu-button relative isolate min-w-0 shrink basis-0 flex-1 overflow-hidden font-bold uppercase text-wrap
+              py-[10px] md:py-[20px]
               before:absolute before:inset-0 before:z-[-1] before:[clip-path:var(--button-clip)]
               before:[background-image:var(--button-outline)] before:bg-no-repeat before:bg-size-[100%_100%]
               ${isSelected
@@ -48,8 +69,10 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
             : 'bg-white text-black'
           }`}
           >
-            {page.name}
-          </button>
+            <span className={`block w-[88%] ${alignmentClass}`}>
+              {page.name}
+            </span>
+          </Button>
         )
       })}
     </div>
