@@ -50,13 +50,14 @@ export default function InducteeGallery({
   }, [selectedInductee, inductees])
 
   return (
-    <div className='relative col-span-4 min-h-0 md:col-span-3'>
+    <div className={`relative col-span-4 min-h-0 ${detailInductee ? '' : 'md:col-span-3'}`}>
       {detailInductee
         ? (
             <div
-              className='h-full w-full md:p-[62px]'
+              className='h-full w-full max-w-[1600px] mx-auto md:p-[62px]'
               onClick={(e) => {
                 setDetailInductee(null)
+                onSelect(null)
                 e.stopPropagation()
               }}
             >

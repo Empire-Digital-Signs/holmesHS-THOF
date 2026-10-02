@@ -19,6 +19,8 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
   // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
   const [selectedListItem, setSelectedListItem] = useState<string | null>(null)
+  // Shows the sidebar when there is no active popup
+  const showSidebar = !(page.hasPopup && selectedInductee)
 
   return (
     <>
@@ -30,24 +32,26 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
           className='grid min-h-0 flex-1 grid-cols-4'
         >
           {/* Inductee List and Searchbar */}
-          <div className='h-full min-h-0 flex-col gap-[20px] items-start hidden md:flex col-span-1'>
-            <InducteeList
-              allInductees={inductees}
-              listName={page.listName}
-              searchKeys={page.searchKeys}
-              isAscending={page.isAscending}
-              selectedListItem={selectedListItem}
-              onFilter={(content, matchingInductees) => {
-                setSelectedInductee(null)
-                setSelectedListItem(content)
-                setFilteredInductees(matchingInductees ?? inductees)
-              }}
-            />
-            <Searchbar
-              inductees={inductees}
-              setFilteredInductees={setFilteredInductees}
-            />
-          </div>
+          {showSidebar && (
+            <div className='h-full min-h-0 flex-col gap-[20px] items-start hidden md:flex col-span-1'>
+              <InducteeList
+                allInductees={inductees}
+                listName={page.listName}
+                searchKeys={page.searchKeys}
+                isAscending={page.isAscending}
+                selectedListItem={selectedListItem}
+                onFilter={(content, matchingInductees) => {
+                  setSelectedInductee(null)
+                  setSelectedListItem(content)
+                  setFilteredInductees(matchingInductees ?? inductees)
+                }}
+              />
+              <Searchbar
+                inductees={inductees}
+                setFilteredInductees={setFilteredInductees}
+              />
+            </div>
+          )}
           <InducteeGallery
             inductees={filteredInductees}
             selectedInductee={selectedInductee}
