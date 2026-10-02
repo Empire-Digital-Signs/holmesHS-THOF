@@ -7,6 +7,7 @@ export const ACADEMICS_PAGES: Page[] = [
     hasPopup: false,
     listName: 'Academic Programs',
     searchKeys: ['academicPrograms'],
+    isAscending: true,
   },
   {
     name: 'Career and Technical Education',
@@ -14,6 +15,7 @@ export const ACADEMICS_PAGES: Page[] = [
     hasPopup: false,
     listName: 'Career and Technical Education',
     searchKeys: ['careerAndTechnicalEducation'],
+    isAscending: true,
   },
   {
     name: 'Hall of Distinction',
@@ -21,6 +23,7 @@ export const ACADEMICS_PAGES: Page[] = [
     hasPopup: true,
     listName: 'Induction Years',
     searchKeys: ['hodYear'],
+    isAscending: false,
   },
 ]
 
@@ -31,6 +34,7 @@ export const ATHLETICS_PAGES: Page[] = [
     hasPopup: true,
     listName: 'Induction Years',
     searchKeys: ['hofYear'],
+    isAscending: false,
   },
   {
     name: 'Championship',
@@ -38,6 +42,7 @@ export const ATHLETICS_PAGES: Page[] = [
     hasPopup: false,
     listName: 'Championships',
     searchKeys: ['championships'],
+    isAscending: true,
   },
   {
     name: 'Timeline',
@@ -45,6 +50,7 @@ export const ATHLETICS_PAGES: Page[] = [
     hasPopup: false,
     listName: '',
     searchKeys: [],
+    isAscending: true,
   },
 ]
 

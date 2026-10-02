@@ -11,6 +11,7 @@ export type Page = {
   hasPopup: boolean
   listName: string
   searchKeys: InducteeSearchKey[]
+  isAscending: boolean
 }
 
 // Get single Inductee from query result array

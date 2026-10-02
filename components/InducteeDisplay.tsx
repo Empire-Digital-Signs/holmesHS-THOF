@@ -35,6 +35,7 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
               allInductees={inductees}
               listName={page.listName}
               searchKeys={page.searchKeys}
+              isAscending={page.isAscending}
               selectedListItem={selectedListItem}
               onFilter={(content, matchingInductees) => {
                 setSelectedInductee(null)

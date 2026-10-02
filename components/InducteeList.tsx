@@ -5,6 +5,7 @@ import { Inductee } from '@/types'
  * @param allInductees - An array of inductee objects to display in the list.
  * @param listName - Header of the list.
  * @param searchKeys - Criteria to search in the inductees.
+ * @param isAscending - Determines the sort order of the list items.
  * @param selectedListItem - The selected item in the list.
  * @param onFilter - Callback to update Gallery according to the selected item in the list.
  * @returns A searchable list of inductees.
@@ -13,16 +14,18 @@ export default function InducteeList({
   allInductees,
   listName,
   searchKeys,
+  isAscending,
   selectedListItem,
   onFilter,
 }: {
   allInductees: Inductee[]
   listName: string
   searchKeys: (keyof Inductee)[]
+  isAscending: boolean
   selectedListItem: string | null
   onFilter: (content: string | null, inductees?: Inductee[]) => void
 }) {
-  const listItems: string[] = searchKeys.length === 2
+  const listItems: string[] = searchKeys.length === 2 // More than one search key is looking for first AND last name, not just single unique key
     ? allInductees.map(inductee => `${inductee.firstName ?? ''} ${inductee.lastName ?? ''}`.trim())
     : Array.from(new Set(
         allInductees.flatMap(inductee => searchKeys.flatMap((key) => {
@@ -44,7 +47,7 @@ export default function InducteeList({
         scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         '
       >
-        {listItems.map((content, index) => {
+        {listItems.sort((a, b) => (isAscending ? a.localeCompare(b) : b.localeCompare(a))).map((content, index) => {
           const isSelected = selectedListItem === content
           return (
             <button
