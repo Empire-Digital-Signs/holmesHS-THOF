@@ -17,9 +17,11 @@ function isMobile() {
 
 type SearchbarProps = {
   inductees: Inductee[]
-  setFilteredInductees: (items: Inductee[]) => void
+  setFilteredInductees?: (items: Inductee[]) => void
   placeholder?: string
   searchKeys?: (keyof Inductee)[]
+  query?: string
+  onSearch?: (value: string) => void
 }
 
 /**
@@ -28,6 +30,8 @@ type SearchbarProps = {
  * @param setFilteredInductees Function to update the filtered list of inductees
  * @param placeholder The placeholder text for the search input
  * @param searchKeys The keys in the inductee object to search against. First and last name by default.
+ * @param query The current search query
+ * @param onSearch Function to handle search query changes
  * @returns A search bar component that allows filtering a list of inductees
  */
 export default function Searchbar({
@@ -35,13 +39,23 @@ export default function Searchbar({
   setFilteredInductees,
   placeholder = 'Search...',
   searchKeys = ['firstName', 'lastName'] as const,
+  query,
+  onSearch,
 }: SearchbarProps) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [query, setQuery] = useState('')
+  const [internalQuery, setInternalQuery] = useState('')
   const [showKeyboard, setShowKeyboard] = useState(false)
+  const currentQuery = query ?? internalQuery
 
   const handleSearch = (value: string) => {
-    setQuery(value)
+    if (onSearch) {
+      onSearch(value)
+    }
+    else {
+      setInternalQuery(value)
+    }
+
+    if (!setFilteredInductees) return
 
     const normalizedQuery = value.trim().toLowerCase()
 
@@ -86,7 +100,7 @@ export default function Searchbar({
             ref={inputRef}
             type='search'
             inputMode='search'
-            value={query}
+            value={currentQuery}
             onChange={event => handleSearch(event.target.value)}
             onClick={() => {
               inputRef.current?.focus()
@@ -110,9 +124,8 @@ export default function Searchbar({
             // If not mobile, display keyboard
             !isMobile() && (
               <OnScreenKeyboard
-                value={query}
+                value={currentQuery}
                 onChange={(nextValue) => {
-                  setQuery(nextValue)
                   handleSearch(nextValue)
                 }}
                 onClose={() => setShowKeyboard(false)}

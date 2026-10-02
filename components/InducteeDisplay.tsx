@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import InducteeGallery from './InducteeGallery'
 import InducteeList from './InducteeList'
 import Searchbar from './Searchbar'
@@ -14,13 +14,32 @@ import { Inductee, Page } from '@/types'
  * @returns Searchable list and gallery display of inductees.
  */
 export default function InducteeDisplay({ inductees, page }: { inductees: INDUCTEES_QUERY_RESULT, page: Page }) {
-  // Store inductee data
-  const [filteredInductees, setFilteredInductees] = useState<INDUCTEES_QUERY_RESULT>(inductees)
   // The inductee to center on
   const [selectedInductee, setSelectedInductee] = useState<Inductee | null>(null)
   const [selectedListItem, setSelectedListItem] = useState<string | null>(null)
+  const [listFilteredInductees, setListFilteredInductees] = useState<INDUCTEES_QUERY_RESULT>(inductees)
+  const [searchQuery, setSearchQuery] = useState('')
   // Shows the sidebar when there is no active popup
   const showSidebar = !(page.hasPopup && selectedInductee)
+
+  // Determines the active set of inductees based on the selected list item
+  const activeInductees = selectedListItem ? listFilteredInductees : inductees
+
+  // Gets the filtered search of inductees
+  const filteredInductees = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLowerCase()
+
+    if (!normalizedQuery) return activeInductees
+
+    return activeInductees.filter(inductee => ['firstName', 'lastName'].some((key) => {
+      const value = inductee[key]
+
+      if (typeof value === 'string') return value.toLowerCase().includes(normalizedQuery)
+      if (typeof value === 'number') return String(value).includes(normalizedQuery)
+      return Array.isArray(value)
+        && value.some(item => typeof item === 'string' && item.toLowerCase().includes(normalizedQuery))
+    }))
+  }, [activeInductees, searchQuery])
 
   return (
     <>
@@ -43,12 +62,13 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
                 onFilter={(content, matchingInductees) => {
                   setSelectedInductee(null)
                   setSelectedListItem(content)
-                  setFilteredInductees(matchingInductees ?? inductees)
+                  setListFilteredInductees(content ? (matchingInductees ?? inductees) : inductees) // Use matchingIndutees unless null. Defaults to all inductees
                 }}
               />
               <Searchbar
-                inductees={inductees}
-                setFilteredInductees={setFilteredInductees}
+                inductees={activeInductees}
+                query={searchQuery}
+                onSearch={setSearchQuery}
               />
             </div>
           )}
