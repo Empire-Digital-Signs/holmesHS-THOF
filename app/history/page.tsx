@@ -166,7 +166,7 @@ export default function HistoryPage() {
           showNavigation={false}
           label='Holmes High School history'
           className='flex h-full my-auto min-w-0 flex-1 items-center overflow-y-scroll [&>div]:h-full [&>div>div]:h-full [&>div>div>div]:h-full!'
-          cardClassName='h-full rounded-[20px] border-2 border-black'
+          cardClassName='h-[clamp(300px,70vh,1000px)] top-0 bottom-0 my-auto rounded-[20px] border-2 border-black'
           renderSlide={(_, index, selected) => {
             const hasPrev = index - 1 >= 0
             const hasNext = index + 1 < records.length
