@@ -209,5 +209,9 @@ button:hover {
     .no-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
-  }
+    }
+    /* Thicker scrollbar to override auto size */
+    .scrollbar-thick::-webkit-scrollbar {
+        scrollbar-width: 16px;
+    }
 }

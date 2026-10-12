@@ -44,7 +44,7 @@ export default function InducteeList({
         {listName}
       </h4>
       <ul className='min-h-0 flex-1 overflow-y-auto bg-black
-        scrollbar scrollbar-w-[15px] scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
+        scrollbar scrollbar-thick scrollbar-track-black scrollbar-thumb-primary-red scrollbar-thumb-rounded-full
         '
       >
         {listItems.sort((a, b) => (isAscending ? a.localeCompare(b) : b.localeCompare(a))).map((content, index) => {
