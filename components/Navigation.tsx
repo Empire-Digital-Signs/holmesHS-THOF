@@ -19,8 +19,6 @@ export default function Navigation() {
 
   // Handle rounded edges based on current path
   useEffect(() => {
-    console.log('pathname', pathname)
-
     // Get buttons
     const historyButton = document.getElementById('history-button')
     const academicsButton = document.getElementById('academics-button')

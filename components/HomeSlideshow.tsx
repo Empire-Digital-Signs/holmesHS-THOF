@@ -26,7 +26,6 @@ export default function HomeSlideshow() {
       else {
         setFadeTime(0)
       }
-      console.log('Fetched slides:', slides)
     }
     fetchSlides()
   }, [])
