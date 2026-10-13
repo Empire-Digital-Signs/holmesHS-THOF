@@ -32,7 +32,7 @@ export default function InducteeDisplay({ inductees, page }: { inductees: INDUCT
     if (!normalizedQuery) return activeInductees
 
     return activeInductees.filter(inductee => ['firstName', 'lastName'].some((key) => {
-      const value = inductee[key]
+      const value = inductee[key as keyof typeof inductee]
 
       if (typeof value === 'string') return value.toLowerCase().includes(normalizedQuery)
       if (typeof value === 'number') return String(value).includes(normalizedQuery)
