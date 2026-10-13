@@ -1,3 +1,3 @@
-export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-02-19'
-export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pwepmol5'
+export const apiVersion = '2025-02-19' // NEXT_PUBLIC_SANITY_API_VERSION is set in .env.local
+export const dataset = 'production' // NEXT_PUBLIC_SANITY_DATASET is set in .env.local
+export const projectId = 'pwepmol5' // NEXT_PUBLIC_SANITY_PROJECT_ID is set in .env.local
