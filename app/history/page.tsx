@@ -44,13 +44,17 @@ function HistoryCard({
               <h4 className={`px-3.5 ${alignmentClass} text-white`}>
                 {record.year}
               </h4>
-              <Image
-                src='/images/history-image.png'
-                alt={`${record.year}: ${record.title}`}
-                width={809}
-                height={503}
-                className='object-cover h-[200px] [@media(max-height:800px)]:hidden'
-              />
+              {
+                record.photo && (
+                  <Image
+                    src={record.photo}
+                    alt={`${record.year}: ${record.title}`}
+                    width={809}
+                    height={503}
+                    className='object-cover h-[200px] [@media(max-height:800px)]:hidden'
+                  />
+                )
+              }
               <div className='flex min-h-0 flex-1 flex-col gap-[20px] bg-white p-[15px]'>
                 <h2
                   className='uppercase text-center text-ellipsis line-clamp-3'
