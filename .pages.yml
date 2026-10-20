@@ -1,1 +1,3 @@
-media
+media:
+  input: public/images
+  output: images
