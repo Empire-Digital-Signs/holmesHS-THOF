@@ -40,7 +40,7 @@ export default function SubMenu({ pages }: { pages: Page[] }) {
         }
 
         // Resolve pathname
-        const isSelected = pathname.includes(page.destination)
+        const isSelected = pathname?.includes(page.destination)
         const alignmentClass = index === 0
           ? 'ml-auto'
           : index === 1

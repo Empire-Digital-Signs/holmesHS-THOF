@@ -36,19 +36,19 @@ export default function Navigation() {
     }
 
     // Add rounded edges based on the current path
-    if (pathname.startsWith('/history')) {
+    if (pathname?.startsWith('/history')) {
       removeRoundedEdges()
       academicsButton?.classList.add('rounded-tl-2xl')
     }
-    else if (pathname.startsWith('/academics')) {
+    else if (pathname?.startsWith('/academics')) {
       historyButton?.classList.add('rounded-tr-2xl')
       athleticsButton?.classList.add('rounded-tl-2xl')
     }
-    else if (pathname.startsWith('/athletics')) {
+    else if (pathname?.startsWith('/athletics')) {
       academicsButton?.classList.add('rounded-tr-2xl')
       yearbooksButton?.classList.add('rounded-tl-2xl')
     }
-    else if (pathname.startsWith('/yearbooks')) {
+    else if (pathname?.startsWith('/yearbooks')) {
       athleticsButton?.classList.add('rounded-tr-2xl')
     }
   }, [pathname])
@@ -59,18 +59,18 @@ export default function Navigation() {
     // If home page, do not return borders
     if (pathname === '/') return
 
-    if (pathname.startsWith('/history') && pageName === pages[1].name) {
+    if (pathname?.startsWith('/history') && pageName === pages[1].name) {
       classes += 'rounded-tl-2xl '
     }
-    if (pathname.startsWith('/academics')) {
+    if (pathname?.startsWith('/academics')) {
       if (pageName === pages[0].name) classes += 'rounded-tr-2xl '
       if (pageName === pages[2].name) classes += 'rounded-tl-2xl '
     }
-    if (pathname.startsWith('/athletics')) {
+    if (pathname?.startsWith('/athletics')) {
       if (pageName === pages[1].name) classes += 'rounded-tr-2xl '
       if (pageName === pages[3].name) classes += 'rounded-tl-2xl '
     }
-    if (pathname.startsWith('/yearbooks') && pageName === pages[3].name) {
+    if (pathname?.startsWith('/yearbooks') && pageName === pages[3].name) {
       classes += 'rounded-tr-2xl '
     }
     return classes
@@ -111,7 +111,7 @@ export default function Navigation() {
         </header>
         <div className='flex flex-1 flex-col justify-start'>
           {pages.map((page) => {
-            const isActive = pathname === page.path || pathname.startsWith(page.path + '/')
+            const isActive = pathname === page.path || pathname?.startsWith(page.path + '/')
 
             return (
               <button
@@ -139,7 +139,7 @@ export default function Navigation() {
             className={
               `flex-1 uppercase whitespace-nowrap overflow-hidden cursor-pointer truncate
               p-[10px] md:p-[30px]
-              ${pathname === page.path || pathname.startsWith(page.path + '/')
+              ${pathname === page.path || pathname?.startsWith(page.path + '/')
             ? 'bg-primary-red text-white'
             : 'bg-white text-black'}
 
@@ -148,7 +148,7 @@ export default function Navigation() {
             }
             key={key}
             onClick={() =>
-              pathname === page.path || pathname.startsWith(page.path + '/') ? router.push('/') : router.push(page.path)}
+              pathname === page.path || pathname?.startsWith(page.path + '/') ? router.push('/') : router.push(page.path)}
           >
             {page.name}
           </button>

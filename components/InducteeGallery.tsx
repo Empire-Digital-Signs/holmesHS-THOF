@@ -36,7 +36,7 @@ export default function InducteeGallery({
 }) {
   const [detailInductee, setDetailInductee] = useState<Inductee | null>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({})
-  const pathname = usePathname()
+  const pathname = usePathname() || ''
 
   useEffect(() => {
     if (!selectedInductee) return
