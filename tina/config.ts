@@ -78,6 +78,7 @@ export default defineConfig({
             type: 'image',
             name: 'photo',
             label: 'Photo',
+            accept: 'image',
           },
           {
             type: 'rich-text',
@@ -89,7 +90,7 @@ export default defineConfig({
           },
         ],
         ui: {
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+          router: () => '/history',
         },
       },
       {
