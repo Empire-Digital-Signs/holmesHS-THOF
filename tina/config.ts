@@ -93,83 +93,83 @@ export default defineConfig({
           router: () => '/history',
         },
       },
-      {
-        name: 'slideshow',
-        label: 'Home Slideshow',
-        path: 'content/slideshow',
-        fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Title',
-            ui: {
-              defaultValue: 'Home Slideshow',
-              component: 'hidden',
-            },
-          },
-          {
-            type: 'object',
-            name: 'images',
-            label: 'Images',
-            list: true,
-            fields: [
-              {
-                type: 'string',
-                name: 'name',
-                label: 'Name',
-                description: 'Not shown in the app.',
-              },
-              {
-                type: 'image',
-                name: 'image',
-                label: 'Image',
-                accept: 'image',
-              },
-              {
-                type: 'string',
-                name: 'startDate',
-                label: 'Start Date',
-                description: 'When to start showing this slide. Always shown by default.',
-              },
-              {
-                type: 'string',
-                name: 'endDate',
-                label: 'End Date',
-                description: 'When to stop showing this slide. Always shown by default.',
-              },
-              {
-                type: 'number',
-                name: 'duration',
-                label: 'Duration',
-                description: 'How long to display this slide for. Default = 10 seconds.',
-                ui: {
-                  defaultValue: 10,
-                },
-              },
-            ],
-          },
-          {
-            type: 'number',
-            name: 'transitionDuration',
-            label: 'Transition Duration',
-            description: 'Duration of the transition between slides in seconds. Default = 2 seconds.',
-            ui: {
-              defaultValue: 2,
-            },
-          },
-        ],
-        ui: {
-          // Cannot include router preview: redirects to demo page and cannot edit
-          filename: {
-            readonly: true,
-            slugify: () => 'home-slideshow',
-          },
-          allowedActions: {
-            create: false,
-            delete: false,
-          },
-        },
-      },
+      // {
+      //   name: 'slideshow',
+      //   label: 'Home Slideshow',
+      //   path: 'content/slideshow',
+      //   fields: [
+      //     {
+      //       type: 'string',
+      //       name: 'title',
+      //       label: 'Title',
+      //       ui: {
+      //         defaultValue: 'Home Slideshow',
+      //         component: 'hidden',
+      //       },
+      //     },
+      //     {
+      //       type: 'object',
+      //       name: 'images',
+      //       label: 'Images',
+      //       list: true,
+      //       fields: [
+      //         {
+      //           type: 'string',
+      //           name: 'name',
+      //           label: 'Name',
+      //           description: 'Not shown in the app.',
+      //         },
+      //         {
+      //           type: 'image',
+      //           name: 'image',
+      //           label: 'Image',
+      //           accept: 'image',
+      //         },
+      //         {
+      //           type: 'string',
+      //           name: 'startDate',
+      //           label: 'Start Date',
+      //           description: 'When to start showing this slide. Always shown by default.',
+      //         },
+      //         {
+      //           type: 'string',
+      //           name: 'endDate',
+      //           label: 'End Date',
+      //           description: 'When to stop showing this slide. Always shown by default.',
+      //         },
+      //         {
+      //           type: 'number',
+      //           name: 'duration',
+      //           label: 'Duration',
+      //           description: 'How long to display this slide for. Default = 10 seconds.',
+      //           ui: {
+      //             defaultValue: 10,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       type: 'number',
+      //       name: 'transitionDuration',
+      //       label: 'Transition Duration',
+      //       description: 'Duration of the transition between slides in seconds. Default = 2 seconds.',
+      //       ui: {
+      //         defaultValue: 2,
+      //       },
+      //     },
+      //   ],
+      //   ui: {
+      //     // Cannot include router preview: redirects to demo page and cannot edit
+      //     filename: {
+      //       readonly: true,
+      //       slugify: () => 'home-slideshow',
+      //     },
+      //     allowedActions: {
+      //       create: false,
+      //       delete: false,
+      //     },
+      //   },
+      // },
       {
         name: 'inductee',
         label: 'Inductees',
