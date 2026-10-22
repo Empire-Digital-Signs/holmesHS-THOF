@@ -7,6 +7,9 @@ const branch
     || process.env.HEAD
     || 'main'
 
+// Maximum file size allowed
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+
 export default defineConfig({
   branch,
   // Get this from tina.io
@@ -24,9 +27,9 @@ export default defineConfig({
   //   allowedOrigins: ['https://your-codespace.github.dev'],
   // },
   media: {
-    tina: {
-      mediaRoot: '',
-      publicFolder: 'public/tina-media',
+    loadCustomStore: async () => {
+      const pack = await import('next-tinacms-s3')
+      return pack.TinaCloudS3MediaStore
     },
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
@@ -79,6 +82,19 @@ export default defineConfig({
             name: 'photo',
             label: 'Photo',
             accept: 'image',
+            // ui: {
+            //   validate: (value) => {
+            //     // OK if no image
+            //     if (!value) return true
+
+            //     // Check if image is within size limit
+            //     if (value.size > MAX_FILE_SIZE) {
+            //       return 'Please use a smaller image. Max size is 5MB.'
+            //     }
+
+            //     return true
+            //   },
+            // },
           },
           {
             type: 'rich-text',
@@ -270,4 +286,5 @@ export default defineConfig({
       },
     ],
   },
+  localContentPath: '../content-holmeshs-thof',
 })

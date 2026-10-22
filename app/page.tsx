@@ -2,6 +2,23 @@ import HomeSlideshow from '../components/HomeSlideshow'
 import Header from '../components/header'
 import Image from 'next/image'
 
+// Helper function to determine if browser is mobile
+// Mobile device does not need QR code
+export function isMobile(): boolean {
+  // Modern regex check
+  const ua = navigator.userAgent
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+    return true
+  }
+
+  // Fallback for Mac Intel
+  if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
+    return true
+  }
+
+  return false
+}
+
 export default async function HomePage() {
   return (
     <main className='overflow-hidden flex flex-1'>
@@ -51,25 +68,32 @@ export default async function HomePage() {
       />
 
       {/* QR Code CTA: Only on larger screens */}
-      <div
-        className='hidden absolute bottom-[12vw] mb-[20px] right-[20px] sm:flex sm:flex-col md:flex-row items-center justify-end z-10 gap-[20px]'
-      >
-        {/* Text */}
-        <div
-          className='flex flex-col uppercase text-white w-full text-right [text-shadow:2px_2px_4px_rgb(0_0_0/75%)]'
-        >
-          <h1 className='leading-[3rem]'>Scan for</h1>
-          <h2 className='leading-[3rem]'>on the go</h2>
-          <h1 className='leading-[3rem]'>Access</h1>
-        </div>
-        {/* QR Code */}
-        {/* TODO: replace this with real URL... Sanity? */}
-        <img
-          src='https://placehold.co/200x200'
-          alt=''
-          className=''
-        />
-      </div>
+      {
+        !isMobile()
+          ? null
+          : (
+              <div
+                className='hidden absolute bottom-[12vw] mb-[20px] right-[20px] sm:flex sm:flex-col md:flex-row items-center justify-end z-10 gap-[20px]'
+              >
+                {/* Text */}
+                <div
+                  className='flex flex-col uppercase text-white w-full text-right [text-shadow:2px_2px_4px_rgb(0_0_0/75%)]'
+                >
+                  <h1 className='leading-[3rem]'>Scan for</h1>
+                  <h2 className='leading-[3rem]'>on the go</h2>
+                  <h1 className='leading-[3rem]'>Access</h1>
+                </div>
+                {/* QR Code */}
+                {/* TODO: replace this with real URL... Sanity? */}
+                <img
+                  src='https://placehold.co/200x200'
+                  alt=''
+                  className=''
+                />
+              </div>
+            )
+      }
+
     </main>
   )
 }
